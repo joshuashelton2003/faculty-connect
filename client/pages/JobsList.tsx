@@ -1,31 +1,58 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Job } from '@/types';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@/lib/api';
+import { Job, SearchFilters } from '@/types';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Skeleton } from '@/components/ui/skeleton';
+import JobCard from '@/components/JobCard';
+import { 
+  Filter, 
   MapPin, 
-  Calendar, 
-  Clock, 
-  Building, 
+  GraduationCap, 
+  Building,
   IndianRupee,
-  Users
+  Clock,
+  X,
+  Search
 } from 'lucide-react';
 
 export default function JobsList() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [showFilters, setShowFilters] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   
-  // Mock jobs data
+  // Initialize filters from URL params
+  const [filters, setFilters] = useState<SearchFilters>({
+    subject: searchParams.get('subject') || '',
+    location: searchParams.get('location') || '',
+    type: searchParams.get('type') || '',
+    experience: searchParams.get('experience') || '',
+    sort: (searchParams.get('sort') as 'recent' | 'salary' | 'relevance') || 'recent',
+  });
+
+  const [searchTitle, setSearchTitle] = useState(searchParams.get('title') || '');
+
+  // Mock data for demonstration - In real app, this would be from API
   const mockJobs: Job[] = [
     {
       _id: '1',
       title: 'Assistant Professor - Computer Science',
-      description: 'Looking for a passionate Computer Science professor to join our growing department. Experience in AI/ML preferred.',
+      description: 'Looking for a passionate Computer Science professor to join our growing department. Experience in AI/ML preferred. The candidate should have strong programming skills and research experience.',
       subject: 'Computer Science',
       type: 'college',
       location: { city: 'Chennai', state: 'Tamil Nadu', district: 'Chennai' },
       salary: { min: 45000, max: 65000, currency: 'INR' },
-      requirements: { education: 'PhD in Computer Science', experience: '2-5 years', skills: ['Python', 'Machine Learning'] },
+      requirements: { education: 'PhD in Computer Science', experience: '2-5 years', skills: ['Python', 'Machine Learning', 'Data Structures'] },
       institute: { _id: '1', name: 'Anna University', type: 'university', location: { city: 'Chennai', state: 'Tamil Nadu', district: 'Chennai', address: '' }, email: '', phone: '', description: '', established: 1978, isFeatured: true, jobsCount: 12 },
       postedBy: 'employer1',
       postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
@@ -36,49 +63,140 @@ export default function JobsList() {
     {
       _id: '2',
       title: 'Mathematics Teacher - Higher Secondary',
-      description: 'Seeking an experienced Mathematics teacher for Classes 11 and 12.',
+      description: 'Seeking an experienced Mathematics teacher for Classes 11 and 12. Strong foundation in calculus and algebra required. The position involves teaching both CBSE and State board curricula.',
       subject: 'Mathematics',
       type: 'school',
       location: { city: 'Coimbatore', state: 'Tamil Nadu', district: 'Coimbatore' },
       salary: { min: 25000, max: 35000, currency: 'INR' },
-      requirements: { education: 'M.Sc Mathematics, B.Ed', experience: '3+ years', skills: ['Calculus', 'Algebra'] },
+      requirements: { education: 'M.Sc Mathematics, B.Ed', experience: '3+ years', skills: ['Calculus', 'Algebra', 'Statistics'] },
       institute: { _id: '2', name: 'PSG Matriculation School', type: 'school', location: { city: 'Coimbatore', state: 'Tamil Nadu', district: 'Coimbatore', address: '' }, email: '', phone: '', description: '', established: 1985, isFeatured: false, jobsCount: 5 },
       postedBy: 'employer2',
       postedDate: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
       deadline: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000).toISOString(),
       isActive: true,
       applicationsCount: 18
+    },
+    {
+      _id: '3',
+      title: 'English Literature Professor',
+      description: 'Join our English department as a Professor. Research experience in contemporary literature preferred. The role involves teaching undergraduate and postgraduate courses.',
+      subject: 'English Literature',
+      type: 'college',
+      location: { city: 'Madurai', state: 'Tamil Nadu', district: 'Madurai' },
+      salary: { min: 50000, max: 70000, currency: 'INR' },
+      requirements: { education: 'PhD in English Literature', experience: '5+ years', skills: ['Research', 'Academic Writing', 'Literary Criticism'] },
+      institute: { _id: '3', name: 'Madurai Kamaraj University', type: 'university', location: { city: 'Madurai', state: 'Tamil Nadu', district: 'Madurai', address: '' }, email: '', phone: '', description: '', established: 1966, isFeatured: true, jobsCount: 8 },
+      postedBy: 'employer3',
+      postedDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+      deadline: new Date(Date.now() + 20 * 24 * 60 * 60 * 1000).toISOString(),
+      isActive: true,
+      applicationsCount: 31
+    },
+    {
+      _id: '4',
+      title: 'Physics Lecturer - Engineering College',
+      description: 'Engineering Physics position for first-year students. Should be comfortable with both theoretical and practical aspects of physics.',
+      subject: 'Physics',
+      type: 'college',
+      location: { city: 'Salem', state: 'Tamil Nadu', district: 'Salem' },
+      salary: { min: 35000, max: 45000, currency: 'INR' },
+      requirements: { education: 'M.Sc Physics', experience: '2+ years', skills: ['Mechanics', 'Thermodynamics', 'Quantum Physics'] },
+      institute: { _id: '4', name: 'Salem Engineering College', type: 'college', location: { city: 'Salem', state: 'Tamil Nadu', district: 'Salem', address: '' }, email: '', phone: '', description: '', established: 1995, isFeatured: false, jobsCount: 3 },
+      postedBy: 'employer4',
+      postedDate: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString(),
+      deadline: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString(),
+      isActive: true,
+      applicationsCount: 12
+    },
+    {
+      _id: '5',
+      title: 'Chemistry Teacher - Polytechnic',
+      description: 'Chemistry faculty position for diploma programs. Experience in industrial chemistry preferred.',
+      subject: 'Chemistry',
+      type: 'polytechnic',
+      location: { city: 'Trichy', state: 'Tamil Nadu', district: 'Tiruchirappalli' },
+      salary: { min: 30000, max: 40000, currency: 'INR' },
+      requirements: { education: 'M.Sc Chemistry', experience: '1-3 years', skills: ['Organic Chemistry', 'Inorganic Chemistry', 'Lab Management'] },
+      institute: { _id: '5', name: 'Government Polytechnic Trichy', type: 'polytechnic', location: { city: 'Trichy', state: 'Tamil Nadu', district: 'Tiruchirappalli', address: '' }, email: '', phone: '', description: '', established: 1965, isFeatured: false, jobsCount: 7 },
+      postedBy: 'employer5',
+      postedDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+      deadline: new Date(Date.now() + 18 * 24 * 60 * 60 * 1000).toISOString(),
+      isActive: true,
+      applicationsCount: 9
     }
   ];
 
-  const formatSalary = (min: number, max: number) => {
-    const formatNumber = (num: number) => {
-      if (num >= 100000) return `${(num / 100000).toFixed(1)}L`;
-      if (num >= 1000) return `${(num / 1000).toFixed(0)}K`;
-      return num.toString();
-    };
-    return `₹${formatNumber(min)} - ₹${formatNumber(max)}`;
+  // Filter jobs based on current filters
+  const filteredJobs = mockJobs.filter(job => {
+    if (searchTitle && !job.title.toLowerCase().includes(searchTitle.toLowerCase())) return false;
+    if (filters.subject && !job.subject.toLowerCase().includes(filters.subject.toLowerCase())) return false;
+    if (filters.location && !job.location.city.toLowerCase().includes(filters.location.toLowerCase())) return false;
+    if (filters.type && job.type !== filters.type) return false;
+    if (filters.experience) {
+      const reqExp = job.requirements.experience.toLowerCase();
+      if (filters.experience === 'fresher' && !reqExp.includes('0') && !reqExp.includes('fresher')) return false;
+      if (filters.experience === '1-3' && !reqExp.includes('1') && !reqExp.includes('2') && !reqExp.includes('3')) return false;
+      if (filters.experience === '3-5' && !reqExp.includes('3') && !reqExp.includes('4') && !reqExp.includes('5')) return false;
+      if (filters.experience === '5+' && !reqExp.includes('5+') && !reqExp.includes('5') && !reqExp.includes('6') && !reqExp.includes('7') && !reqExp.includes('8') && !reqExp.includes('9') && !reqExp.includes('10')) return false;
+    }
+    return true;
+  });
+
+  // Sort jobs
+  const sortedJobs = [...filteredJobs].sort((a, b) => {
+    switch (filters.sort) {
+      case 'salary':
+        return b.salary.max - a.salary.max;
+      case 'relevance':
+        return b.applicationsCount - a.applicationsCount;
+      case 'recent':
+      default:
+        return new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime();
+    }
+  });
+
+  // Update URL params when filters change
+  useEffect(() => {
+    const newParams = new URLSearchParams();
+    if (searchTitle) newParams.set('title', searchTitle);
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) newParams.set(key, value);
+    });
+    setSearchParams(newParams);
+  }, [filters, searchTitle, setSearchParams]);
+
+  const updateFilter = (key: keyof SearchFilters, value: string) => {
+    setFilters(prev => ({ ...prev, [key]: value }));
   };
 
-  const getDaysAgo = (dateString: string) => {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffTime = Math.abs(now.getTime() - date.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
-    if (diffDays === 1) return '1 day ago';
-    if (diffDays < 7) return `${diffDays} days ago`;
-    return `${Math.floor(diffDays / 7)} weeks ago`;
+  const clearFilters = () => {
+    setFilters({
+      subject: '',
+      location: '',
+      type: '',
+      experience: '',
+      sort: 'recent',
+    });
+    setSearchTitle('');
   };
 
-  const getTypeColor = (type: string) => {
-    const colors = {
-      college: 'bg-blue-100 text-blue-800',
-      university: 'bg-purple-100 text-purple-800',
-      school: 'bg-green-100 text-green-800',
-      polytechnic: 'bg-orange-100 text-orange-800',
-    };
-    return colors[type as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+  const activeFiltersCount = [searchTitle, ...Object.values(filters)].filter(value => value && value !== 'recent').length;
+
+  // Mock API call simulation
+  const searchJobs = async () => {
+    setIsLoading(true);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 500));
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    searchJobs();
+  }, [filters, searchTitle]);
+
+  const handleSaveJob = (jobId: string) => {
+    // In real app: POST /api/candidate/saved
+    console.log('Saving job:', jobId);
   };
 
   return (
@@ -92,83 +210,214 @@ export default function JobsList() {
               Find your perfect teaching position from {mockJobs.length} available opportunities
             </p>
           </div>
+          
+          {/* Search Bar */}
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Input
+                    type="text"
+                    placeholder="Search job titles, companies, or keywords"
+                    value={searchTitle}
+                    onChange={(e) => setSearchTitle(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
+              </div>
+              <Button onClick={searchJobs} disabled={isLoading}>
+                {isLoading ? 'Searching...' : 'Search'}
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex items-center justify-between mb-6">
-          <div className="text-sm text-gray-600">
-            Showing {mockJobs.length} jobs
-          </div>
-        </div>
-
-        {/* Job Cards */}
-        <div className="space-y-6">
-          {mockJobs.map((job) => (
-            <div key={job._id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
-              {/* Job Header */}
-              <div className="mb-4">
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors">
-                    {job.title}
-                  </h3>
-                </div>
-                
-                <div className="flex items-center space-x-2 mb-2">
-                  <Building className="w-4 h-4 text-gray-400" />
-                  <span className="text-sm text-gray-600 font-medium">{job.institute.name}</span>
-                </div>
-
-                <div className="flex items-center space-x-4 text-sm text-gray-500">
-                  <div className="flex items-center space-x-1">
-                    <MapPin className="w-4 h-4" />
-                    <span>{job.location.city}, {job.location.state}</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Clock className="w-4 h-4" />
-                    <span>{getDaysAgo(job.postedDate)}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Job Details */}
-              <div className="mb-4">
-                <p className="text-gray-600 text-sm mb-3">{job.description}</p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-3">
-                  <Badge className={getTypeColor(job.type)}>
-                    {job.type.charAt(0).toUpperCase() + job.type.slice(1)}
-                  </Badge>
-                  <Badge variant="outline">{job.subject}</Badge>
-                  {job.requirements.experience && (
-                    <Badge variant="outline">{job.requirements.experience}</Badge>
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Filters Sidebar */}
+          <div className="lg:w-1/4">
+            <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-24">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+                  <Filter className="w-5 h-5 mr-2" />
+                  Filters
+                  {activeFiltersCount > 0 && (
+                    <span className="ml-2 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                      {activeFiltersCount}
+                    </span>
                   )}
-                </div>
-
-                {/* Salary */}
-                <div className="flex items-center space-x-1 text-green-600 font-medium">
-                  <IndianRupee className="w-4 h-4" />
-                  <span>{formatSalary(job.salary.min, job.salary.max)} /month</span>
-                </div>
+                </h3>
+                {activeFiltersCount > 0 && (
+                  <Button variant="ghost" size="sm" onClick={clearFilters}>
+                    <X className="w-4 h-4 mr-1" />
+                    Clear
+                  </Button>
+                )}
               </div>
 
-              {/* Footer */}
-              <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                <div className="flex items-center space-x-2 text-sm text-gray-500">
-                  <Calendar className="w-4 h-4" />
-                  <span>Deadline: {new Date(job.deadline).toLocaleDateString()}</span>
+              <div className="space-y-6">
+                {/* Institution Type */}
+                <div>
+                  <Label className="text-sm font-medium text-gray-700 flex items-center mb-3">
+                    <Building className="w-4 h-4 mr-2" />
+                    Institution Type
+                  </Label>
+                  <Select value={filters.type || ''} onValueChange={(value) => updateFilter('type', value)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="All types" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">All types</SelectItem>
+                      <SelectItem value="school">School</SelectItem>
+                      <SelectItem value="college">College</SelectItem>
+                      <SelectItem value="university">University</SelectItem>
+                      <SelectItem value="polytechnic">Polytechnic</SelectItem>
+                      <SelectItem value="iti">ITI</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm text-gray-500">
-                    {job.applicationsCount} applicants
-                  </span>
-                  <Button size="sm">View Details</Button>
+                {/* Department/Subject */}
+                <div>
+                  <Label className="text-sm font-medium text-gray-700 flex items-center mb-3">
+                    <GraduationCap className="w-4 h-4 mr-2" />
+                    Department
+                  </Label>
+                  <Input
+                    type="text"
+                    placeholder="Enter subject"
+                    value={filters.subject || ''}
+                    onChange={(e) => updateFilter('subject', e.target.value)}
+                  />
+                </div>
+
+                {/* Location */}
+                <div>
+                  <Label className="text-sm font-medium text-gray-700 flex items-center mb-3">
+                    <MapPin className="w-4 h-4 mr-2" />
+                    Location
+                  </Label>
+                  <Input
+                    type="text"
+                    placeholder="Enter city"
+                    value={filters.location || ''}
+                    onChange={(e) => updateFilter('location', e.target.value)}
+                  />
+                </div>
+
+                {/* Experience */}
+                <div>
+                  <Label className="text-sm font-medium text-gray-700 mb-3 block">
+                    Experience Level
+                  </Label>
+                  <Select value={filters.experience || ''} onValueChange={(value) => updateFilter('experience', value)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Any experience" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">Any experience</SelectItem>
+                      <SelectItem value="fresher">Fresher (0 years)</SelectItem>
+                      <SelectItem value="1-3">1-3 years</SelectItem>
+                      <SelectItem value="3-5">3-5 years</SelectItem>
+                      <SelectItem value="5+">5+ years</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Sort By */}
+                <div>
+                  <Label className="text-sm font-medium text-gray-700 flex items-center mb-3">
+                    <Clock className="w-4 h-4 mr-2" />
+                    Sort By
+                  </Label>
+                  <Select value={filters.sort || 'recent'} onValueChange={(value) => updateFilter('sort', value)}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="recent">Most Recent</SelectItem>
+                      <SelectItem value="salary">Highest Salary</SelectItem>
+                      <SelectItem value="relevance">Most Relevant</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Jobs List */}
+          <div className="lg:w-3/4">
+            <div className="flex items-center justify-between mb-6">
+              <div className="text-sm text-gray-600">
+                Showing {sortedJobs.length} of {mockJobs.length} jobs
+              </div>
+              
+              {/* Mobile Filter Toggle */}
+              <Button
+                variant="outline"
+                size="sm"
+                className="lg:hidden"
+                onClick={() => setShowFilters(!showFilters)}
+              >
+                <Filter className="w-4 h-4 mr-2" />
+                Filters
+                {activeFiltersCount > 0 && (
+                  <span className="ml-2 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                    {activeFiltersCount}
+                  </span>
+                )}
+              </Button>
+            </div>
+
+            {/* Loading State */}
+            {isLoading ? (
+              <div className="space-y-6">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="bg-white rounded-lg border border-gray-200 p-6">
+                    <Skeleton className="h-6 w-3/4 mb-2" />
+                    <Skeleton className="h-4 w-1/2 mb-4" />
+                    <Skeleton className="h-4 w-full mb-2" />
+                    <Skeleton className="h-4 w-2/3" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              /* Job Cards */
+              <div className="space-y-6">
+                {sortedJobs.length > 0 ? (
+                  sortedJobs.map((job) => (
+                    <JobCard 
+                      key={job._id} 
+                      job={job} 
+                      onBookmark={handleSaveJob}
+                    />
+                  ))
+                ) : (
+                  <div className="text-center py-12">
+                    <div className="text-gray-400 text-6xl mb-4">🔍</div>
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">No jobs found</h3>
+                    <p className="text-gray-600 mb-4">
+                      Try adjusting your filters or search terms to find more opportunities.
+                    </p>
+                    <Button onClick={clearFilters}>
+                      Clear Filters
+                    </Button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Load More Button */}
+            {sortedJobs.length > 0 && sortedJobs.length >= 10 && (
+              <div className="text-center mt-8">
+                <Button variant="outline" size="lg">
+                  Load More Jobs
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
