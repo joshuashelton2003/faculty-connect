@@ -126,6 +126,7 @@ const educationStreamOptions = [
 export default function FilterSidebar({ onFiltersChange, onReset, className = '' }: FilterSidebarProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [selectedQualifications, setSelectedQualifications] = useState<string[]>([]);
+  const [selectedEducationStreams, setSelectedEducationStreams] = useState<string[]>([]);
   const [selectedApplicationTypes, setSelectedApplicationTypes] = useState<string[]>([]);
 
   const {
