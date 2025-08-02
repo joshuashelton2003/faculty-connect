@@ -176,6 +176,22 @@ export default function JobsList() {
         });
         if (!hasMatchingQualification) return false;
       }
+
+      // Education streams filter
+      if (advancedFilters.educationStreams.length > 0) {
+        const jobType = job.type.toLowerCase();
+        const hasMatchingStream = advancedFilters.educationStreams.some(stream => {
+          switch (stream) {
+            case 'polytechnic': return jobType === 'polytechnic';
+            case 'iti': return jobType === 'iti';
+            case 'arts-science': return jobType === 'college' && job.subject.toLowerCase().includes('arts') || job.subject.toLowerCase().includes('science');
+            case 'engineering': return jobType === 'engineering' || jobType === 'college' && (job.subject.toLowerCase().includes('engineering') || job.subject.toLowerCase().includes('computer') || job.subject.toLowerCase().includes('mechanical') || job.subject.toLowerCase().includes('electrical'));
+            case 'school': return jobType === 'school';
+            default: return false;
+          }
+        });
+        if (!hasMatchingStream) return false;
+      }
     }
 
     return true;
