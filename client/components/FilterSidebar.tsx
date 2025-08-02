@@ -26,6 +26,7 @@ const filterSchema = z.object({
     max: z.number().min(5000).max(100000),
   }),
   qualifications: z.array(z.string()),
+  educationStreams: z.array(z.string()),
   location: z.object({
     country: z.string(),
     state: z.string(),
