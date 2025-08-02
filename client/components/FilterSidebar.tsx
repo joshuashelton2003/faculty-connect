@@ -115,6 +115,14 @@ const applicationTypeOptions = [
   { value: 'walkin', label: 'Walk-in Interview' },
 ];
 
+const educationStreamOptions = [
+  { value: 'polytechnic', label: 'Polytechnic' },
+  { value: 'iti', label: 'ITI' },
+  { value: 'arts-science', label: 'Arts & Science' },
+  { value: 'engineering', label: 'Engineering' },
+  { value: 'school', label: 'School' },
+];
+
 export default function FilterSidebar({ onFiltersChange, onReset, className = '' }: FilterSidebarProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [selectedQualifications, setSelectedQualifications] = useState<string[]>([]);
