@@ -83,6 +83,7 @@ const App = () => (
           {/* Auth Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
 
           {/* Protected Routes - Candidate */}
           <Route path="/dashboard" element={
