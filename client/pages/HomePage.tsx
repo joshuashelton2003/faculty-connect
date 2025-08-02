@@ -17,21 +17,6 @@ import {
 } from 'lucide-react';
 
 export default function HomePage() {
-  // Fetch latest jobs
-  const { data: latestJobs = [], isLoading: jobsLoading } = useQuery({
-    queryKey: ['latest-jobs'],
-    queryFn: () => api.jobs.getAll({ sort: 'recent', limit: 6 }),
-    // Mock data for demo - replace with real API call
-    enabled: false,
-  });
-
-  // Fetch featured institutes
-  const { data: featuredInstitutes = [], isLoading: institutesLoading } = useQuery({
-    queryKey: ['featured-institutes'],
-    queryFn: () => api.institutes.getAll({ featured: true }),
-    // Mock data for demo - replace with real API call
-    enabled: false,
-  });
 
   // Mock data for demonstration
   const [mockJobs] = useState<Job[]>([
