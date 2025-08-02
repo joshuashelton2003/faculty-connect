@@ -269,9 +269,9 @@ export default function JobsList() {
                       <SelectValue placeholder="All types" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="polytechnic">Polytechnic</SelectItem>
-                      <SelectItem value="iti">ITI</SelectItem>
                       <SelectItem value="all">All types</SelectItem>
+                      <SelectItem value="polytechnic">Polytechnic</SelectItem>
+                      <SelectItem value="iti">ITI</SelectItem>                    
                       <SelectItem value="school">School</SelectItem>
                       <SelectItem value="college">College</SelectItem>
                       <SelectItem value="university">University</SelectItem>
