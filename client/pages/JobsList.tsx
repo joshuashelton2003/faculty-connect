@@ -127,22 +127,6 @@ export default function JobsList() {
       deadline: new Date(Date.now() + 18 * 24 * 60 * 60 * 1000).toISOString(),
       isActive: true,
       applicationsCount: 9
-    },
-    {
-      _id: '6',
-      title: 'Electrical Trade Instructor - ITI',
-      description: 'ITI Electrical trade instructor position. Hands-on experience in electrical wiring and motor maintenance required.',
-      subject: 'Electrical',
-      type: 'iti',
-      location: { city: 'Erode', state: 'Tamil Nadu', district: 'Erode' },
-      salary: { min: 20000, max: 30000, currency: 'INR' },
-      requirements: { education: 'ITI Electrical, B.E/B.Tech preferred', experience: '2+ years', skills: ['Electrical Wiring', 'Motor Maintenance', 'Industrial Safety'] },
-      institute: { _id: '6', name: 'Government ITI Erode', type: 'iti', location: { city: 'Erode', state: 'Tamil Nadu', district: 'Erode', address: '' }, email: '', phone: '', description: '', established: 1980, isFeatured: false, jobsCount: 4 },
-      postedBy: 'employer6',
-      postedDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString(),
-      deadline: new Date(Date.now() + 22 * 24 * 60 * 60 * 1000).toISOString(),
-      isActive: true,
-      applicationsCount: 15
     }
   ];
 
@@ -191,48 +175,6 @@ export default function JobsList() {
           }
         });
         if (!hasMatchingQualification) return false;
-      }
-
-      // Education streams filter
-      if (advancedFilters.educationStreams.length > 0) {
-        const jobType = job.type.toLowerCase();
-        const jobSubject = job.subject.toLowerCase();
-        const jobTitle = job.title.toLowerCase();
-        const hasMatchingStream = advancedFilters.educationStreams.some(stream => {
-          switch (stream) {
-            case 'polytechnic':
-              return jobType === 'polytechnic';
-            case 'iti':
-              return jobType === 'iti';
-            case 'arts-science':
-              return jobType === 'college' && (
-                jobSubject.includes('arts') ||
-                jobSubject.includes('science') ||
-                jobSubject.includes('literature') ||
-                jobSubject.includes('history') ||
-                jobSubject.includes('physics') ||
-                jobSubject.includes('chemistry') ||
-                jobSubject.includes('biology') ||
-                jobSubject.includes('mathematics')
-              );
-            case 'engineering':
-              return jobType === 'engineering' ||
-                (jobType === 'college' && (
-                  jobSubject.includes('engineering') ||
-                  jobSubject.includes('computer') ||
-                  jobSubject.includes('mechanical') ||
-                  jobSubject.includes('electrical') ||
-                  jobSubject.includes('civil') ||
-                  jobSubject.includes('electronics') ||
-                  jobTitle.includes('engineering')
-                ));
-            case 'school':
-              return jobType === 'school';
-            default:
-              return false;
-          }
-        });
-        if (!hasMatchingStream) return false;
       }
     }
 
