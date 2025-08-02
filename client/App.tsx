@@ -6,10 +6,44 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+
+// Layout Components
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ProtectedRoute from "@/components/ProtectedRoute";
+
+// Pages
+import HomePage from "./pages/HomePage";
+import JobsList from "./pages/JobsList";
+import JobDetail from "./pages/JobDetail";
+import Institutes from "./pages/Institutes";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import CandidateDashboard from "./pages/CandidateDashboard";
+import EmployerDashboard from "./pages/EmployerDashboard";
 import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+// Layout wrapper component
+function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
+        {children}
+      </main>
+      <Footer />
+    </div>
+  );
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -18,8 +52,77 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          {/* Public Routes */}
+          <Route path="/" element={
+            <Layout>
+              <HomePage />
+            </Layout>
+          } />
+          
+          <Route path="/jobs" element={
+            <Layout>
+              <JobsList />
+            </Layout>
+          } />
+          
+          <Route path="/jobs/:id" element={
+            <Layout>
+              <JobDetail />
+            </Layout>
+          } />
+          
+          <Route path="/institutes" element={
+            <Layout>
+              <Institutes />
+            </Layout>
+          } />
+
+          {/* Auth Routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+          {/* Protected Routes - Candidate */}
+          <Route path="/dashboard" element={
+            <ProtectedRoute requiredRole="candidate">
+              <Layout>
+                <CandidateDashboard />
+              </Layout>
+            </ProtectedRoute>
+          } />
+
+          {/* Protected Routes - Employer */}
+          <Route path="/employer/dashboard" element={
+            <ProtectedRoute requiredRole="employer">
+              <Layout>
+                <EmployerDashboard />
+              </Layout>
+            </ProtectedRoute>
+          } />
+
+          {/* Placeholder routes - these will show coming soon pages */}
+          <Route path="/about" element={
+            <Layout>
+              <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                  <h1 className="text-3xl font-bold text-gray-900 mb-4">About Us</h1>
+                  <p className="text-gray-600">Coming soon...</p>
+                </div>
+              </div>
+            </Layout>
+          } />
+          
+          <Route path="/contact" element={
+            <Layout>
+              <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                  <h1 className="text-3xl font-bold text-gray-900 mb-4">Contact Us</h1>
+                  <p className="text-gray-600">Coming soon...</p>
+                </div>
+              </div>
+            </Layout>
+          } />
+
+          {/* 404 Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
