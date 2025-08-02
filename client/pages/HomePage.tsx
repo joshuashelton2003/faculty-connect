@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { api } from '@/lib/api';
-import { Job, Institute } from '@/types';
 import { Button } from '@/components/ui/button';
 import SearchBox from '@/components/SearchBox';
 import JobCard from '@/components/JobCard';
 import InstituteCard from '@/components/InstituteCard';
-import { 
-  Users, 
-  Building, 
-  Briefcase, 
-  TrendingUp, 
+import {
+  Users,
+  Building,
+  Briefcase,
+  TrendingUp,
   GraduationCap,
   MapPin,
   Clock,
