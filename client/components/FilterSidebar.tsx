@@ -171,12 +171,22 @@ export default function FilterSidebar({ onFiltersChange, onReset, className = ''
     setValue('qualifications', updatedQualifications);
   };
 
+  // Handle education streams selection
+  const handleEducationStreamChange = (value: string, checked: boolean) => {
+    const updatedStreams = checked
+      ? [...selectedEducationStreams, value]
+      : selectedEducationStreams.filter(s => s !== value);
+
+    setSelectedEducationStreams(updatedStreams);
+    setValue('educationStreams', updatedStreams);
+  };
+
   // Handle application type selection
   const handleApplicationTypeChange = (value: string, checked: boolean) => {
     const updatedTypes = checked
       ? [...selectedApplicationTypes, value]
       : selectedApplicationTypes.filter(t => t !== value);
-    
+
     setSelectedApplicationTypes(updatedTypes);
     setValue('applicationTypes', updatedTypes);
   };
@@ -184,6 +194,7 @@ export default function FilterSidebar({ onFiltersChange, onReset, className = ''
   // Reset all filters
   const handleReset = () => {
     setSelectedQualifications([]);
+    setSelectedEducationStreams([]);
     setSelectedApplicationTypes([]);
     reset();
     onReset();
