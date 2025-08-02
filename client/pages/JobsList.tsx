@@ -130,8 +130,9 @@ export default function JobsList() {
     }
   ];
 
-  // Filter jobs based on current filters
+  // Filter jobs based on current filters and advanced filters
   const filteredJobs = mockJobs.filter(job => {
+    // Basic filters
     if (searchTitle && !job.title.toLowerCase().includes(searchTitle.toLowerCase())) return false;
     if (filters.subject && !job.subject.toLowerCase().includes(filters.subject.toLowerCase())) return false;
     if (filters.location && !job.location.city.toLowerCase().includes(filters.location.toLowerCase())) return false;
@@ -143,6 +144,40 @@ export default function JobsList() {
       if (filters.experience === '3-5' && !reqExp.includes('3') && !reqExp.includes('4') && !reqExp.includes('5')) return false;
       if (filters.experience === '5+' && !reqExp.includes('5+') && !reqExp.includes('5') && !reqExp.includes('6') && !reqExp.includes('7') && !reqExp.includes('8') && !reqExp.includes('9') && !reqExp.includes('10')) return false;
     }
+
+    // Advanced filters from FilterSidebar
+    if (advancedFilters) {
+      // Salary range filter
+      if (job.salary.max < advancedFilters.salaryRange.min || job.salary.min > advancedFilters.salaryRange.max) {
+        return false;
+      }
+
+      // Location filter (more specific)
+      if (advancedFilters.location.state && job.location.state !== getStateNameByValue(advancedFilters.location.state)) {
+        return false;
+      }
+      if (advancedFilters.location.district && job.location.district !== getDistrictNameByValue(advancedFilters.location.district)) {
+        return false;
+      }
+
+      // Qualification filter (simplified - in real app would match against job requirements)
+      if (advancedFilters.qualifications.length > 0) {
+        const jobRequiredEducation = job.requirements.education.toLowerCase();
+        const hasMatchingQualification = advancedFilters.qualifications.some(qual => {
+          switch (qual) {
+            case 'be-btech': return jobRequiredEducation.includes('b.e') || jobRequiredEducation.includes('b.tech');
+            case 'me-mtech': return jobRequiredEducation.includes('m.e') || jobRequiredEducation.includes('m.tech');
+            case 'msc-ma': return jobRequiredEducation.includes('m.sc') || jobRequiredEducation.includes('m.a');
+            case 'bed': return jobRequiredEducation.includes('b.ed');
+            case 'phd': return jobRequiredEducation.includes('ph.d') || jobRequiredEducation.includes('phd');
+            case 'net-slet': return jobRequiredEducation.includes('net') || jobRequiredEducation.includes('slet');
+            default: return false;
+          }
+        });
+        if (!hasMatchingQualification) return false;
+      }
+    }
+
     return true;
   });
 
