@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import { Job } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { 
   MapPin, 
   Calendar, 
@@ -23,16 +24,21 @@ import {
   ArrowLeft,
   Mail,
   Phone,
-  Globe
+  Globe,
+  AlertCircle,
+  FileText,
+  Send
 } from 'lucide-react';
 
 export default function JobDetail() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const { isAuthenticated, user } = useAuthStore();
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [hasApplied, setHasApplied] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   
-  // Mock job data for demonstration
+  // Mock job data for demonstration - In real app: GET /api/jobs/:id
   const mockJob: Job = {
     _id: id || '1',
     title: 'Assistant Professor - Computer Science',
@@ -70,6 +76,31 @@ export default function JobDetail() {
     isActive: true,
     applicationsCount: 24
   };
+
+  // Apply mutation - In real app: POST /api/candidate/apply
+  const applyMutation = useMutation({
+    mutationFn: async () => {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      return { success: true };
+    },
+    onSuccess: () => {
+      setHasApplied(true);
+      setShowSuccessMessage(true);
+      setTimeout(() => setShowSuccessMessage(false), 5000);
+    },
+  });
+
+  // Save job mutation - In real app: POST /api/candidate/saved
+  const saveJobMutation = useMutation({
+    mutationFn: async () => {
+      await new Promise(resolve => setTimeout(resolve, 500));
+      return { success: true };
+    },
+    onSuccess: () => {
+      setIsBookmarked(!isBookmarked);
+    },
+  });
 
   const formatSalary = (min: number, max: number) => {
     const formatNumber = (num: number) => {
@@ -110,16 +141,24 @@ export default function JobDetail() {
     return colors[type as keyof typeof colors] || 'bg-gray-100 text-gray-800';
   };
 
-  const handleBookmark = () => {
-    setIsBookmarked(!isBookmarked);
+  const handleApply = () => {
+    if (!isAuthenticated) {
+      navigate('/login', { state: { from: location } });
+      return;
+    }
+    if (user?.role !== 'candidate') {
+      alert('Only candidates can apply for jobs');
+      return;
+    }
+    applyMutation.mutate();
   };
 
-  const handleApply = () => {
-    if (isAuthenticated) {
-      setHasApplied(true);
-      // Here you would call the API to submit the application
-      // api.candidate.apply({ jobId: mockJob._id });
+  const handleBookmark = () => {
+    if (!isAuthenticated) {
+      navigate('/login', { state: { from: location } });
+      return;
     }
+    saveJobMutation.mutate();
   };
 
   const handleShare = () => {
@@ -160,6 +199,16 @@ export default function JobDetail() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Success Message */}
+        {showSuccessMessage && (
+          <Alert className="mb-6 border-green-200 bg-green-50">
+            <CheckCircle className="h-4 w-4 text-green-600" />
+            <AlertDescription className="text-green-700">
+              Application submitted successfully! The employer will review your application and contact you if selected.
+            </AlertDescription>
+          </Alert>
+        )}
+
         {/* Back Button */}
         <div className="mb-6">
           <Link to="/jobs" className="inline-flex items-center text-blue-600 hover:text-blue-800">
@@ -184,10 +233,20 @@ export default function JobDetail() {
               </div>
               
               <div className="flex items-center space-x-2">
-                <Button variant="outline" size="sm" onClick={handleShare}>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={handleShare}
+                  disabled={saveJobMutation.isPending}
+                >
                   <Share2 className="w-4 h-4" />
                 </Button>
-                <Button variant="outline" size="sm" onClick={handleBookmark}>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={handleBookmark}
+                  disabled={saveJobMutation.isPending}
+                >
                   {isBookmarked ? (
                     <BookmarkCheck className="w-4 h-4 text-blue-600" />
                   ) : (
@@ -234,21 +293,29 @@ export default function JobDetail() {
                   Deadline: {new Date(mockJob.deadline).toLocaleDateString()}
                 </div>
                 
-                {isAuthenticated ? (
-                  hasApplied ? (
-                    <Button disabled className="bg-green-600">
-                      <CheckCircle className="w-4 h-4 mr-2" />
-                      Applied
-                    </Button>
-                  ) : (
-                    <Button onClick={handleApply} size="lg">
-                      Apply Now
-                    </Button>
-                  )
+                {hasApplied ? (
+                  <Button disabled className="bg-green-600">
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    Applied
+                  </Button>
                 ) : (
-                  <Link to="/login">
-                    <Button size="lg">Login to Apply</Button>
-                  </Link>
+                  <Button 
+                    onClick={handleApply} 
+                    size="lg"
+                    disabled={applyMutation.isPending}
+                  >
+                    {applyMutation.isPending ? (
+                      <>
+                        <Send className="w-4 h-4 mr-2 animate-spin" />
+                        Applying...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2" />
+                        Apply Now
+                      </>
+                    )}
+                  </Button>
                 )}
               </div>
             </div>
@@ -321,6 +388,24 @@ export default function JobDetail() {
                     ))}
                   </ul>
                 </section>
+
+                {/* Application Instructions */}
+                {!isAuthenticated && (
+                  <section className="bg-blue-50 rounded-lg p-6">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Ready to Apply?</h2>
+                    <p className="text-gray-700 mb-4">
+                      To apply for this position, you need to create a candidate account and complete your profile.
+                    </p>
+                    <div className="flex space-x-3">
+                      <Link to="/login">
+                        <Button variant="outline">Sign In</Button>
+                      </Link>
+                      <Link to="/register">
+                        <Button>Create Account</Button>
+                      </Link>
+                    </div>
+                  </section>
+                )}
               </div>
 
               {/* Sidebar */}
@@ -400,14 +485,27 @@ export default function JobDetail() {
                     <div className="space-y-3">
                       <Link to={`/institutes/${mockJob.institute._id}`} className="block">
                         <Button variant="outline" className="w-full">
+                          <Building className="w-4 h-4 mr-2" />
                           View Institution
                         </Button>
                       </Link>
                       <Link to={`/jobs?institute=${mockJob.institute._id}`} className="block">
                         <Button variant="outline" className="w-full">
+                          <Briefcase className="w-4 h-4 mr-2" />
                           More Jobs Here
                         </Button>
                       </Link>
+                      {isAuthenticated && user?.role === 'candidate' && (
+                        <Button 
+                          variant="outline" 
+                          className="w-full"
+                          onClick={handleBookmark}
+                          disabled={saveJobMutation.isPending}
+                        >
+                          <Bookmark className="w-4 h-4 mr-2" />
+                          {isBookmarked ? 'Saved' : 'Save Job'}
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
