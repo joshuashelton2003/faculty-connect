@@ -306,6 +306,19 @@ export default function JobsList() {
               <Button onClick={searchJobs} disabled={isLoading}>
                 {isLoading ? 'Searching...' : 'Search'}
               </Button>
+              <Button
+                variant="outline"
+                onClick={() => setShowFilters(!showFilters)}
+                className="lg:hidden"
+              >
+                <SlidersHorizontal className="w-4 h-4 mr-2" />
+                Advanced Filters
+                {(activeFiltersCount > 0 || advancedFilters) && (
+                  <Badge variant="secondary" className="ml-2">
+                    {activeFiltersCount + (advancedFilters ? 1 : 0)}
+                  </Badge>
+                )}
+              </Button>
             </div>
           </div>
         </div>
@@ -314,33 +327,42 @@ export default function JobsList() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters Sidebar */}
-          <div className="lg:w-1/4">
-            <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-24">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-semibold text-gray-900 flex items-center">
-                  <Filter className="w-5 h-5 mr-2" />
-                  Filters
-                  {activeFiltersCount > 0 && (
-                    <span className="ml-2 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
-                      {activeFiltersCount}
-                    </span>
-                  )}
-                </h3>
-                {activeFiltersCount > 0 && (
-                  <Button variant="ghost" size="sm" onClick={clearFilters}>
-                    <X className="w-4 h-4 mr-1" />
-                    Clear
-                  </Button>
-                )}
-              </div>
+          <div className={`lg:w-1/4 ${showFilters ? 'block' : 'hidden lg:block'}`}>
+            <div className="space-y-4">
+              {/* Advanced Filters */}
+              <FilterSidebar
+                onFiltersChange={handleAdvancedFiltersChange}
+                onReset={handleAdvancedFiltersReset}
+                className="sticky top-24"
+              />
 
-              <div className="space-y-6">
+              {/* Basic Quick Filters */}
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+                    <Filter className="w-5 h-5 mr-2" />
+                    Quick Filters
+                    {activeFiltersCount > 0 && (
+                      <Badge variant="secondary" className="ml-2">
+                        {activeFiltersCount}
+                      </Badge>
+                    )}
+                  </h3>
+                  {activeFiltersCount > 0 && (
+                    <Button variant="ghost" size="sm" onClick={clearFilters}>
+                      <X className="w-4 h-4 mr-1" />
+                      Clear
+                    </Button>
+                  )}
+                </div>
+
+                <div className="space-y-4">
                 {/* Institution Type */}
                 <div>
-                  <Label className="text-sm font-medium text-gray-700 flex items-center mb-3">
-                    <Building className="w-4 h-4 mr-2" />
-                    Institution Type
-                  </Label>
+                    <Label className="text-sm font-medium text-gray-700 flex items-center mb-2">
+                      <Building className="w-4 h-4 mr-2" />
+                      Institution Type
+                    </Label>
                   <Select value={filters.type || ''} onValueChange={(value) => updateFilter('type', value)}>
                     <SelectTrigger>
                       <SelectValue placeholder="All types" />
@@ -359,10 +381,10 @@ export default function JobsList() {
 
                 {/* Department/Subject */}
                 <div>
-                  <Label className="text-sm font-medium text-gray-700 flex items-center mb-3">
-                    <GraduationCap className="w-4 h-4 mr-2" />
-                    Department
-                  </Label>
+                    <Label className="text-sm font-medium text-gray-700 flex items-center mb-2">
+                      <GraduationCap className="w-4 h-4 mr-2" />
+                      Department
+                    </Label>
                   <Input
                     type="text"
                     placeholder="Enter subject"
@@ -373,10 +395,10 @@ export default function JobsList() {
 
                 {/* Location */}
                 <div>
-                  <Label className="text-sm font-medium text-gray-700 flex items-center mb-3">
-                    <MapPin className="w-4 h-4 mr-2" />
-                    Location
-                  </Label>
+                    <Label className="text-sm font-medium text-gray-700 flex items-center mb-2">
+                      <MapPin className="w-4 h-4 mr-2" />
+                      Location
+                    </Label>
                   <Input
                     type="text"
                     placeholder="Enter city"
@@ -387,9 +409,9 @@ export default function JobsList() {
 
                 {/* Experience */}
                 <div>
-                  <Label className="text-sm font-medium text-gray-700 mb-3 block">
-                    Experience Level
-                  </Label>
+                    <Label className="text-sm font-medium text-gray-700 mb-2 block">
+                      Experience Level
+                    </Label>
                   <Select value={filters.experience || ''} onValueChange={(value) => updateFilter('experience', value)}>
                     <SelectTrigger>
                       <SelectValue placeholder="Any experience" />
@@ -406,10 +428,10 @@ export default function JobsList() {
 
                 {/* Sort By */}
                 <div>
-                  <Label className="text-sm font-medium text-gray-700 flex items-center mb-3">
-                    <Clock className="w-4 h-4 mr-2" />
-                    Sort By
-                  </Label>
+                    <Label className="text-sm font-medium text-gray-700 flex items-center mb-2">
+                      <Clock className="w-4 h-4 mr-2" />
+                      Sort By
+                    </Label>
                   <Select value={filters.sort || 'recent'} onValueChange={(value) => updateFilter('sort', value)}>
                     <SelectTrigger>
                       <SelectValue />
@@ -420,9 +442,10 @@ export default function JobsList() {
                       <SelectItem value="relevance">Most Relevant</SelectItem>
                     </SelectContent>
                   </Select>
-                </div>
+                  </div>
               </div>
             </div>
+          </div>
           </div>
 
           {/* Jobs List */}
