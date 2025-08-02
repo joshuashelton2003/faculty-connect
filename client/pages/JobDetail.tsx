@@ -145,7 +145,7 @@ export default function JobDetail() {
 
   const handleApply = () => {
     if (!isAuthenticated) {
-      navigate('/login', { state: { from: location } });
+      navigate('/login', { state: { from: location.pathname } });
       return;
     }
     if (user?.role !== 'candidate') {
