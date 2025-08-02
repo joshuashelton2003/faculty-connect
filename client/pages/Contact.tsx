@@ -69,9 +69,9 @@ export default function Contact() {
     {
       icon: Mail,
       title: 'Email Support',
-      content: 'support@facultyconnect.in',
+      content: 'searchfirst@facultyconnect.in',
       description: 'Send us an email anytime',
-      href: 'mailto:support@facultyconnect.in'
+      href: 'mailto:searchfirst@facultyconnect.in'
     },
     {
       icon: Phone,
@@ -83,8 +83,8 @@ export default function Contact() {
     {
       icon: MapPin,
       title: 'Office Address',
-      content: 'T Nagar, Chennai',
-      description: 'Tamil Nadu, India - 600017',
+      content: 'Near Bus Stand, Erode',
+      description: 'Tamil Nadu, India - 6389 001',
       href: null
     },
     {
