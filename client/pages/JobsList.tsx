@@ -14,16 +14,19 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Badge } from '@/components/ui/badge';
 import JobCard from '@/components/JobCard';
-import { 
-  Filter, 
-  MapPin, 
-  GraduationCap, 
+import FilterSidebar, { FilterFormData } from '@/components/FilterSidebar';
+import {
+  Filter,
+  MapPin,
+  GraduationCap,
   Building,
   IndianRupee,
   Clock,
   X,
-  Search
+  Search,
+  SlidersHorizontal
 } from 'lucide-react';
 
 export default function JobsList() {
