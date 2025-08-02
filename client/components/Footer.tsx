@@ -78,7 +78,7 @@ export default function Footer() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm text-gray-400">
                   <Mail className="w-4 h-4 flex-shrink-0" />
-                  <span>hello@facultyconnect.in</span>
+                  <span>searchfirst@facultyconnect.in</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm text-gray-400">
                   <Phone className="w-4 h-4 flex-shrink-0" />
@@ -86,7 +86,7 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center space-x-3 text-sm text-gray-400">
                   <MapPin className="w-4 h-4 flex-shrink-0" />
-                  <span>Chennai, Tamil Nadu, India</span>
+                  <span> Erode, Tamil Nadu, India</span>
                 </div>
               </div>
             </div>
@@ -143,7 +143,7 @@ export default function Footer() {
 
             {/* Additional Info */}
             <div className="text-gray-400 text-sm">
-              Made with ❤️ for educators
+              Made with Search First for Educators
             </div>
           </div>
         </div>
