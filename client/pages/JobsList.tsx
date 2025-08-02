@@ -269,7 +269,7 @@ export default function JobsList() {
                       <SelectValue placeholder="All types" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All types</SelectItem>
+                      <SelectItem value="all">All types</SelectItem>
                       <SelectItem value="school">School</SelectItem>
                       <SelectItem value="college">College</SelectItem>
                       <SelectItem value="university">University</SelectItem>
@@ -317,7 +317,7 @@ export default function JobsList() {
                       <SelectValue placeholder="Any experience" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Any experience</SelectItem>
+                      <SelectItem value="all">Any experience</SelectItem>
                       <SelectItem value="fresher">Fresher (0 years)</SelectItem>
                       <SelectItem value="1-3">1-3 years</SelectItem>
                       <SelectItem value="3-5">3-5 years</SelectItem>
