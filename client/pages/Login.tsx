@@ -177,10 +177,16 @@ export default function Login() {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => {
-                  // Demo candidate login
-                  login('candidate@demo.com', 'demo123');
+                onClick={async () => {
+                  try {
+                    setError('');
+                    await login('candidate@demo.com', 'demo123');
+                    navigate('/dashboard', { replace: true });
+                  } catch (err: any) {
+                    setError('Demo login failed. Please try again.');
+                  }
                 }}
+                disabled={isLoading}
                 className="text-sm"
               >
                 Login as Candidate
@@ -188,10 +194,16 @@ export default function Login() {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => {
-                  // Demo employer login
-                  login('employer@demo.com', 'demo123');
+                onClick={async () => {
+                  try {
+                    setError('');
+                    await login('employer@demo.com', 'demo123');
+                    navigate('/employer/dashboard', { replace: true });
+                  } catch (err: any) {
+                    setError('Demo login failed. Please try again.');
+                  }
                 }}
+                disabled={isLoading}
                 className="text-sm"
               >
                 Login as Employer
