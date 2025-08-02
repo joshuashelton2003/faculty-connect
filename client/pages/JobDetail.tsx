@@ -157,7 +157,7 @@ export default function JobDetail() {
 
   const handleBookmark = () => {
     if (!isAuthenticated) {
-      navigate('/login', { state: { from: location } });
+      navigate('/login', { state: { from: location.pathname } });
       return;
     }
     saveJobMutation.mutate();
