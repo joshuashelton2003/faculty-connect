@@ -196,14 +196,40 @@ export default function JobsList() {
       // Education streams filter
       if (advancedFilters.educationStreams.length > 0) {
         const jobType = job.type.toLowerCase();
+        const jobSubject = job.subject.toLowerCase();
+        const jobTitle = job.title.toLowerCase();
         const hasMatchingStream = advancedFilters.educationStreams.some(stream => {
           switch (stream) {
-            case 'polytechnic': return jobType === 'polytechnic';
-            case 'iti': return jobType === 'iti';
-            case 'arts-science': return jobType === 'college' && job.subject.toLowerCase().includes('arts') || job.subject.toLowerCase().includes('science');
-            case 'engineering': return jobType === 'engineering' || jobType === 'college' && (job.subject.toLowerCase().includes('engineering') || job.subject.toLowerCase().includes('computer') || job.subject.toLowerCase().includes('mechanical') || job.subject.toLowerCase().includes('electrical'));
-            case 'school': return jobType === 'school';
-            default: return false;
+            case 'polytechnic':
+              return jobType === 'polytechnic';
+            case 'iti':
+              return jobType === 'iti';
+            case 'arts-science':
+              return jobType === 'college' && (
+                jobSubject.includes('arts') ||
+                jobSubject.includes('science') ||
+                jobSubject.includes('literature') ||
+                jobSubject.includes('history') ||
+                jobSubject.includes('physics') ||
+                jobSubject.includes('chemistry') ||
+                jobSubject.includes('biology') ||
+                jobSubject.includes('mathematics')
+              );
+            case 'engineering':
+              return jobType === 'engineering' ||
+                (jobType === 'college' && (
+                  jobSubject.includes('engineering') ||
+                  jobSubject.includes('computer') ||
+                  jobSubject.includes('mechanical') ||
+                  jobSubject.includes('electrical') ||
+                  jobSubject.includes('civil') ||
+                  jobSubject.includes('electronics') ||
+                  jobTitle.includes('engineering')
+                ));
+            case 'school':
+              return jobType === 'school';
+            default:
+              return false;
           }
         });
         if (!hasMatchingStream) return false;
