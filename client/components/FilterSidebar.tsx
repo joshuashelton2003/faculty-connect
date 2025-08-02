@@ -8,14 +8,15 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Filter, 
-  X, 
-  IndianRupee, 
-  GraduationCap, 
-  MapPin, 
+import {
+  Filter,
+  X,
+  IndianRupee,
+  GraduationCap,
+  MapPin,
   FileText,
-  RotateCcw
+  RotateCcw,
+  BookOpen
 } from 'lucide-react';
 
 // Filter form schema
