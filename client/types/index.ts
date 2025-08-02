@@ -3,7 +3,7 @@ export interface Job {
   title: string;
   description: string;
   subject: string;
-  type: 'college' | 'school' | 'polytechnic' | 'university';
+  type: 'college' | 'school' | 'polytechnic' | 'university' | 'iti';
   location: {
     city: string;
     state: string;
@@ -30,7 +30,7 @@ export interface Job {
 export interface Institute {
   _id: string;
   name: string;
-  type: 'college' | 'school' | 'polytechnic' | 'university';
+  type: 'college' | 'school' | 'polytechnic' | 'university' | 'iti';
   location: {
     city: string;
     state: string;
