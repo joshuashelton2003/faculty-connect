@@ -8,11 +8,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { 
-  MapPin, 
-  Calendar, 
-  Clock, 
-  Building, 
+import {
+  MapPin,
+  Calendar,
+  Clock,
+  Building,
   IndianRupee,
   Bookmark,
   BookmarkCheck,
@@ -27,7 +27,8 @@ import {
   Globe,
   AlertCircle,
   FileText,
-  Send
+  Send,
+  Briefcase
 } from 'lucide-react';
 
 export default function JobDetail() {
