@@ -219,7 +219,7 @@ export default function JobsList() {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                   <Input
                     type="text"
-                    placeholder="Search job titles, companies, or keywords"
+                    placeholder="Search job titles, institutions, or keywords"
                     value={searchTitle}
                     onChange={(e) => setSearchTitle(e.target.value)}
                     className="pl-10"
