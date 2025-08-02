@@ -217,6 +217,44 @@ export default function JobsList() {
       sort: 'recent',
     });
     setSearchTitle('');
+    setAdvancedFilters(null);
+  };
+
+  // Helper functions to get location names by values
+  const getStateNameByValue = (value: string) => {
+    const stateMap = {
+      'tamil-nadu': 'Tamil Nadu',
+      'karnataka': 'Karnataka',
+      'kerala': 'Kerala',
+      'andhra-pradesh': 'Andhra Pradesh',
+      'telangana': 'Telangana',
+      'maharashtra': 'Maharashtra',
+    };
+    return stateMap[value as keyof typeof stateMap] || value;
+  };
+
+  const getDistrictNameByValue = (value: string) => {
+    const districtMap = {
+      'chennai': 'Chennai',
+      'coimbatore': 'Coimbatore',
+      'madurai': 'Madurai',
+      'tiruchirappalli': 'Tiruchirappalli',
+      'salem': 'Salem',
+      'tirunelveli': 'Tirunelveli',
+      'erode': 'Erode',
+      'vellore': 'Vellore',
+      'thoothukudi': 'Thoothukudi',
+    };
+    return districtMap[value as keyof typeof districtMap] || value;
+  };
+
+  // FilterSidebar handlers
+  const handleAdvancedFiltersChange = (newFilters: FilterFormData) => {
+    setAdvancedFilters(newFilters);
+  };
+
+  const handleAdvancedFiltersReset = () => {
+    setAdvancedFilters(null);
   };
 
   const activeFiltersCount = [searchTitle, ...Object.values(filters)].filter(value => value && value !== 'recent').length;
