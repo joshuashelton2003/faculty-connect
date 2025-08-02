@@ -33,7 +33,7 @@ export default function JobsList() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [showFilters, setShowFilters] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // Initialize filters from URL params
   const [filters, setFilters] = useState<SearchFilters>({
     subject: searchParams.get('subject') || '',
@@ -44,6 +44,7 @@ export default function JobsList() {
   });
 
   const [searchTitle, setSearchTitle] = useState(searchParams.get('title') || '');
+  const [advancedFilters, setAdvancedFilters] = useState<FilterFormData | null>(null);
 
   // Mock data for demonstration - In real app, this would be from API
   const mockJobs: Job[] = [
