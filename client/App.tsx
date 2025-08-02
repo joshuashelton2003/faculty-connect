@@ -101,26 +101,16 @@ const App = () => (
             </ProtectedRoute>
           } />
 
-          {/* Placeholder routes - these will show coming soon pages */}
+          {/* About and Contact Routes */}
           <Route path="/about" element={
             <Layout>
-              <div className="min-h-screen flex items-center justify-center">
-                <div className="text-center">
-                  <h1 className="text-3xl font-bold text-gray-900 mb-4">About Us</h1>
-                  <p className="text-gray-600">Coming soon...</p>
-                </div>
-              </div>
+              <About />
             </Layout>
           } />
-          
+
           <Route path="/contact" element={
             <Layout>
-              <div className="min-h-screen flex items-center justify-center">
-                <div className="text-center">
-                  <h1 className="text-3xl font-bold text-gray-900 mb-4">Contact Us</h1>
-                  <p className="text-gray-600">Coming soon...</p>
-                </div>
-              </div>
+              <Contact />
             </Layout>
           } />
 
