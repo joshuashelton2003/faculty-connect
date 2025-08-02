@@ -141,6 +141,7 @@ export default function FilterSidebar({ onFiltersChange, onReset, className = ''
     defaultValues: {
       salaryRange: { min: 5000, max: 100000 },
       qualifications: [],
+      educationStreams: [],
       location: { country: 'india', state: '', district: '' },
       applicationTypes: [],
     },
