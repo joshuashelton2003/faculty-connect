@@ -348,6 +348,56 @@ export default function FilterSidebar({ onFiltersChange, onReset, className = ''
             )}
           </div>
 
+          {/* Education Streams */}
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2">
+              <BookOpen className="w-4 h-4 text-gray-600" />
+              <Label className="text-sm font-medium text-gray-900">
+                Education Streams
+              </Label>
+            </div>
+
+            <div className="space-y-3">
+              {educationStreamOptions.map((option) => (
+                <div key={option.value} className="flex items-center space-x-2">
+                  <Checkbox
+                    id={option.value}
+                    checked={selectedEducationStreams.includes(option.value)}
+                    onCheckedChange={(checked) =>
+                      handleEducationStreamChange(option.value, checked as boolean)
+                    }
+                  />
+                  <Label
+                    htmlFor={option.value}
+                    className="text-sm text-gray-700 cursor-pointer"
+                  >
+                    {option.label}
+                  </Label>
+                </div>
+              ))}
+            </div>
+
+            {selectedEducationStreams.length > 0 && (
+              <div className="flex flex-wrap gap-1">
+                {selectedEducationStreams.map((stream) => {
+                  const option = educationStreamOptions.find(s => s.value === stream);
+                  return (
+                    <Badge key={stream} variant="secondary" className="text-xs">
+                      {option?.label}
+                      <button
+                        type="button"
+                        onClick={() => handleEducationStreamChange(stream, false)}
+                        className="ml-1 hover:text-red-600"
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                    </Badge>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
           {/* Location */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
