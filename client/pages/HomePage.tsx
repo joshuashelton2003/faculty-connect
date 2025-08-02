@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Job, Institute } from '@/types';
 import { Button } from '@/components/ui/button';
 import SearchBox from '@/components/SearchBox';
 import JobCard from '@/components/JobCard';
