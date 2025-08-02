@@ -1,37 +1,21 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { api } from '@/lib/api';
 import { Institute } from '@/types';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
 import { 
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import InstituteCard from '@/components/InstituteCard';
-import { 
-  Filter, 
   MapPin, 
+  Calendar, 
   Building,
   Star,
-  Search,
-  X
+  Mail,
+  Phone,
+  Globe,
+  Briefcase
 } from 'lucide-react';
 
 export default function Institutes() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
-  const [typeFilter, setTypeFilter] = useState(searchParams.get('type') || '');
-  const [locationFilter, setLocationFilter] = useState(searchParams.get('location') || '');
-  const [featuredOnly, setFeaturedOnly] = useState(searchParams.get('featured') === 'true');
-
   // Mock data for demonstration
-  const [mockInstitutes] = useState<Institute[]>([
+  const mockInstitutes: Institute[] = [
     {
       _id: '1',
       name: 'Anna University',
@@ -70,24 +54,6 @@ export default function Institutes() {
     },
     {
       _id: '3',
-      name: 'Madurai Kamaraj University',
-      type: 'university',
-      location: { 
-        city: 'Madurai', 
-        state: 'Tamil Nadu', 
-        district: 'Madurai', 
-        address: 'Palkalaiperur, Madurai - 625021' 
-      },
-      email: 'info@mkuniversity.ac.in',
-      phone: '+91 452 245 8471',
-      website: 'https://www.mkuniversity.ac.in',
-      description: 'Madurai Kamaraj University is a public university established in 1966. It offers courses in arts, science, management, and other fields with a strong focus on research and innovation.',
-      established: 1966,
-      isFeatured: true,
-      jobsCount: 15
-    },
-    {
-      _id: '4',
       name: 'PSG College of Technology',
       type: 'college',
       location: { 
@@ -103,105 +69,18 @@ export default function Institutes() {
       established: 1951,
       isFeatured: false,
       jobsCount: 6
-    },
-    {
-      _id: '5',
-      name: 'Thiagarajar College of Engineering',
-      type: 'college',
-      location: { 
-        city: 'Madurai', 
-        state: 'Tamil Nadu', 
-        district: 'Madurai', 
-        address: 'Thiruparankundram, Madurai - 625015' 
-      },
-      email: 'info@tce.edu',
-      phone: '+91 452 248 2240',
-      website: 'https://www.tce.edu',
-      description: 'Thiagarajar College of Engineering is an autonomous engineering college established in 1957. It offers undergraduate and postgraduate programs in engineering and technology.',
-      established: 1957,
-      isFeatured: false,
-      jobsCount: 4
-    },
-    {
-      _id: '6',
-      name: 'Government Polytechnic College',
-      type: 'polytechnic',
-      location: { 
-        city: 'Trichy', 
-        state: 'Tamil Nadu', 
-        district: 'Tiruchirappalli', 
-        address: 'Woraiyur, Tiruchirappalli - 620003' 
-      },
-      email: 'info@gptrichy.ac.in',
-      phone: '+91 431 270 0123',
-      description: 'Government Polytechnic College Trichy is one of the oldest polytechnic institutions in Tamil Nadu, offering diploma courses in various engineering disciplines.',
-      established: 1965,
-      isFeatured: false,
-      jobsCount: 7
-    },
-    {
-      _id: '7',
-      name: 'DAV Public School',
-      type: 'school',
-      location: { 
-        city: 'Chennai', 
-        state: 'Tamil Nadu', 
-        district: 'Chennai', 
-        address: 'T Nagar, Chennai - 600017' 
-      },
-      email: 'info@davchennai.edu.in',
-      phone: '+91 44 2434 5678',
-      description: 'DAV Public School is a premier educational institution providing quality education from kindergarten to higher secondary level with a focus on holistic development.',
-      established: 1985,
-      isFeatured: false,
-      jobsCount: 3
-    },
-    {
-      _id: '8',
-      name: 'Sree Saraswathi Thyagaraja College',
-      type: 'college',
-      location: { 
-        city: 'Pollachi', 
-        state: 'Tamil Nadu', 
-        district: 'Coimbatore', 
-        address: 'Pollachi - 642107' 
-      },
-      email: 'info@sstcollege.ac.in',
-      phone: '+91 4259 224 567',
-      description: 'A leading arts and science college offering undergraduate and postgraduate programs in various disciplines with emphasis on quality education and research.',
-      established: 1967,
-      isFeatured: false,
-      jobsCount: 5
     }
-  ]);
+  ];
 
-  // Filter institutes based on search criteria
-  const filteredInstitutes = mockInstitutes.filter(institute => {
-    if (searchTerm && !institute.name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
-    if (typeFilter && institute.type !== typeFilter) return false;
-    if (locationFilter && !institute.location.city.toLowerCase().includes(locationFilter.toLowerCase())) return false;
-    if (featuredOnly && !institute.isFeatured) return false;
-    return true;
-  });
-
-  const handleSearch = () => {
-    const params = new URLSearchParams();
-    if (searchTerm) params.set('search', searchTerm);
-    if (typeFilter) params.set('type', typeFilter);
-    if (locationFilter) params.set('location', locationFilter);
-    if (featuredOnly) params.set('featured', 'true');
-    setSearchParams(params);
+  const getTypeColor = (type: string) => {
+    const colors = {
+      college: 'bg-blue-100 text-blue-800',
+      university: 'bg-purple-100 text-purple-800',
+      school: 'bg-green-100 text-green-800',
+      polytechnic: 'bg-orange-100 text-orange-800',
+    };
+    return colors[type as keyof typeof colors] || 'bg-gray-100 text-gray-800';
   };
-
-  const clearFilters = () => {
-    setSearchTerm('');
-    setTypeFilter('');
-    setLocationFilter('');
-    setFeaturedOnly(false);
-    setSearchParams(new URLSearchParams());
-  };
-
-  const activeFiltersCount = [searchTerm, typeFilter, locationFilter, featuredOnly].filter(Boolean).length;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -215,93 +94,6 @@ export default function Institutes() {
               Find schools, colleges, universities, and polytechnics that are actively hiring faculty.
             </p>
           </div>
-
-          {/* Search and Filters */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-              {/* Search */}
-              <div className="md:col-span-1">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                  <Input
-                    type="text"
-                    placeholder="Search institutions..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                    className="pl-10"
-                  />
-                </div>
-              </div>
-
-              {/* Institution Type */}
-              <div className="md:col-span-1">
-                <Select value={typeFilter} onValueChange={setTypeFilter}>
-                  <SelectTrigger>
-                    <div className="flex items-center space-x-2">
-                      <Building className="w-4 h-4 text-gray-400" />
-                      <SelectValue placeholder="All types" />
-                    </div>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="">All types</SelectItem>
-                    <SelectItem value="school">School</SelectItem>
-                    <SelectItem value="college">College</SelectItem>
-                    <SelectItem value="university">University</SelectItem>
-                    <SelectItem value="polytechnic">Polytechnic</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Location */}
-              <div className="md:col-span-1">
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                  <Input
-                    type="text"
-                    placeholder="Enter city"
-                    value={locationFilter}
-                    onChange={(e) => setLocationFilter(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                    className="pl-10"
-                  />
-                </div>
-              </div>
-
-              {/* Search Button */}
-              <div className="md:col-span-1">
-                <Button onClick={handleSearch} className="w-full">
-                  <Search className="w-4 h-4 mr-2" />
-                  Search
-                </Button>
-              </div>
-            </div>
-
-            {/* Featured Filter and Clear */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <label className="flex items-center space-x-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={featuredOnly}
-                    onChange={(e) => setFeaturedOnly(e.target.checked)}
-                    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                  />
-                  <span className="text-sm text-gray-700 flex items-center">
-                    <Star className="w-4 h-4 mr-1 text-yellow-500" />
-                    Featured only
-                  </span>
-                </label>
-              </div>
-
-              {activeFiltersCount > 0 && (
-                <Button variant="ghost" size="sm" onClick={clearFilters}>
-                  <X className="w-4 h-4 mr-1" />
-                  Clear filters ({activeFiltersCount})
-                </Button>
-              )}
-            </div>
-          </div>
         </div>
       </div>
 
@@ -309,38 +101,106 @@ export default function Institutes() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center justify-between mb-6">
           <div className="text-sm text-gray-600">
-            Showing {filteredInstitutes.length} of {mockInstitutes.length} institutions
+            Showing {mockInstitutes.length} institutions
           </div>
         </div>
 
         {/* Institutes Grid */}
-        {filteredInstitutes.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredInstitutes.map((institute) => (
-              <InstituteCard key={institute._id} institute={institute} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <div className="text-gray-400 text-6xl mb-4">🏫</div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No institutions found</h3>
-            <p className="text-gray-600 mb-4">
-              Try adjusting your search criteria to find more institutions.
-            </p>
-            <Button onClick={clearFilters}>
-              Clear Filters
-            </Button>
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {mockInstitutes.map((institute) => (
+            <div key={institute._id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+              {/* Institute Header */}
+              <div className="flex items-start space-x-4 mb-4">
+                {/* Logo Placeholder */}
+                <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span className="text-gray-400 font-semibold text-lg">
+                    {institute.name.split(' ').map(word => word[0]).join('').slice(0, 2)}
+                  </span>
+                </div>
 
-        {/* Load More Button */}
-        {filteredInstitutes.length > 0 && filteredInstitutes.length >= 12 && (
-          <div className="text-center mt-8">
-            <Button variant="outline" size="lg">
-              Load More Institutions
-            </Button>
-          </div>
-        )}
+                {/* Institute Info */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start justify-between mb-2">
+                    <h3 className="text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+                      {institute.name}
+                    </h3>
+                    {institute.isFeatured && (
+                      <Badge className="bg-yellow-100 text-yellow-800 ml-2">
+                        <Star className="w-3 h-3 mr-1" />
+                        Featured
+                      </Badge>
+                    )}
+                  </div>
+
+                  <div className="flex items-center space-x-2 mb-2">
+                    <Badge variant="secondary" className={getTypeColor(institute.type)}>
+                      {institute.type.charAt(0).toUpperCase() + institute.type.slice(1)}
+                    </Badge>
+                    <div className="flex items-center space-x-1 text-sm text-gray-500">
+                      <Calendar className="w-4 h-4" />
+                      <span>Est. {institute.established}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-1 text-sm text-gray-500 mb-2">
+                    <MapPin className="w-4 h-4" />
+                    <span>{institute.location.city}, {institute.location.state}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                {institute.description}
+              </p>
+
+              {/* Contact Info */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4 text-sm">
+                {institute.email && (
+                  <div className="flex items-center space-x-2 text-gray-500">
+                    <Mail className="w-4 h-4" />
+                    <span className="truncate">{institute.email}</span>
+                  </div>
+                )}
+                
+                {institute.phone && (
+                  <div className="flex items-center space-x-2 text-gray-500">
+                    <Phone className="w-4 h-4" />
+                    <span>{institute.phone}</span>
+                  </div>
+                )}
+
+                {institute.website && (
+                  <div className="flex items-center space-x-2 text-gray-500 sm:col-span-2">
+                    <Globe className="w-4 h-4" />
+                    <span className="truncate">{institute.website.replace(/^https?:\/\//, '')}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Footer */}
+              <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                <div className="flex items-center space-x-2 text-sm text-gray-500">
+                  <Briefcase className="w-4 h-4" />
+                  <span>
+                    {institute.jobsCount} open position{institute.jobsCount !== 1 ? 's' : ''}
+                  </span>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  {institute.jobsCount > 0 && (
+                    <Button variant="outline" size="sm">
+                      View Jobs
+                    </Button>
+                  )}
+                  <Button size="sm">
+                    View Details
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
