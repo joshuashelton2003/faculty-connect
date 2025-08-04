@@ -16,7 +16,7 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import JobCard from '@/components/JobCard';
-import FilterSidebar, { FilterFormData } from '@/components/FilterSidebar';
+import FilterSidebar from '@/components/FilterSidebar';
 import {
   Filter,
   MapPin,
