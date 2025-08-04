@@ -24,6 +24,7 @@ import EmployerDashboard from "./pages/EmployerDashboard";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import ForgotPassword from "./pages/ForgotPassword";
+import FilterDemo from "./pages/FilterDemo";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
