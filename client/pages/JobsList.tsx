@@ -249,12 +249,9 @@ export default function JobsList() {
   };
 
   // FilterSidebar handlers
-  const handleAdvancedFiltersChange = (newFilters: FilterFormData) => {
+  const handleAdvancedFiltersChange = (newFilters: any) => {
     setAdvancedFilters(newFilters);
-  };
-
-  const handleAdvancedFiltersReset = () => {
-    setAdvancedFilters(null);
+    console.log('Advanced filters updated:', newFilters);
   };
 
   const activeFiltersCount = [searchTitle, ...Object.values(filters)].filter(value => value && value !== 'recent').length;
