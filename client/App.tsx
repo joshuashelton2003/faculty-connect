@@ -117,6 +117,13 @@ const App = () => (
             </Layout>
           } />
 
+          {/* Filter Demo Route */}
+          <Route path="/filter-demo" element={
+            <Layout>
+              <FilterDemo />
+            </Layout>
+          } />
+
           {/* 404 Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
