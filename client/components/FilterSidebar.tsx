@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -12,7 +13,8 @@ import {
   GraduationCap, 
   MapPin, 
   FileText,
-  RotateCcw
+  RotateCcw,
+  ArrowLeft
 } from 'lucide-react';
 
 // Filter state interface
@@ -33,21 +35,89 @@ interface FilterState {
 interface FilterSidebarProps {
   onFiltersChange?: (filters: FilterState) => void;
   className?: string;
+  showBackButton?: boolean;
 }
 
-// Location data
+// Comprehensive Location data
 const locationData = {
   countries: [
-    { value: 'india', label: 'India' }
+    { value: 'india', label: 'India' },
+    { value: 'usa', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'canada', label: 'Canada' },
+    { value: 'australia', label: 'Australia' },
+    { value: 'singapore', label: 'Singapore' },
+    { value: 'uae', label: 'United Arab Emirates' },
   ],
   states: {
     india: [
-      { value: 'tamil-nadu', label: 'Tamil Nadu' },
+      { value: 'andhra-pradesh', label: 'Andhra Pradesh' },
+      { value: 'arunachal-pradesh', label: 'Arunachal Pradesh' },
+      { value: 'assam', label: 'Assam' },
+      { value: 'bihar', label: 'Bihar' },
+      { value: 'chhattisgarh', label: 'Chhattisgarh' },
+      { value: 'goa', label: 'Goa' },
+      { value: 'gujarat', label: 'Gujarat' },
+      { value: 'haryana', label: 'Haryana' },
+      { value: 'himachal-pradesh', label: 'Himachal Pradesh' },
+      { value: 'jharkhand', label: 'Jharkhand' },
       { value: 'karnataka', label: 'Karnataka' },
       { value: 'kerala', label: 'Kerala' },
-    ]
+      { value: 'madhya-pradesh', label: 'Madhya Pradesh' },
+      { value: 'maharashtra', label: 'Maharashtra' },
+      { value: 'manipur', label: 'Manipur' },
+      { value: 'meghalaya', label: 'Meghalaya' },
+      { value: 'mizoram', label: 'Mizoram' },
+      { value: 'nagaland', label: 'Nagaland' },
+      { value: 'odisha', label: 'Odisha' },
+      { value: 'punjab', label: 'Punjab' },
+      { value: 'rajasthan', label: 'Rajasthan' },
+      { value: 'sikkim', label: 'Sikkim' },
+      { value: 'tamil-nadu', label: 'Tamil Nadu' },
+      { value: 'telangana', label: 'Telangana' },
+      { value: 'tripura', label: 'Tripura' },
+      { value: 'uttar-pradesh', label: 'Uttar Pradesh' },
+      { value: 'uttarakhand', label: 'Uttarakhand' },
+      { value: 'west-bengal', label: 'West Bengal' },
+      { value: 'delhi', label: 'Delhi' },
+    ],
+    usa: [
+      { value: 'california', label: 'California' },
+      { value: 'texas', label: 'Texas' },
+      { value: 'florida', label: 'Florida' },
+      { value: 'new-york', label: 'New York' },
+      { value: 'pennsylvania', label: 'Pennsylvania' },
+      { value: 'illinois', label: 'Illinois' },
+      { value: 'ohio', label: 'Ohio' },
+      { value: 'georgia', label: 'Georgia' },
+      { value: 'north-carolina', label: 'North Carolina' },
+      { value: 'michigan', label: 'Michigan' },
+    ],
+    uk: [
+      { value: 'england', label: 'England' },
+      { value: 'scotland', label: 'Scotland' },
+      { value: 'wales', label: 'Wales' },
+      { value: 'northern-ireland', label: 'Northern Ireland' },
+    ],
+    canada: [
+      { value: 'ontario', label: 'Ontario' },
+      { value: 'quebec', label: 'Quebec' },
+      { value: 'british-columbia', label: 'British Columbia' },
+      { value: 'alberta', label: 'Alberta' },
+      { value: 'manitoba', label: 'Manitoba' },
+      { value: 'saskatchewan', label: 'Saskatchewan' },
+    ],
+    australia: [
+      { value: 'new-south-wales', label: 'New South Wales' },
+      { value: 'victoria', label: 'Victoria' },
+      { value: 'queensland', label: 'Queensland' },
+      { value: 'western-australia', label: 'Western Australia' },
+      { value: 'south-australia', label: 'South Australia' },
+      { value: 'tasmania', label: 'Tasmania' },
+    ],
   },
   districts: {
+    // Tamil Nadu Districts
     'tamil-nadu': [
       { value: 'chennai', label: 'Chennai' },
       { value: 'coimbatore', label: 'Coimbatore' },
@@ -57,20 +127,104 @@ const locationData = {
       { value: 'tiruchirappalli', label: 'Tiruchirappalli' },
       { value: 'tirunelveli', label: 'Tirunelveli' },
       { value: 'vellore', label: 'Vellore' },
+      { value: 'thoothukudi', label: 'Thoothukudi' },
+      { value: 'dindigul', label: 'Dindigul' },
+      { value: 'thanjavur', label: 'Thanjavur' },
+      { value: 'kanchipuram', label: 'Kanchipuram' },
+      { value: 'cuddalore', label: 'Cuddalore' },
+      { value: 'nagapattinam', label: 'Nagapattinam' },
+      { value: 'viluppuram', label: 'Viluppuram' },
+      { value: 'kanyakumari', label: 'Kanyakumari' },
     ],
+    // Karnataka Districts
     'karnataka': [
-      { value: 'bangalore', label: 'Bangalore' },
+      { value: 'bangalore-urban', label: 'Bangalore Urban' },
+      { value: 'bangalore-rural', label: 'Bangalore Rural' },
       { value: 'mysore', label: 'Mysore' },
-      { value: 'hubli', label: 'Hubli-Dharwad' },
+      { value: 'hubli-dharwad', label: 'Hubli-Dharwad' },
       { value: 'mangalore', label: 'Mangalore' },
       { value: 'belgaum', label: 'Belgaum' },
+      { value: 'gulbarga', label: 'Gulbarga' },
+      { value: 'shimoga', label: 'Shimoga' },
+      { value: 'bellary', label: 'Bellary' },
+      { value: 'bijapur', label: 'Bijapur' },
+      { value: 'tumkur', label: 'Tumkur' },
+      { value: 'hassan', label: 'Hassan' },
     ],
+    // Kerala Districts
     'kerala': [
       { value: 'thiruvananthapuram', label: 'Thiruvananthapuram' },
-      { value: 'kochi', label: 'Kochi' },
+      { value: 'kochi', label: 'Kochi (Ernakulam)' },
       { value: 'kozhikode', label: 'Kozhikode' },
       { value: 'thrissur', label: 'Thrissur' },
       { value: 'kollam', label: 'Kollam' },
+      { value: 'kannur', label: 'Kannur' },
+      { value: 'kottayam', label: 'Kottayam' },
+      { value: 'alappuzha', label: 'Alappuzha' },
+      { value: 'palakkad', label: 'Palakkad' },
+      { value: 'malappuram', label: 'Malappuram' },
+      { value: 'kasaragod', label: 'Kasaragod' },
+      { value: 'pathanamthitta', label: 'Pathanamthitta' },
+      { value: 'idukki', label: 'Idukki' },
+      { value: 'wayanad', label: 'Wayanad' },
+    ],
+    // Maharashtra Districts
+    'maharashtra': [
+      { value: 'mumbai-city', label: 'Mumbai City' },
+      { value: 'mumbai-suburban', label: 'Mumbai Suburban' },
+      { value: 'pune', label: 'Pune' },
+      { value: 'nagpur', label: 'Nagpur' },
+      { value: 'nashik', label: 'Nashik' },
+      { value: 'aurangabad', label: 'Aurangabad' },
+      { value: 'solapur', label: 'Solapur' },
+      { value: 'kolhapur', label: 'Kolhapur' },
+      { value: 'thane', label: 'Thane' },
+      { value: 'sangli', label: 'Sangli' },
+    ],
+    // Gujarat Districts
+    'gujarat': [
+      { value: 'ahmedabad', label: 'Ahmedabad' },
+      { value: 'surat', label: 'Surat' },
+      { value: 'vadodara', label: 'Vadodara' },
+      { value: 'rajkot', label: 'Rajkot' },
+      { value: 'bhavnagar', label: 'Bhavnagar' },
+      { value: 'jamnagar', label: 'Jamnagar' },
+      { value: 'gandhinagar', label: 'Gandhinagar' },
+      { value: 'anand', label: 'Anand' },
+    ],
+    // Delhi Districts
+    'delhi': [
+      { value: 'central-delhi', label: 'Central Delhi' },
+      { value: 'north-delhi', label: 'North Delhi' },
+      { value: 'south-delhi', label: 'South Delhi' },
+      { value: 'east-delhi', label: 'East Delhi' },
+      { value: 'west-delhi', label: 'West Delhi' },
+      { value: 'new-delhi', label: 'New Delhi' },
+      { value: 'north-west-delhi', label: 'North West Delhi' },
+      { value: 'south-west-delhi', label: 'South West Delhi' },
+      { value: 'north-east-delhi', label: 'North East Delhi' },
+    ],
+    // USA - California
+    'california': [
+      { value: 'los-angeles', label: 'Los Angeles' },
+      { value: 'san-francisco', label: 'San Francisco' },
+      { value: 'san-diego', label: 'San Diego' },
+      { value: 'sacramento', label: 'Sacramento' },
+      { value: 'san-jose', label: 'San Jose' },
+      { value: 'fresno', label: 'Fresno' },
+      { value: 'long-beach', label: 'Long Beach' },
+      { value: 'oakland', label: 'Oakland' },
+    ],
+    // UK - England
+    'england': [
+      { value: 'london', label: 'London' },
+      { value: 'manchester', label: 'Manchester' },
+      { value: 'birmingham', label: 'Birmingham' },
+      { value: 'liverpool', label: 'Liverpool' },
+      { value: 'leeds', label: 'Leeds' },
+      { value: 'sheffield', label: 'Sheffield' },
+      { value: 'bristol', label: 'Bristol' },
+      { value: 'newcastle', label: 'Newcastle' },
     ],
   }
 };
@@ -90,14 +244,15 @@ const applicationTypeOptions = [
   { value: 'walkin', label: 'Walk-in Interview' },
 ];
 
-export default function FilterSidebar({ onFiltersChange, className = '' }: FilterSidebarProps) {
+export default function FilterSidebar({ onFiltersChange, className = '', showBackButton = true }: FilterSidebarProps) {
+  const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(true);
   
   // Filter state
   const [filters, setFilters] = useState<FilterState>({
     salaryRange: { min: 5000, max: 100000 },
     qualifications: [],
-    location: { country: 'india', state: '', district: '' },
+    location: { country: '', state: '', district: '' },
     applicationTypes: [],
   });
 
@@ -174,7 +329,7 @@ export default function FilterSidebar({ onFiltersChange, className = '' }: Filte
     const resetFilters = {
       salaryRange: { min: 5000, max: 100000 },
       qualifications: [],
-      location: { country: 'india', state: '', district: '' },
+      location: { country: '', state: '', district: '' },
       applicationTypes: [],
     };
     setFilters(resetFilters);
@@ -191,16 +346,26 @@ export default function FilterSidebar({ onFiltersChange, className = '' }: Filte
     handleApplicationTypeChange(value, false);
   };
 
-  // Log current filter state (for debugging)
-  useEffect(() => {
-    console.log('Current Filter State:', JSON.stringify(filters, null, 2));
-  }, [filters]);
+  // Handle back navigation
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   return (
     <div className={`bg-white rounded-lg border border-gray-200 shadow-sm ${className}`}>
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-200">
         <div className="flex items-center space-x-2">
+          {showBackButton && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleBack}
+              className="text-gray-600 hover:text-gray-900 mr-2"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </Button>
+          )}
           <Filter className="w-5 h-5 text-gray-600" />
           <h3 className="text-lg font-semibold text-gray-900">Filters</h3>
         </div>
@@ -437,16 +602,6 @@ export default function FilterSidebar({ onFiltersChange, className = '' }: Filte
                 })}
               </div>
             )}
-          </div>
-
-          {/* Current Filter State Display */}
-          <div className="pt-4 border-t border-gray-200">
-            <Label className="text-xs text-gray-600 mb-2 block">Current Filters (JSON)</Label>
-            <div className="bg-gray-50 rounded p-3 text-xs">
-              <pre className="whitespace-pre-wrap text-gray-700 overflow-x-auto">
-                {JSON.stringify(filters, null, 2)}
-              </pre>
-            </div>
           </div>
         </div>
       )}
