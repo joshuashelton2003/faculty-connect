@@ -12,7 +12,8 @@ import {
   Award,
   Globe,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  ArrowLeft
 } from 'lucide-react';
 
 export default function About() {
