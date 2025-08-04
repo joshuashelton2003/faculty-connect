@@ -44,7 +44,7 @@ export default function JobsList() {
   });
 
   const [searchTitle, setSearchTitle] = useState(searchParams.get('title') || '');
-  const [advancedFilters, setAdvancedFilters] = useState<FilterFormData | null>(null);
+  const [advancedFilters, setAdvancedFilters] = useState<any>(null);
 
   // Mock data for demonstration - In real app, this would be from API
   const mockJobs: Job[] = [
