@@ -46,6 +46,34 @@ export default function JobsList() {
   const [searchTitle, setSearchTitle] = useState(searchParams.get('title') || '');
   const [advancedFilters, setAdvancedFilters] = useState<any>(null);
 
+  // Helper functions to get location names by values
+  const getStateNameByValue = (value: string) => {
+    const stateMap = {
+      'tamil-nadu': 'Tamil Nadu',
+      'karnataka': 'Karnataka',
+      'kerala': 'Kerala',
+      'andhra-pradesh': 'Andhra Pradesh',
+      'telangana': 'Telangana',
+      'maharashtra': 'Maharashtra',
+    };
+    return stateMap[value as keyof typeof stateMap] || value;
+  };
+
+  const getDistrictNameByValue = (value: string) => {
+    const districtMap = {
+      'chennai': 'Chennai',
+      'coimbatore': 'Coimbatore',
+      'madurai': 'Madurai',
+      'tiruchirappalli': 'Tiruchirappalli',
+      'salem': 'Salem',
+      'tirunelveli': 'Tirunelveli',
+      'erode': 'Erode',
+      'vellore': 'Vellore',
+      'thoothukudi': 'Thoothukudi',
+    };
+    return districtMap[value as keyof typeof districtMap] || value;
+  };
+
   // Mock data for demonstration - In real app, this would be from API
   const mockJobs: Job[] = [
     {
