@@ -25,6 +25,7 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import ForgotPassword from "./pages/ForgotPassword";
 import FilterDemo from "./pages/FilterDemo";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
