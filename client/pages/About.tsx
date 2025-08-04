@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 
 export default function About() {
+  const navigate = useNavigate();
   const stats = [
     { icon: Briefcase, label: 'Jobs Posted', value: '10,000+', color: 'bg-blue-100 text-blue-600' },
     { icon: Building, label: 'Partner Institutes', value: '800+', color: 'bg-green-100 text-green-600' },
