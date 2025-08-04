@@ -34,6 +34,7 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function Contact() {
+  const navigate = useNavigate();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const {
