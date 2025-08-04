@@ -210,6 +210,18 @@ export default function CandidateDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Back Button */}
+        <div className="mb-6">
+          <Button
+            variant="ghost"
+            onClick={() => navigate(-1)}
+            className="inline-flex items-center text-gray-600 hover:text-gray-900"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back
+          </Button>
+        </div>
+
         {/* Header with Profile */}
         <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
           <div className="flex items-center space-x-6">
