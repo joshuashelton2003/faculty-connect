@@ -40,7 +40,8 @@ import {
   User,
   Globe,
   Star,
-  Send
+  Send,
+  ArrowLeft
 } from 'lucide-react';
 
 export default function EmployerDashboard() {
