@@ -19,7 +19,8 @@ import {
   CheckCircle,
   MessageSquare,
   HeadphonesIcon,
-  Building
+  Building,
+  ArrowLeft
 } from 'lucide-react';
 
 const contactSchema = z.object({
