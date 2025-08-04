@@ -120,6 +120,18 @@ export default function About() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Back Button */}
+          <div className="mb-8">
+            <Button
+              variant="ghost"
+              onClick={() => navigate(-1)}
+              className="inline-flex items-center text-gray-600 hover:text-gray-900"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back
+            </Button>
+          </div>
+
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Connecting Passionate 
