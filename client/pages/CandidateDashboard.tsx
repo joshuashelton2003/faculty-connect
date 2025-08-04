@@ -30,7 +30,8 @@ import {
   Upload,
   Bell,
   Bookmark,
-  Settings
+  Settings,
+  ArrowLeft
 } from 'lucide-react';
 
 export default function CandidateDashboard() {
