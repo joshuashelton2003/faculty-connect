@@ -176,22 +176,23 @@ export default function JobsList() {
     // Advanced filters from FilterSidebar
     if (advancedFilters) {
       // Salary range filter
-      if (job.salary.max < advancedFilters.salaryRange.min || job.salary.min > advancedFilters.salaryRange.max) {
+      if (advancedFilters.salaryRange &&
+          (job.salary.max < advancedFilters.salaryRange.min || job.salary.min > advancedFilters.salaryRange.max)) {
         return false;
       }
 
       // Location filter (more specific)
-      if (advancedFilters.location.state && job.location.state !== getStateNameByValue(advancedFilters.location.state)) {
+      if (advancedFilters.location?.state && job.location.state !== getStateNameByValue(advancedFilters.location.state)) {
         return false;
       }
-      if (advancedFilters.location.district && job.location.district !== getDistrictNameByValue(advancedFilters.location.district)) {
+      if (advancedFilters.location?.district && job.location.district !== getDistrictNameByValue(advancedFilters.location.district)) {
         return false;
       }
 
       // Qualification filter (simplified - in real app would match against job requirements)
-      if (advancedFilters.qualifications.length > 0) {
+      if (advancedFilters.qualifications?.length > 0) {
         const jobRequiredEducation = job.requirements.education.toLowerCase();
-        const hasMatchingQualification = advancedFilters.qualifications.some(qual => {
+        const hasMatchingQualification = advancedFilters.qualifications.some((qual: string) => {
           switch (qual) {
             case 'be-btech': return jobRequiredEducation.includes('b.e') || jobRequiredEducation.includes('b.tech');
             case 'me-mtech': return jobRequiredEducation.includes('m.e') || jobRequiredEducation.includes('m.tech');
