@@ -329,7 +329,6 @@ export default function JobsList() {
               {/* Advanced Filters */}
               <FilterSidebar
                 onFiltersChange={handleAdvancedFiltersChange}
-                onReset={handleAdvancedFiltersReset}
                 className="sticky top-24"
               />
 
