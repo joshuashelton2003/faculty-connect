@@ -105,6 +105,15 @@ const App = () => (
             </ProtectedRoute>
           } />
 
+          {/* Profile Route - Accessible to both roles */}
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <Layout>
+                <Profile />
+              </Layout>
+            </ProtectedRoute>
+          } />
+
           {/* About and Contact Routes */}
           <Route path="/about" element={
             <Layout>
