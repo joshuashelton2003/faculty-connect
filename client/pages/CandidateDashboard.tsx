@@ -36,6 +36,7 @@ import {
 
 export default function CandidateDashboard() {
   const { user } = useAuthStore();
+  const navigate = useNavigate();
   
   // Mock candidate data - In real app: GET /api/candidate/profile
   const mockCandidate = {
