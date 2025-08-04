@@ -46,6 +46,7 @@ import {
 
 export default function EmployerDashboard() {
   const { user } = useAuthStore();
+  const navigate = useNavigate();
   const [showPostJobDialog, setShowPostJobDialog] = useState(false);
   
   // Mock employer data - In real app: GET /api/employer/profile
