@@ -250,6 +250,12 @@ const App = () => (
             </Layout>
           } />
 
+          <Route path="/partnerships" element={
+            <Layout>
+              <Partnerships />
+            </Layout>
+          } />
+
           {/* Footer Content Pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
