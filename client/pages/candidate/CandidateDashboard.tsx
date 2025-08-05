@@ -55,7 +55,7 @@ const CandidateDashboard: React.FC = () => {
   const { applications, savedJobs, fetchApplications, fetchSavedJobs } = useApplicationsStore();
   
   // Get candidate profile from production data
-  const candidateProfile = productionCandidates.find(c => c.email === user?.email) || productionCandidates[0];Candidates[0];dates[0];Candidates[0];idates[0];
+  const candidateProfile = productionCandidates.find(c => c.email === user?.email) || productionCandidates[0];Candidates[0];ductionCandidates[0];
   
   const [showResumeUpload, setShowResumeUpload] = useState(false);
   const [showProfileEdit, setShowProfileEdit] = useState(false);
