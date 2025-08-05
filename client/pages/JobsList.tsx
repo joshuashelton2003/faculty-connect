@@ -433,7 +433,7 @@ const JobsList: React.FC = () => {
           <Button
             variant="ghost"
             onClick={() => navigate(-1)}
-            className="inline-flex items-center text-gray-600 hover:text-gray-900"
+            className="inline-flex items-center text-blue-500 font-semibold hover:text-blue-600 transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back
