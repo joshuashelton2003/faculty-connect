@@ -38,6 +38,7 @@ import {
   Star,
   CheckCircle,
   AlertCircle,
+  Lightbulb,
   Settings,
   Palette,
   Layout,
