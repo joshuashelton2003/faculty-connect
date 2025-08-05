@@ -484,14 +484,105 @@ export default function EmployerDashboard() {
           </Card>
         </div>
 
+        {/* Quick Navigation Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Card
+            className="bg-white border border-gray-200 shadow-md rounded-xl hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => navigate('/employer/my-jobs')}
+          >
+            <CardContent className="p-6">
+              <div className="flex items-center">
+                <div className="p-3 bg-blue-100 rounded-lg">
+                  <Briefcase className="w-6 h-6 text-blue-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">My Jobs</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {mockPostedJobs.filter(job => job.status === 'active').length}
+                  </p>
+                  <div className="flex items-center mt-1">
+                    <ExternalLink className="w-3 h-3 text-gray-400 mr-1" />
+                    <span className="text-xs text-gray-500">Manage posts</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card
+            className="bg-white border border-gray-200 shadow-md rounded-xl hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => navigate('/employer/applications')}
+          >
+            <CardContent className="p-6">
+              <div className="flex items-center">
+                <div className="p-3 bg-green-100 rounded-lg">
+                  <Users className="w-6 h-6 text-green-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">Applications</p>
+                  <p className="text-2xl font-bold text-gray-900">{allSampleApplications.length}</p>
+                  <div className="flex items-center mt-1">
+                    <ExternalLink className="w-3 h-3 text-gray-400 mr-1" />
+                    <span className="text-xs text-gray-500">Review candidates</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card
+            className="bg-white border border-gray-200 shadow-md rounded-xl hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => navigate('/employer/analytics')}
+          >
+            <CardContent className="p-6">
+              <div className="flex items-center">
+                <div className="p-3 bg-purple-100 rounded-lg">
+                  <BarChart3 className="w-6 h-6 text-purple-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">Analytics</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {mockPostedJobs.reduce((sum, job) => sum + job.viewsCount, 0)}
+                  </p>
+                  <div className="flex items-center mt-1">
+                    <ExternalLink className="w-3 h-3 text-gray-400 mr-1" />
+                    <span className="text-xs text-gray-500">View insights</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card
+            className="bg-white border border-gray-200 shadow-md rounded-xl hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => navigate('/employer/post-job')}
+          >
+            <CardContent className="p-6">
+              <div className="flex items-center">
+                <div className="p-3 bg-yellow-100 rounded-lg">
+                  <Plus className="w-6 h-6 text-yellow-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">Post Job</p>
+                  <p className="text-2xl font-bold text-gray-900">New</p>
+                  <div className="flex items-center mt-1">
+                    <ExternalLink className="w-3 h-3 text-gray-400 mr-1" />
+                    <span className="text-xs text-gray-500">Create posting</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            <Tabs defaultValue="applications" className="space-y-6">
+            <Tabs defaultValue="overview" className="space-y-6">
               <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="applications">Applications</TabsTrigger>
-                <TabsTrigger value="jobs">My Jobs</TabsTrigger>
-                <TabsTrigger value="analytics">Analytics</TabsTrigger>
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="recent-applications">Recent Applications</TabsTrigger>
+                <TabsTrigger value="job-performance">Job Performance</TabsTrigger>
               </TabsList>
 
               {/* Applications Tab */}
