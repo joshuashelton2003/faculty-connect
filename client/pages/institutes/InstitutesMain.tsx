@@ -817,21 +817,28 @@ const InstitutesMain: React.FC = () => {
           </div>
         </div>
 
-        {/* Institutes Grid */}
+        {/* Institutes Grid/List */}
         <AnimatePresence>
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div className={`grid gap-6 ${viewMode === 'grid'
+              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+              : 'grid-cols-1'
+            }`}>
+              {Array.from({ length: itemsPerPage }, (_, i) => (
                 <Card key={i} className="bg-white border border-gray-200 shadow-md rounded-xl">
                   <CardContent className="p-6">
                     <div className="animate-pulse">
                       <div className="flex items-start space-x-4">
-                        <div className="w-16 h-16 bg-gray-200 rounded-lg"></div>
+                        <div className="w-16 h-16 bg-gray-200 rounded-lg flex-shrink-0"></div>
                         <div className="flex-1">
-                          <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
-                          <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
+                          <div className="h-6 bg-gray-200 rounded w-3/4 mb-3"></div>
+                          <div className="h-4 bg-gray-200 rounded w-1/2 mb-3"></div>
                           <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
-                          <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                          <div className="h-4 bg-gray-200 rounded w-2/3 mb-4"></div>
+                          <div className="flex space-x-2">
+                            <div className="h-8 bg-gray-200 rounded w-20"></div>
+                            <div className="h-8 bg-gray-200 rounded w-24"></div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -839,38 +846,125 @@ const InstitutesMain: React.FC = () => {
                 </Card>
               ))}
             </div>
-          ) : filteredInstitutes.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredInstitutes.map((institute, index) => (
-                <InstituteCard key={institute.id} institute={institute} index={index} />
-              ))}
-            </div>
+          ) : paginatedInstitutes.length > 0 ? (
+            <>
+              <div className={`grid gap-6 ${viewMode === 'grid'
+                ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                : 'grid-cols-1 lg:grid-cols-2'
+              }`}>
+                {paginatedInstitutes.map((institute, index) => (
+                  <InstituteCard key={institute.id} institute={institute} index={index} />
+                ))}
+              </div>
+
+              {/* Pagination Controls */}
+              {totalPages > 1 && (
+                <div className="mt-12 flex items-center justify-between">
+                  <div className="text-sm text-gray-600">
+                    Showing {((currentPage - 1) * itemsPerPage) + 1} to{' '}
+                    {Math.min(currentPage * itemsPerPage, sortedAndFilteredInstitutes.length)} of{' '}
+                    {sortedAndFilteredInstitutes.length} results
+                  </div>
+
+                  <div className="flex items-center space-x-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => goToPage(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
+                      Previous
+                    </Button>
+
+                    <div className="flex items-center space-x-1">
+                      {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+                        let pageNum;
+                        if (totalPages <= 5) {
+                          pageNum = i + 1;
+                        } else if (currentPage <= 3) {
+                          pageNum = i + 1;
+                        } else if (currentPage >= totalPages - 2) {
+                          pageNum = totalPages - 4 + i;
+                        } else {
+                          pageNum = currentPage - 2 + i;
+                        }
+
+                        return (
+                          <Button
+                            key={pageNum}
+                            variant={currentPage === pageNum ? 'default' : 'outline'}
+                            size="sm"
+                            onClick={() => goToPage(pageNum)}
+                            className="w-10"
+                          >
+                            {pageNum}
+                          </Button>
+                        );
+                      })}
+                      {totalPages > 5 && currentPage < totalPages - 2 && (
+                        <>
+                          <span className="text-gray-400">...</span>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => goToPage(totalPages)}
+                            className="w-10"
+                          >
+                            {totalPages}
+                          </Button>
+                        </>
+                      )}
+                    </div>
+
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => goToPage(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                    >
+                      Next
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {/* Quick Load More for Current Page */}
+              {currentPage < totalPages && (
+                <div className="text-center mt-8">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={loadMoreInstitutes}
+                    className="px-8"
+                  >
+                    Load More Institutes ({Math.min(itemsPerPage, sortedAndFilteredInstitutes.length - currentPage * itemsPerPage)} more)
+                  </Button>
+                </div>
+              )}
+            </>
           ) : (
             <div className="text-center py-16">
               <Building className="w-16 h-16 text-gray-400 mx-auto mb-4" />
               <h3 className="text-xl font-medium text-gray-900 mb-2">No institutes found</h3>
               <p className="text-gray-600 mb-6 max-w-md mx-auto">
-                We couldn't find any institutes matching your criteria. Try adjusting your filters.
+                We couldn't find any institutes matching your criteria. Try adjusting your filters or search terms.
               </p>
-              <Button onClick={() => {
-                setSearchTerm('');
-                setTypeFilter('all');
-                setLocationFilter('all-locations');
-              }}>
-                Clear Filters
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button onClick={() => {
+                  setSearchTerm('');
+                  setTypeFilter('all');
+                  setLocationFilter('all-locations');
+                  setCurrentPage(1);
+                }}>
+                  Clear All Filters
+                </Button>
+                <Button variant="outline" onClick={() => setCurrentPage(1)}>
+                  Reset Page
+                </Button>
+              </div>
             </div>
           )}
         </AnimatePresence>
-
-        {/* Load More Button */}
-        {filteredInstitutes.length > 0 && filteredInstitutes.length >= 12 && (
-          <div className="text-center mt-12">
-            <Button variant="outline" size="lg" className="px-8">
-              Load More Institutes
-            </Button>
-          </div>
-        )}
 
         {/* Edit Institute Dialog */}
         <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
