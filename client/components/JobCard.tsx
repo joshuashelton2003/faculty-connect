@@ -73,7 +73,7 @@ export default function JobCard({
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200 relative">
+    <div className={"bg-white rounded-xl border border-gray-200 p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 relative cursor-pointer\">ive cursor-pointer\"> cursor-pointer\">r\">pointer"}>
       {/* Bookmark Button */}
       <button
         onClick={handleBookmark}
