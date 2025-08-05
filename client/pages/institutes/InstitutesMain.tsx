@@ -98,10 +98,10 @@ const InstitutesMain: React.FC = () => {
     // Apply local filters
     setFilters({
       keywords: searchTerm,
-      location: { 
-        country: 'India', 
-        state: locationFilter, 
-        district: '' 
+      location: {
+        country: 'India',
+        state: locationFilter === 'all-locations' ? '' : locationFilter,
+        district: ''
       },
       type: typeFilter === 'all' ? [] : [typeFilter as any],
       accreditation: [],
