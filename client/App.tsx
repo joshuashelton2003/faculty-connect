@@ -196,6 +196,12 @@ const App = () => (
             </Layout>
           } />
 
+          <Route path="/blog" element={
+            <Layout>
+              <Blog />
+            </Layout>
+          } />
+
           {/* Footer Content Pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
