@@ -11,15 +11,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { 
-  Eye, 
-  EyeOff, 
-  Mail, 
-  Lock, 
-  User, 
-  Phone, 
+import {
+  Eye,
+  EyeOff,
+  Mail,
+  Lock,
+  User,
+  Phone,
   Building,
-  GraduationCap
+  GraduationCap,
+  ArrowLeft
 } from 'lucide-react';
 
 interface RegisterFormData {
@@ -71,6 +72,15 @@ export default function Register() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12 px-4 sm:px-6 lg:px-8">
+      {/* Back Button */}
+      <Link
+        to="/"
+        className="absolute top-2 left-2 z-50 text-blue-500 font-semibold flex items-center hover:text-blue-600 transition-colors"
+      >
+        <ArrowLeft className="w-4 h-4 mr-1" />
+        Back
+      </Link>
+
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
