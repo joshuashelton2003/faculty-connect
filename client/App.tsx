@@ -28,6 +28,12 @@ import FilterDemo from "./pages/FilterDemo";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
+// Employer Dashboard Pages
+import MyJobs from "./pages/employer/MyJobs";
+import Applications from "./pages/employer/Applications";
+import Analytics from "./pages/employer/Analytics";
+import PostNewJob from "./pages/employer/PostNewJob";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
