@@ -216,7 +216,8 @@ const ResumeBuilder: React.FC = () => {
       id: Date.now().toString(),
       title: '',
       organization: '',
-      year: ''
+      year: '',
+      description: ''
     };
     setAwards([...awards, newAward]);
   };
