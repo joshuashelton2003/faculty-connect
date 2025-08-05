@@ -41,7 +41,7 @@ const HomePage: React.FC = () => {
   const handleSearch = () => {
     const params = new URLSearchParams();
     if (searchKeywords) params.set('title', searchKeywords);
-    if (searchLocation) params.set('location', searchLocation);
+    if (searchLocation && searchLocation !== 'all') params.set('location', searchLocation);
     navigate(`/jobs?${params.toString()}`);
   };
 
@@ -208,7 +208,7 @@ const HomePage: React.FC = () => {
                         <SelectValue placeholder="Location" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">All Locations</SelectItem>
+                        <SelectItem value="all">All Locations</SelectItem>
                         <SelectItem value="Chennai">Chennai</SelectItem>
                         <SelectItem value="Coimbatore">Coimbatore</SelectItem>
                         <SelectItem value="Madurai">Madurai</SelectItem>
