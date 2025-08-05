@@ -44,6 +44,9 @@ import PostNewJob from "./pages/employer/PostNewJob";
 // Candidate Dashboard Pages
 import CandidateDashboardNew from "./pages/candidate/CandidateDashboard";
 
+// Faculty Dashboard Pages
+import FacultyDashboard from "./pages/faculty/FacultyDashboard";
+
 // Institute Pages
 import InstitutesMain from "./pages/institutes/InstitutesMain";
 
