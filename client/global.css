@@ -114,4 +114,52 @@
   .text-gradient {
     @apply bg-gradient-to-br from-slate-700 via-slate-900 to-slate-600 bg-clip-text text-transparent;
   }
+
+  /* Enhanced animations and responsiveness */
+  .hover-lift {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
+  }
+
+  .smooth-transition {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .card-shadow {
+    @apply shadow-md hover:shadow-xl transition-shadow duration-300;
+  }
+
+  .button-glow {
+    @apply transition-all duration-200 hover:shadow-lg hover:scale-105;
+  }
+
+  /* Responsive improvements */
+  @media (max-width: 640px) {
+    .mobile-padding {
+      @apply px-3;
+    }
+
+    .mobile-text {
+      @apply text-sm;
+    }
+  }
+
+  /* Loading animations */
+  .pulse-slow {
+    animation: pulse 3s infinite;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
 }
