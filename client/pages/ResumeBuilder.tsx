@@ -201,6 +201,7 @@ const ResumeBuilder: React.FC = () => {
       authors: '',
       journal: '',
       year: '',
+      doi: '',
       type: 'journal'
     };
     setPublications([...publications, newPublication]);
