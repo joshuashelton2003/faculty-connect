@@ -73,7 +73,7 @@ const HomePage: React.FC = () => {
       type: 'University',
       openJobs: 12,
       rating: 4.8,
-      logo: '/logos/anna-university.png'
+      logo: 'https://images.pexels.com/photos/2676888/pexels-photo-2676888.jpeg'
     },
     {
       name: 'IIT Madras',
@@ -81,7 +81,7 @@ const HomePage: React.FC = () => {
       type: 'IIT',
       openJobs: 8,
       rating: 4.9,
-      logo: '/logos/iit-madras.png'
+      logo: 'https://images.pexels.com/photos/9489759/pexels-photo-9489759.jpeg'
     },
     {
       name: 'PSG College of Technology',
@@ -89,7 +89,7 @@ const HomePage: React.FC = () => {
       type: 'Engineering College',
       openJobs: 6,
       rating: 4.7,
-      logo: '/logos/psg-tech.png'
+      logo: 'https://images.pexels.com/photos/8199625/pexels-photo-8199625.jpeg'
     },
     {
       name: 'NIT Trichy',
@@ -97,7 +97,7 @@ const HomePage: React.FC = () => {
       type: 'NIT',
       openJobs: 5,
       rating: 4.8,
-      logo: '/logos/nit-trichy.png'
+      logo: 'https://images.pexels.com/photos/207732/pexels-photo-207732.jpeg'
     }
   ];
 
@@ -139,14 +139,14 @@ const HomePage: React.FC = () => {
       role: 'Assistant Professor',
       institute: 'Anna University',
       quote: 'FacultyConnect helped me find my dream position in computer science. The platform made the application process seamless.',
-      image: '/avatars/mani-geetha.jpg'
+      image: 'https://images.pexels.com/photos/5212317/pexels-photo-5212317.jpeg'
     },
     {
       name: 'Prof. Christypunitha',
-      role: 'Associate Professor', 
+      role: 'Associate Professor',
       institute: 'PSG College of Technology',
       quote: 'As an employer, FacultyConnect provided access to highly qualified candidates. The filtering system is excellent.',
-      image: '/avatars/christypunitha.jpg'
+      image: 'https://images.pexels.com/photos/9663015/pexels-photo-9663015.jpeg'
     }
   ];
 
@@ -353,8 +353,12 @@ const HomePage: React.FC = () => {
                 <Card className="hover:shadow-lg transition-all duration-300 cursor-pointer bg-white border border-gray-200">
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-3 mb-4">
-                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <Building className="w-6 h-6 text-blue-600" />
+                      <div className="w-12 h-12 rounded-lg overflow-hidden">
+                        <img
+                          src={institute.logo}
+                          alt={`${institute.name} logo`}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div className="flex-1">
                         <h3 className="font-semibold text-gray-900 text-sm">{institute.name}</h3>
@@ -525,8 +529,12 @@ const HomePage: React.FC = () => {
                 <Card className="bg-white border border-gray-200">
                   <CardContent className="p-8">
                     <div className="flex items-center mb-6">
-                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                        <User className="w-6 h-6 text-blue-600" />
+                      <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+                        <img
+                          src={testimonial.image}
+                          alt={`${testimonial.name} profile`}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
