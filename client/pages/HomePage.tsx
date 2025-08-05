@@ -142,11 +142,11 @@ const HomePage: React.FC = () => {
       image: '/avatars/mani-geetha.jpg'
     },
     {
-      name: 'Prof. Aravind Kumar',
+      name: 'Prof. Christypunitha',
       role: 'Associate Professor', 
       institute: 'PSG College of Technology',
       quote: 'As an employer, FacultyConnect provided access to highly qualified candidates. The filtering system is excellent.',
-      image: '/avatars/aravind-kumar.jpg'
+      image: '/avatars/christypunitha.jpg'
     }
   ];
 
