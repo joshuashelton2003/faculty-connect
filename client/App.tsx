@@ -243,6 +243,12 @@ const App = () => (
             </Layout>
           } />
 
+          <Route path="/feedback" element={
+            <Layout>
+              <Feedback />
+            </Layout>
+          } />
+
           {/* Footer Content Pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
