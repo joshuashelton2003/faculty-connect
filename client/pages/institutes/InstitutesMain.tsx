@@ -768,10 +768,52 @@ const InstitutesMain: React.FC = () => {
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Results Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div className="text-sm text-gray-600">
-            Showing <span className="font-semibold">{filteredInstitutes.length}</span> of{' '}
-            <span className="font-semibold">{institutes.length}</span> institutes
+            Showing <span className="font-semibold">{paginatedInstitutes.length}</span> of{' '}
+            <span className="font-semibold">{sortedAndFilteredInstitutes.length}</span> institutes
+            {currentPage > 1 && (
+              <span className="ml-2">
+                (Page {currentPage} of {totalPages})
+              </span>
+            )}
+          </div>
+
+          <div className="flex items-center space-x-4">
+            {/* Sort Options */}
+            <div className="flex items-center space-x-2">
+              <span className="text-sm text-gray-600">Sort by:</span>
+              <Select value={sortBy} onValueChange={setSortBy as any}>
+                <SelectTrigger className="w-40">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="name">Name</SelectItem>
+                  <SelectItem value="established">Established Year</SelectItem>
+                  <SelectItem value="location">Location</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* View Mode Toggle */}
+            <div className="flex items-center space-x-1 border border-gray-200 rounded-lg p-1">
+              <Button
+                variant={viewMode === 'grid' ? 'default' : 'ghost'}
+                size="sm"
+                onClick={() => setViewMode('grid')}
+                className="px-3"
+              >
+                Grid
+              </Button>
+              <Button
+                variant={viewMode === 'list' ? 'default' : 'ghost'}
+                size="sm"
+                onClick={() => setViewMode('list')}
+                className="px-3"
+              >
+                List
+              </Button>
+            </div>
           </div>
         </div>
 
