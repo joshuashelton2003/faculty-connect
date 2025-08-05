@@ -203,6 +203,12 @@ const App = () => (
             </Layout>
           } />
 
+          <Route path="/resources/success-stories" element={
+            <Layout>
+              <SuccessStories />
+            </Layout>
+          } />
+
           {/* Footer Content Pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
