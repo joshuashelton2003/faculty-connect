@@ -45,17 +45,33 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   register: async (userData: any) => {
     try {
       set({ isLoading: true });
+
+      // Calculate profile completion
+      let profileCompletion = 30; // Base for basic info
+      if (userData.profileImage) profileCompletion += 20;
+      if (userData.bio || userData.description) profileCompletion += 15;
+      if (userData.specialization || userData.instituteType) profileCompletion += 15;
+      if (userData.currentInstitution || userData.instituteName) profileCompletion += 20;
+
       // Mock registration for demo
       const mockUser = {
-        _id: '1',
+        id: `user_${Date.now()}`,
         email: userData.email,
-        role: userData.role,
+        name: `${userData.firstName} ${userData.lastName}`,
+        phone: userData.phone,
+        role: userData.role === 'employer' ? 'employer' : 'faculty',
+        profileImage: userData.profileImage,
         isVerified: true,
-        createdAt: new Date().toISOString()
+        profileCompletion,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       } as User;
+
       const mockToken = 'mock-jwt-token';
 
       localStorage.setItem('facultyconnect_token', mockToken);
+      localStorage.setItem('facultyconnect_user', JSON.stringify(mockUser));
+
       set({
         user: mockUser,
         token: mockToken,
