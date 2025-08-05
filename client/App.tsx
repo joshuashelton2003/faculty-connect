@@ -210,6 +210,12 @@ const App = () => (
             </Layout>
           } />
 
+          <Route path="/help" element={
+            <Layout>
+              <Help />
+            </Layout>
+          } />
+
           {/* Footer Content Pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
