@@ -46,8 +46,8 @@ export default function CandidateDashboard() {
     isVerified: true,
     createdAt: '2024-01-15',
     profile: {
-      firstName: 'Rajesh',
-      lastName: 'Kumar',
+      firstName: 'Mani',
+      lastName: 'Geetha',
       profileImage: '',
       phone: '+91 9876543210',
       dateOfBirth: '1985-05-15',
