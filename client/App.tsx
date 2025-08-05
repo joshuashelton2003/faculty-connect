@@ -90,7 +90,19 @@ const App = () => (
           
           <Route path="/institutes" element={
             <Layout>
+              <InstitutesMain />
+            </Layout>
+          } />
+
+          <Route path="/institutes/:id" element={
+            <Layout>
               <Institutes />
+            </Layout>
+          } />
+
+          <Route path="/institutes/:id/jobs" element={
+            <Layout>
+              <JobsList />
             </Layout>
           } />
 
