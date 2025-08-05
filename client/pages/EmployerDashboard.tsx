@@ -585,46 +585,89 @@ export default function EmployerDashboard() {
                 <TabsTrigger value="job-performance">Job Performance</TabsTrigger>
               </TabsList>
 
-              {/* Applications Tab */}
-              <TabsContent value="applications" className="space-y-6">
+              {/* Overview Tab */}
+              <TabsContent value="overview" className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Recent Activity</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2" />
+                          <div>
+                            <p className="text-sm text-gray-900">New application received</p>
+                            <p className="text-xs text-gray-500">Aravind Kumar applied for CS Professor</p>
+                            <p className="text-xs text-gray-400">2 hours ago</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full mt-2" />
+                          <div>
+                            <p className="text-sm text-gray-900">Job posting published</p>
+                            <p className="text-xs text-gray-500">Mathematics Lecturer position went live</p>
+                            <p className="text-xs text-gray-400">1 day ago</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full mt-2" />
+                          <div>
+                            <p className="text-sm text-gray-900">Candidate shortlisted</p>
+                            <p className="text-xs text-gray-500">Meena Priya moved to interview stage</p>
+                            <p className="text-xs text-gray-400">2 days ago</p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>This Week</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">New Applications</span>
+                          <span className="font-semibold">28</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Profile Views</span>
+                          <span className="font-semibold">156</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Shortlisted</span>
+                          <span className="font-semibold">12</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Interviews Scheduled</span>
+                          <span className="font-semibold">5</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </TabsContent>
+
+              {/* Recent Applications Tab */}
+              <TabsContent value="recent-applications" className="space-y-6">
                 <Card>
                   <CardHeader>
                     <div className="flex items-center justify-between">
-                      <CardTitle>Candidate Applications</CardTitle>
-                      <div className="flex items-center space-x-2">
-                        <Select value={selectedJob} onValueChange={setSelectedJob}>
-                          <SelectTrigger className="w-48">
-                            <SelectValue placeholder="Filter by job" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="all">All Jobs</SelectItem>
-                            {mockPostedJobs.map(job => (
-                              <SelectItem key={job._id} value={job._id}>
-                                {job.title}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        
-                        <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-                          <SelectTrigger className="w-32">
-                            <SelectValue placeholder="Status" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="all">All Status</SelectItem>
-                            <SelectItem value="applied">Applied</SelectItem>
-                            <SelectItem value="shortlisted">Shortlisted</SelectItem>
-                            <SelectItem value="interviewed">Interviewed</SelectItem>
-                            <SelectItem value="selected">Selected</SelectItem>
-                            <SelectItem value="rejected">Rejected</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
+                      <CardTitle>Recent Applications</CardTitle>
+                      <Button
+                        variant="outline"
+                        onClick={() => navigate('/employer/applications')}
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        View All
+                      </Button>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {filteredApplications.map((application) => (
+                      {mockApplications.slice(0, 3).map((application) => (
                         <div key={application._id} className="border border-gray-200 rounded-lg p-4">
                           <div className="flex items-start justify-between mb-3">
                             <div className="flex items-start space-x-3">
@@ -651,26 +694,6 @@ export default function EmployerDashboard() {
                                 {getStatusIcon(application.status)}
                                 <span className="ml-1 capitalize">{application.status}</span>
                               </Badge>
-                              {application.rating > 0 && (
-                                <div className="mt-2">
-                                  {getRatingStars(application.rating)}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                          
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600 mb-3">
-                            <div className="flex items-center">
-                              <Mail className="w-4 h-4 mr-1" />
-                              {application.candidate.email}
-                            </div>
-                            <div className="flex items-center">
-                              <Phone className="w-4 h-4 mr-1" />
-                              {application.candidate.phone}
-                            </div>
-                            <div className="flex items-center">
-                              <MapPin className="w-4 h-4 mr-1" />
-                              {application.candidate.location}
                             </div>
                           </div>
 
@@ -681,13 +704,7 @@ export default function EmployerDashboard() {
                             </div>
                             <div className="flex items-center space-x-2">
                               <Button size="sm" variant="outline">
-                                View Profile
-                              </Button>
-                              <Button size="sm" variant="outline">
-                                Download Resume
-                              </Button>
-                              <Button size="sm">
-                                Update Status
+                                View Application
                               </Button>
                             </div>
                           </div>
