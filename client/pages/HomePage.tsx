@@ -31,7 +31,7 @@ import {
   Eye,
   Calendar,
   ChevronRight
-} from 'lucide-react\';act\';rom \'lucide-react';
+} from 'lucide-react';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
