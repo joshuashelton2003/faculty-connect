@@ -34,6 +34,12 @@ import Applications from "./pages/employer/Applications";
 import Analytics from "./pages/employer/Analytics";
 import PostNewJob from "./pages/employer/PostNewJob";
 
+// Candidate Dashboard Pages
+import CandidateDashboardNew from "./pages/candidate/CandidateDashboard";
+
+// Institute Pages
+import InstitutesMain from "./pages/institutes/InstitutesMain";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
