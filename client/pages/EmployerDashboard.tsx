@@ -88,45 +88,21 @@ export default function EmployerDashboard() {
     }
   };
 
-  // Mock posted jobs - In real app: GET /api/employer/jobs
-  const mockPostedJobs = [
-    {
-      _id: '1',
-      title: 'Assistant Professor - Computer Science',
-      type: 'college',
-      location: 'Chennai, Tamil Nadu',
-      salary: '₹45,000 - ₹65,000',
-      postedDate: '2024-01-20',
-      deadline: '2024-02-20',
-      status: 'active',
-      applicationsCount: 24,
-      viewsCount: 156
-    },
-    {
-      _id: '2',
-      title: 'Professor - Mechanical Engineering',
-      type: 'university',
-      location: 'Chennai, Tamil Nadu',
-      salary: '₹70,000 - ₹90,000',
-      postedDate: '2024-01-18',
-      deadline: '2024-02-18',
-      status: 'active',
-      applicationsCount: 18,
-      viewsCount: 203
-    },
-    {
-      _id: '3',
-      title: 'Lecturer - Mathematics',
-      type: 'college',
-      location: 'Chennai, Tamil Nadu',
-      salary: '₹35,000 - ₹50,000',
-      postedDate: '2024-01-15',
-      deadline: '2024-02-15',
-      status: 'draft',
-      applicationsCount: 0,
-      viewsCount: 0
-    }
-  ];
+  // Production posted jobs - using comprehensive data
+  const mockPostedJobs = productionJobs
+    .slice(0, 25) // Show 25 jobs for this employer
+    .map(job => ({
+      _id: job.id,
+      title: job.title,
+      type: job.institute.type,
+      location: `${job.location.city}, ${job.location.state}`,
+      salary: `₹${job.salary.min.toLocaleString()} - ₹${job.salary.max.toLocaleString()}`,
+      postedDate: new Date(job.createdAt).toLocaleDateString(),
+      deadline: new Date(job.deadline).toLocaleDateString(),
+      status: job.isActive ? 'active' : 'draft',
+      applicationsCount: job.applicationCount,
+      viewsCount: job.viewCount
+    }));
 
   // Mock applications - In real app: GET /api/jobs/:jobId/applicants
   const mockApplications = [
