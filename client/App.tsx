@@ -18,7 +18,7 @@ import JobsList from "./pages/JobsList";
 import JobDetail from "./pages/JobDetail";
 import Institutes from "./pages/Institutes";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Register from "./pages/EnhancedRegister";
 import CandidateDashboard from "./pages/CandidateDashboard";
 import EmployerDashboard from "./pages/EmployerDashboard";
 import Contact from "./pages/Contact";
