@@ -78,7 +78,12 @@ export default function Footer() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm text-gray-400">
                   <Mail className="w-4 h-4 flex-shrink-0" />
-                  <span>searchfirst@facultyconnect.in</span>
+                  <a
+                    href="mailto:support@facultyconnect.in"
+                    className="hover:text-white transition-colors"
+                  >
+                    support@facultyconnect.in
+                  </a>
                 </div>
                 <div className="flex items-center space-x-3 text-sm text-gray-400">
                   <Phone className="w-4 h-4 flex-shrink-0" />
