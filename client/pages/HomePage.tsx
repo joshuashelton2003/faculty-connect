@@ -16,6 +16,7 @@ import {
   Search,
   MapPin,
   Users,
+  User,
   Building,
   TrendingUp,
   BookOpen,
@@ -30,7 +31,7 @@ import {
   Eye,
   Calendar,
   ChevronRight
-} from 'lucide-react';
+} from 'lucide-react\';act\';rom \'lucide-react';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
