@@ -8,11 +8,42 @@ export interface User {
   email: string;
   name: string;
   phone: string;
-  role: 'candidate' | 'employer' | 'admin';
+  role: 'faculty' | 'employer' | 'admin';
   profileImage?: string;
   isVerified: boolean;
+  profileCompletion: number;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface Faculty extends User {
+  role: 'faculty';
+  profile: FacultyProfile;
+}
+
+export interface FacultyProfile {
+  firstName: string;
+  lastName: string;
+  bio: string;
+  location: Location;
+  qualifications: string[];
+  experience: ExperienceEntry[];
+  education: EducationEntry[];
+  skills: string[];
+  certifications: Certification[];
+  resume?: FileUpload;
+  portfolio?: string;
+  expectedSalary: {
+    min: number;
+    max: number;
+    currency: string;
+  };
+  availability: 'immediate' | '1-month' | '2-months' | '3-months' | 'flexible';
+  references: Reference[];
+  languages: string[];
+  teachingExperience: number;
+  researchInterests: string[];
+  publications: Publication[];
 }
 
 export interface Candidate extends User {
