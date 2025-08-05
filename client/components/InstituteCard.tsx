@@ -32,7 +32,7 @@ export default function InstituteCard({
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+    <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer">
       {/* Institute Header */}
       <div className="flex items-start space-x-4 mb-4">
         {/* Logo */}
