@@ -229,6 +229,12 @@ const App = () => (
             </Layout>
           } />
 
+          <Route path="/resources/career-tips" element={
+            <Layout>
+              <CareerTips />
+            </Layout>
+          } />
+
           {/* Footer Content Pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
