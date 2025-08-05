@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/select';
 import FiltersSidebar from '@/components/FiltersSidebar';
 import { motion, AnimatePresence } from 'framer-motion';
+import Pagination from '@/components/ui/pagination';
 import {
   Search,
   Filter,
@@ -46,6 +47,11 @@ const JobsList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [sortBy, setSortBy] = useState('recent');
   const [savedJobs, setSavedJobs] = useState<string[]>([]);
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [paginatedJobs, setPaginatedJobs] = useState<any[]>([]);
 
   // Use comprehensive jobs data
   const [jobs] = useState(allJobs);
@@ -176,7 +182,30 @@ const JobsList: React.FC = () => {
     }
 
     setFilteredJobs(filtered);
+
+    // Reset to first page when filters change
+    setCurrentPage(1);
   }, [jobs, searchTitle, filters, sortBy]);
+
+  // Handle pagination
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setPaginatedJobs(filteredJobs.slice(startIndex, endIndex));
+  }, [filteredJobs, currentPage, itemsPerPage]);
+
+  const totalPages = Math.ceil(filteredJobs.length / itemsPerPage);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top of results when page changes
+    document.querySelector('#jobs-results')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleItemsPerPageChange = (newItemsPerPage: number) => {
+    setItemsPerPage(newItemsPerPage);
+    setCurrentPage(1); // Reset to first page
+  };
 
   // Update URL params
   useEffect(() => {
@@ -487,7 +516,7 @@ const JobsList: React.FC = () => {
           {/* Jobs List */}
           <div className="lg:w-3/4">
             {/* Results Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-6" id="jobs-results">
               <div className="text-sm text-gray-600">
                 Showing <span className="font-semibold">{filteredJobs.length}</span> of{' '}
                 <span className="font-semibold">{jobs.length}</span> jobs
@@ -574,7 +603,7 @@ const JobsList: React.FC = () => {
                 </div>
               ) : filteredJobs.length > 0 ? (
                 <div className="space-y-6">
-                  {filteredJobs.map((job, index) => (
+                  {paginatedJobs.map((job, index) => (
                     <JobCard key={job.id} job={job} index={index} />
                   ))}
                 </div>
@@ -602,12 +631,20 @@ const JobsList: React.FC = () => {
               )}
             </AnimatePresence>
 
-            {/* Load More Button */}
-            {filteredJobs.length > 0 && filteredJobs.length >= 20 && (
-              <div className="text-center mt-12">
-                <Button variant="outline" size="lg" className="px-8">
-                  Load More Jobs
-                </Button>
+            {/* Pagination */}
+            {filteredJobs.length > 0 && totalPages > 1 && (
+              <div className="mt-12 border-t border-gray-200 pt-8">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  totalItems={filteredJobs.length}
+                  itemsPerPage={itemsPerPage}
+                  onPageChange={handlePageChange}
+                  onItemsPerPageChange={handleItemsPerPageChange}
+                  showItemsPerPage={true}
+                  showPageInfo={true}
+                  className="justify-center"
+                />
               </div>
             )}
           </div>
