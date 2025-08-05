@@ -111,6 +111,38 @@ const App = () => (
             </ProtectedRoute>
           } />
 
+          <Route path="/employer/my-jobs" element={
+            <ProtectedRoute requiredRole="employer">
+              <Layout>
+                <MyJobs />
+              </Layout>
+            </ProtectedRoute>
+          } />
+
+          <Route path="/employer/applications/:jobId?" element={
+            <ProtectedRoute requiredRole="employer">
+              <Layout>
+                <Applications />
+              </Layout>
+            </ProtectedRoute>
+          } />
+
+          <Route path="/employer/analytics" element={
+            <ProtectedRoute requiredRole="employer">
+              <Layout>
+                <Analytics />
+              </Layout>
+            </ProtectedRoute>
+          } />
+
+          <Route path="/employer/post-job" element={
+            <ProtectedRoute requiredRole="employer">
+              <Layout>
+                <PostNewJob />
+              </Layout>
+            </ProtectedRoute>
+          } />
+
           {/* Profile Route - Accessible to both roles */}
           <Route path="/profile" element={
             <ProtectedRoute>
