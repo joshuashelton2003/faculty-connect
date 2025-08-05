@@ -88,7 +88,7 @@ export default function CandidateDashboard() {
         }
       ],
       skills: ['Machine Learning', 'Python', 'Java', 'Data Structures', 'Algorithms', 'Database Systems'],
-      resume: '/resumes/rajesh-kumar-resume.pdf',
+      resume: '/resumes/mani-geetha-resume.pdf',
       bio: 'Passionate educator with 8+ years of experience in computer science education and research. Specialized in machine learning and artificial intelligence.'
     }
   };
