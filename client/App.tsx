@@ -27,6 +27,7 @@ import Blog from "./pages/Blog";
 import SuccessStories from "./pages/SuccessStories";
 import Help from "./pages/Help";
 import CareerTips from "./pages/CareerTips";
+import ResumeBuilder from "./pages/ResumeBuilder";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import ContactUs from "./pages/ContactUs";
