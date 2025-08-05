@@ -87,49 +87,28 @@ const CandidateDashboard: React.FC = () => {
 
   const profileCompletion = calculateProfileCompletion();
 
-  // Mock application data with various statuses
-  const mockApplications = [
-    {
-      id: 'app_001',
-      jobTitle: 'Assistant Professor - Computer Science',
-      institute: 'Anna University',
-      appliedDate: '2024-01-20',
-      status: 'shortlisted',
-      location: 'Chennai, Tamil Nadu'
-    },
-    {
-      id: 'app_002', 
-      jobTitle: 'Mathematics Lecturer',
-      institute: 'PSG College of Technology',
-      appliedDate: '2024-01-18',
-      status: 'under-review',
-      location: 'Coimbatore, Tamil Nadu'
-    },
-    {
-      id: 'app_003',
-      jobTitle: 'Principal - Engineering College',
-      institute: 'Sri Krishna College of Engineering',
-      appliedDate: '2024-01-15',
-      status: 'interviewed',
-      location: 'Coimbatore, Tamil Nadu'
-    },
-    {
-      id: 'app_004',
-      jobTitle: 'Physics Faculty',
-      institute: 'Government Polytechnic',
-      appliedDate: '2024-01-12',
-      status: 'selected',
-      location: 'Salem, Tamil Nadu'
-    },
-    {
-      id: 'app_005',
-      jobTitle: 'Chemistry Teacher',
-      institute: 'Kendriya Vidyalaya',
-      appliedDate: '2024-01-10',
-      status: 'rejected',
-      location: 'Madurai, Tamil Nadu'
-    }
-  ];
+  // Production application data - comprehensive realistic applications
+  const candidateApplications = productionApplications
+    .filter(app => app.candidate.id === candidateProfile.id)
+    .slice(0, 50); // Show candidate's applications
+
+  const mockApplications = candidateApplications.length > 0
+    ? candidateApplications.map(app => ({
+        id: app.id,
+        jobTitle: app.job.title,
+        institute: app.job.institute.name,
+        appliedDate: new Date(app.applicationDate).toLocaleDateString(),
+        status: app.status,
+        location: `${app.job.location.city}, ${app.job.location.state}`
+      }))
+    : productionApplications.slice(0, 20).map(app => ({ // Fallback with sample applications
+        id: app.id,
+        jobTitle: app.job.title,
+        institute: app.job.institute.name,
+        appliedDate: new Date(app.applicationDate).toLocaleDateString(),
+        status: app.status,
+        location: `${app.job.location.city}, ${app.job.location.state}`
+      }));
 
   const mockSavedJobs = [
     {
