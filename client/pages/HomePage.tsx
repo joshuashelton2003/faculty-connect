@@ -556,25 +556,7 @@ const HomePage: React.FC = () => {
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
               Join thousands of educators and institutions already using FacultyConnect to build successful academic careers.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg"
-                onClick={() => navigate('/register?role=candidate')}
-                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg"
-              >
-                Find Teaching Jobs
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button 
-                size="lg"
-                variant="outline"
-                onClick={() => navigate('/register?role=employer')}
-                className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 text-lg"
-              >
-                Post Job Openings
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </div>
+
           </motion.div>
         </div>
       </section>
