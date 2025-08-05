@@ -270,74 +270,64 @@ const InstitutesMain: React.FC = () => {
     return labels[type as keyof typeof labels] || type;
   };
 
-  const InstituteCard: React.FC<{ institute: any; index: number }> = ({ institute, index }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
-      className="group"
-    >
-      <Card className="bg-white border border-gray-200 shadow-md rounded-xl hover:shadow-lg transition-all duration-300 hover:border-blue-200">
-        <CardContent className="p-6">
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex items-start space-x-4 flex-1">
-              <Avatar className="h-16 w-16 border-2 border-gray-100">
-                <AvatarImage src={institute.logo} />
-                <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold text-lg">
-                  {institute.name.split(' ').map((n: string) => n[0]).join('').substring(0, 2)}
-                </AvatarFallback>
-              </Avatar>
-              
-              <div className="flex-1">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                      {institute.name}
-                    </h3>
-                    <div className="flex items-center space-x-2 mt-2">
-                      <Badge className={getInstituteTypeColor(institute.type)}>
-                        {getInstituteTypeLabel(institute.type)}
+  const InstituteCard: React.FC<{ institute: any; index: number }> = ({ institute, index }) => {
+    const [jobsCount, setJobsCount] = React.useState(Math.floor(Math.random() * 15) + 3);
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: (index % itemsPerPage) * 0.05 }}
+        className="group h-full"
+      >
+        <Card className="bg-white border border-gray-200 shadow-md rounded-xl hover:shadow-xl transition-all duration-300 hover:border-blue-300 h-full flex flex-col">
+          <CardContent className="p-6 flex-1 flex flex-col">
+            {/* Header Section - Fixed Height */}
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start space-x-4 flex-1">
+                <Avatar className="h-16 w-16 border-2 border-gray-100 flex-shrink-0">
+                  <AvatarImage src={institute.logo} alt={institute.name} />
+                  <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold text-lg">
+                    {institute.name.split(' ').map((n: string) => n[0]).join('').substring(0, 2)}
+                  </AvatarFallback>
+                </Avatar>
+
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 mb-2">
+                    {institute.name}
+                  </h3>
+                  <div className="flex items-center flex-wrap gap-2 mb-2">
+                    <Badge className={getInstituteTypeColor(institute.type)}>
+                      {getInstituteTypeLabel(institute.type)}
+                    </Badge>
+                    {institute.isVerified && (
+                      <Badge className="bg-green-100 text-green-800">
+                        <CheckCircle className="w-3 h-3 mr-1" />
+                        Verified
                       </Badge>
-                      {institute.isVerified && (
-                        <Badge className="bg-green-100 text-green-800">
-                          <CheckCircle className="w-3 h-3 mr-1" />
-                          Verified
-                        </Badge>
-                      )}
-                      {institute.isFeatured && (
-                        <Badge className="bg-purple-100 text-purple-800">
-                          <Star className="w-3 h-3 mr-1" />
-                          Featured
-                        </Badge>
-                      )}
-                    </div>
-                    <div className="flex items-center space-x-4 mt-3 text-sm text-gray-500">
-                      <div className="flex items-center">
-                        <MapPin className="w-4 h-4 mr-1" />
-                        {institute.location.city}, {institute.location.state}
-                      </div>
-                      <div className="flex items-center">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        Est. {institute.established}
-                      </div>
-                      <div className="flex items-center">
-                        <BookOpen className="w-4 h-4 mr-1" />
-                        {institute.departments?.length || 0} Departments
-                      </div>
-                    </div>
+                    )}
+                    {institute.isFeatured && (
+                      <Badge className="bg-purple-100 text-purple-800">
+                        <Star className="w-3 h-3 mr-1" />
+                        Featured
+                      </Badge>
+                    )}
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="flex items-center space-x-2">
+
+              {/* Admin Actions */}
               {user?.role === 'employer' && (
-                <>
+                <div className="flex items-center space-x-1">
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => openEditDialog(institute)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openEditDialog(institute);
+                    }}
                     className="opacity-0 group-hover:opacity-100 transition-opacity"
+                    title="Edit Institute"
                   >
                     <Edit className="w-4 h-4" />
                   </Button>
@@ -346,7 +336,9 @@ const InstitutesMain: React.FC = () => {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="opacity-0 group-hover:opacity-100 transition-opacity text-red-600"
+                        onClick={(e) => e.stopPropagation()}
+                        className="opacity-0 group-hover:opacity-100 transition-opacity text-red-600 hover:text-red-700"
+                        title="Delete Institute"
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>
@@ -366,101 +358,154 @@ const InstitutesMain: React.FC = () => {
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>
-                </>
-              )}
-            </div>
-          </div>
-
-          <div className="mb-4">
-            <p className="text-gray-700 text-sm line-clamp-2">
-              {institute.description}
-            </p>
-          </div>
-
-          {institute.accreditation && institute.accreditation.length > 0 && (
-            <div className="mb-4">
-              <div className="flex flex-wrap gap-1">
-                {institute.accreditation.slice(0, 3).map((acc: string, idx: number) => (
-                  <Badge key={idx} variant="outline" className="text-xs">
-                    <Award className="w-3 h-3 mr-1" />
-                    {acc}
-                  </Badge>
-                ))}
-                {institute.accreditation.length > 3 && (
-                  <Badge variant="outline" className="text-xs">
-                    +{institute.accreditation.length - 3} more
-                  </Badge>
-                )}
-              </div>
-            </div>
-          )}
-
-          <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center">
-                <GraduationCap className="w-4 h-4 mr-1" />
-                {institute.courses?.length || 0} Courses
-              </div>
-              <div className="flex items-center">
-                <Users className="w-4 h-4 mr-1" />
-                {Math.floor(Math.random() * 5000) + 1000} Students
-              </div>
-              {institute.rankings && institute.rankings.length > 0 && (
-                <div className="flex items-center">
-                  <Star className="w-4 h-4 mr-1" />
-                  Rank #{institute.rankings[0].rank}
                 </div>
               )}
             </div>
-          </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              {institute.contact.email && (
-                <Button variant="ghost" size="sm" className="p-1">
-                  <Mail className="w-4 h-4 text-gray-400" />
-                </Button>
-              )}
-              {institute.contact.phone && (
-                <Button variant="ghost" size="sm" className="p-1">
-                  <Phone className="w-4 h-4 text-gray-400" />
-                </Button>
-              )}
-              {institute.website && (
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="p-1"
-                  onClick={() => window.open(institute.website, '_blank')}
+            {/* Info Section - Fixed Height */}
+            <div className="space-y-3 mb-4">
+              <div className="flex items-center flex-wrap gap-4 text-sm text-gray-500">
+                <div className="flex items-center">
+                  <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
+                  <span className="truncate">{institute.location.city}, {institute.location.state}</span>
+                </div>
+                <div className="flex items-center">
+                  <Calendar className="w-4 h-4 mr-1 flex-shrink-0" />
+                  <span>Est. {institute.established}</span>
+                </div>
+              </div>
+
+              <div className="flex items-center flex-wrap gap-4 text-sm text-gray-500">
+                <div className="flex items-center">
+                  <BookOpen className="w-4 h-4 mr-1 flex-shrink-0" />
+                  <span>{institute.departments?.length || 0} Departments</span>
+                </div>
+                <div className="flex items-center">
+                  <GraduationCap className="w-4 h-4 mr-1 flex-shrink-0" />
+                  <span>{institute.courses?.length || 0} Courses</span>
+                </div>
+                <div className="flex items-center">
+                  <Users className="w-4 h-4 mr-1 flex-shrink-0" />
+                  <span>{Math.floor(Math.random() * 5000) + 1000}+ Students</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Description - Flexible Height */}
+            <div className="mb-4 flex-1">
+              <p className="text-gray-600 text-sm line-clamp-3">
+                {institute.description}
+              </p>
+            </div>
+
+            {/* Accreditation - Fixed Height */}
+            {institute.accreditation && institute.accreditation.length > 0 && (
+              <div className="mb-4">
+                <div className="flex flex-wrap gap-1">
+                  {institute.accreditation.slice(0, 2).map((acc: string, idx: number) => (
+                    <Badge key={idx} variant="outline" className="text-xs">
+                      <Award className="w-3 h-3 mr-1" />
+                      {acc}
+                    </Badge>
+                  ))}
+                  {institute.accreditation.length > 2 && (
+                    <Badge variant="outline" className="text-xs">
+                      +{institute.accreditation.length - 2} more
+                    </Badge>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Footer Section - Fixed Height */}
+            <div className="space-y-3 pt-3 border-t border-gray-100">
+              {/* Contact Icons */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  {institute.contact.email && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="p-1 hover:bg-gray-100"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.location.href = `mailto:${institute.contact.email}`;
+                      }}
+                      title={institute.contact.email}
+                    >
+                      <Mail className="w-4 h-4 text-gray-500" />
+                    </Button>
+                  )}
+                  {institute.contact.phone && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="p-1 hover:bg-gray-100"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.location.href = `tel:${institute.contact.phone}`;
+                      }}
+                      title={institute.contact.phone}
+                    >
+                      <Phone className="w-4 h-4 text-gray-500" />
+                    </Button>
+                  )}
+                  {institute.website && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="p-1 hover:bg-gray-100"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(institute.website, '_blank');
+                      }}
+                      title="Visit Website"
+                    >
+                      <Globe className="w-4 h-4 text-gray-500" />
+                    </Button>
+                  )}
+                </div>
+
+                {/* Job Count */}
+                <div className="flex items-center text-sm text-gray-500">
+                  <ExternalLink className="w-4 h-4 mr-1" />
+                  <span className="font-medium">{jobsCount} open positions</span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center space-x-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/institutes/${institute.id}`);
+                  }}
+                  className="flex-1 hover:bg-gray-50"
                 >
-                  <Globe className="w-4 h-4 text-gray-400" />
+                  <Eye className="w-4 h-4 mr-2" />
+                  View Details
                 </Button>
-              )}
+                <Button
+                  size="sm"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/institutes/${institute.id}/jobs`);
+                  }}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700"
+                  disabled={jobsCount === 0}
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  {jobsCount > 0 ? `View Jobs (${jobsCount})` : 'No Jobs'}
+                </Button>
+              </div>
             </div>
-            
-            <div className="flex items-center space-x-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => navigate(`/institutes/${institute.id}`)}
-              >
-                <Eye className="w-4 h-4 mr-2" />
-                View Details
-              </Button>
-              <Button
-                size="sm"
-                onClick={() => navigate(`/institutes/${institute.id}/jobs`)}
-                className="bg-blue-600 hover:bg-blue-700"
-              >
-                <ExternalLink className="w-4 h-4 mr-2" />
-                View Jobs
-              </Button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
-  );
+          </CardContent>
+        </Card>
+      </motion.div>
+    );
+  };
 
   const FormFields = () => (
     <div className="space-y-4 py-4 max-h-96 overflow-y-auto">
