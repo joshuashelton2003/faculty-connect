@@ -64,6 +64,9 @@ const InstitutesMain: React.FC = () => {
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [editingInstitute, setEditingInstitute] = useState<any>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(12);
+  const [sortBy, setSortBy] = useState<'name' | 'established' | 'location'>('name');
 
   const [instituteForm, setInstituteForm] = useState({
     name: '',
