@@ -121,19 +121,28 @@ const App = () => (
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
 
-          {/* Protected Routes - Candidate */}
+          {/* Protected Routes - Faculty */}
           <Route path="/dashboard" element={
-            <ProtectedRoute requiredRole="candidate">
+            <ProtectedRoute requiredRole="faculty">
               <Layout>
-                <CandidateDashboardNew />
+                <FacultyDashboard />
               </Layout>
             </ProtectedRoute>
           } />
 
-          <Route path="/candidate/dashboard" element={
-            <ProtectedRoute requiredRole="candidate">
+          <Route path="/faculty/dashboard" element={
+            <ProtectedRoute requiredRole="faculty">
               <Layout>
-                <CandidateDashboardNew />
+                <FacultyDashboard />
+              </Layout>
+            </ProtectedRoute>
+          } />
+
+          {/* Legacy Candidate Routes - Redirect to Faculty */}
+          <Route path="/candidate/dashboard" element={
+            <ProtectedRoute requiredRole="faculty">
+              <Layout>
+                <FacultyDashboard />
               </Layout>
             </ProtectedRoute>
           } />
