@@ -24,6 +24,7 @@ import EmployerDashboard from "./pages/EmployerDashboard";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
+import SuccessStories from "./pages/SuccessStories";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import ContactUs from "./pages/ContactUs";
