@@ -76,7 +76,7 @@ export default function EmployerDashboard() {
         jobsCount: 12
       },
       contactPerson: {
-        name: 'Dr. Priya Sharma',
+        name: 'Dr. Punitha',
         designation: 'HR Manager',
         phone: '+91 9876543210'
       },
