@@ -150,7 +150,7 @@ export default function EmployerDashboard() {
       jobTitle: 'Assistant Professor - Computer Science',
       candidate: {
         _id: '2',
-        name: 'Priya Menon',
+        name: 'Priya',
         email: 'priya@email.com',
         phone: '+91 9876543211',
         location: 'Coimbatore, Tamil Nadu',
