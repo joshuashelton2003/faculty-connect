@@ -23,6 +23,10 @@ import CandidateDashboard from "./pages/CandidateDashboard";
 import EmployerDashboard from "./pages/EmployerDashboard";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import ContactUs from "./pages/ContactUs";
+import AboutUs from "./pages/AboutUs";
 import ForgotPassword from "./pages/ForgotPassword";
 import FilterDemo from "./pages/FilterDemo";
 import Profile from "./pages/Profile";
@@ -190,6 +194,12 @@ const App = () => (
               <Contact />
             </Layout>
           } />
+
+          {/* Footer Content Pages */}
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/about-us" element={<AboutUs />} />
 
           {/* Filter Demo Route */}
           <Route path="/filter-demo" element={
