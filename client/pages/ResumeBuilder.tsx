@@ -122,6 +122,9 @@ const ResumeBuilder: React.FC = () => {
     address: '',
     city: '',
     state: '',
+    website: '',
+    linkedin: '',
+    orcid: '',
     summary: ''
   });
 
