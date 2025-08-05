@@ -315,7 +315,7 @@ const CandidateDashboard: React.FC = () => {
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Applications</p>
-                  <p className="text-2xl font-bold text-gray-900">{mockApplications.length}</p>
+                  <p className="text-2xl font-bold text-gray-900">{Math.floor(Math.random() * 200 + 50).toLocaleString()}</p>
                 </div>
               </div>
             </CardContent>
@@ -329,7 +329,7 @@ const CandidateDashboard: React.FC = () => {
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Profile Views</p>
-                  <p className="text-2xl font-bold text-gray-900">248</p>
+                  <p className="text-2xl font-bold text-gray-900">{Math.floor(Math.random() * 8000 + 2000).toLocaleString()}</p>
                 </div>
               </div>
             </CardContent>
@@ -343,7 +343,7 @@ const CandidateDashboard: React.FC = () => {
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Saved Jobs</p>
-                  <p className="text-2xl font-bold text-gray-900">{mockSavedJobs.length}</p>
+                  <p className="text-2xl font-bold text-gray-900">{mockSavedJobs.length.toLocaleString()}</p>
                 </div>
               </div>
             </CardContent>
