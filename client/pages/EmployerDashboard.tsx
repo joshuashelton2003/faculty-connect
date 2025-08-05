@@ -20,7 +20,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import QuickActionsPanel from '@/components/EmployerDashboard/QuickActionsPanel';
-import { productionJobs, productionApplications, productionEmployerAnalytics, productionStats } from '@/data/productionSampleData\';ta\';tionSampleData';
+import { productionJobs, productionApplications, productionEmployerAnalytics, productionStats } from '@/data/productionSampleData';;
 import {
   Building,
   MapPin,
