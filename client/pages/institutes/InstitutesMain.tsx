@@ -97,14 +97,51 @@ const InstitutesMain: React.FC = () => {
   useEffect(() => {
     // Use enhanced institutes data
     if (institutes.length === 0) {
-      // Simulate loading the enhanced data
+      // Simulate loading the enhanced data with pagination
       setTimeout(() => {
-        // This would normally be handled by the store, but for demo we'll update directly
         console.log('Loading enhanced institutes data:', allInstitutesData.length, 'institutes');
       }, 100);
     }
     fetchInstitutes();
   }, [fetchInstitutes]);
+
+  // Enhanced filtering and sorting logic
+  const sortedAndFilteredInstitutes = React.useMemo(() => {
+    let result = [...(filteredInstitutes.length > 0 ? filteredInstitutes : allInstitutesData)];
+
+    // Apply sorting
+    result.sort((a, b) => {
+      switch (sortBy) {
+        case 'name':
+          return a.name.localeCompare(b.name);
+        case 'established':
+          return (b.established || 0) - (a.established || 0);
+        case 'location':
+          return `${a.location.city}, ${a.location.state}`.localeCompare(`${b.location.city}, ${b.location.state}`);
+        default:
+          return 0;
+      }
+    });
+
+    return result;
+  }, [filteredInstitutes, allInstitutesData, sortBy]);
+
+  // Pagination logic
+  const totalPages = Math.ceil(sortedAndFilteredInstitutes.length / itemsPerPage);
+  const paginatedInstitutes = sortedAndFilteredInstitutes.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const loadMoreInstitutes = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const goToPage = (page: number) => {
+    setCurrentPage(Math.max(1, Math.min(page, totalPages)));
+  };
 
   useEffect(() => {
     // Apply local filters
