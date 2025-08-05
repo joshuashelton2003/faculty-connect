@@ -32,7 +32,7 @@ import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import ForgotPassword from "./pages/ForgotPassword";
 import FilterDemo from "./pages/FilterDemo";
-import Profile from "./pages/Profile";
+import Profile from "./pages/EnhancedProfile";
 import NotFound from "./pages/NotFound";
 
 // Employer Dashboard Pages
