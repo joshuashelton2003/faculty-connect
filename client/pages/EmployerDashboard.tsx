@@ -715,15 +715,24 @@ export default function EmployerDashboard() {
                 </Card>
               </TabsContent>
 
-              {/* Jobs Tab */}
-              <TabsContent value="jobs" className="space-y-6">
+              {/* Job Performance Tab */}
+              <TabsContent value="job-performance" className="space-y-6">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Posted Jobs</CardTitle>
+                    <div className="flex items-center justify-between">
+                      <CardTitle>Top Performing Jobs</CardTitle>
+                      <Button
+                        variant="outline"
+                        onClick={() => navigate('/employer/my-jobs')}
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Manage All Jobs
+                      </Button>
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {mockPostedJobs.map((job) => (
+                      {mockPostedJobs.slice(0, 3).map((job) => (
                         <div key={job._id} className="border border-gray-200 rounded-lg p-4">
                           <div className="flex items-start justify-between mb-3">
                             <div>
@@ -736,7 +745,7 @@ export default function EmployerDashboard() {
                               <span className="ml-1 capitalize">{job.status}</span>
                             </Badge>
                           </div>
-                          
+
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600 mb-3">
                             <div className="flex items-center">
                               <Users className="w-4 h-4 mr-1" />
@@ -747,29 +756,24 @@ export default function EmployerDashboard() {
                               {job.viewsCount} views
                             </div>
                             <div className="flex items-center">
-                              <Calendar className="w-4 h-4 mr-1" />
-                              Deadline: {new Date(job.deadline).toLocaleDateString()}
+                              <TrendingUp className="w-4 h-4 mr-1" />
+                              {Math.round((job.applicationsCount / job.viewsCount) * 100)}% conversion
                             </div>
                           </div>
 
                           <div className="flex items-center justify-between">
                             <div className="text-sm text-gray-500">
-                              Posted {new Date(job.postedDate).toLocaleDateString()}
+                              Deadline: {new Date(job.deadline).toLocaleDateString()}
                             </div>
                             <div className="flex items-center space-x-2">
-                              <Button size="sm" variant="outline">
-                                <Edit className="w-4 h-4 mr-2" />
-                                Edit
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => navigate(`/employer/applications/${job._id}`)}
+                              >
+                                <Users className="w-4 h-4 mr-2" />
+                                View Applications ({job.applicationsCount})
                               </Button>
-                              <Button size="sm" variant="outline">
-                                <Eye className="w-4 h-4 mr-2" />
-                                View
-                              </Button>
-                              {job.applicationsCount > 0 && (
-                                <Button size="sm">
-                                  View Applications ({job.applicationsCount})
-                                </Button>
-                              )}
                             </div>
                           </div>
                         </div>
