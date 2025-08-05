@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Eye, EyeOff, Mail, Lock, AlertCircle } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, AlertCircle, ArrowLeft } from 'lucide-react';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -46,6 +46,15 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      {/* Back Button */}
+      <Link
+        to="/"
+        className="absolute top-2 left-2 z-50 text-blue-500 font-semibold flex items-center hover:text-blue-600 transition-colors"
+      >
+        <ArrowLeft className="w-4 h-4 mr-1" />
+        Back
+      </Link>
+
       <div className="max-w-md w-full space-y-8">
         {/* Header */}
         <div className="text-center">
@@ -162,57 +171,10 @@ export default function Login() {
             </Button>
           </form>
 
-          {/* Demo Login Buttons */}
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Quick Demo Login</span>
-              </div>
-            </div>
 
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={async () => {
-                  try {
-                    setError('');
-                    await login('candidate@demo.com', 'demo123');
-                    navigate('/dashboard', { replace: true });
-                  } catch (err: any) {
-                    setError('Demo login failed. Please try again.');
-                  }
-                }}
-                disabled={isLoading}
-                className="text-sm"
-              >
-                Login as Candidate
-              </Button>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={async () => {
-                  try {
-                    setError('');
-                    await login('employer@demo.com', 'demo123');
-                    navigate('/employer/dashboard', { replace: true });
-                  } catch (err: any) {
-                    setError('Demo login failed. Please try again.');
-                  }
-                }}
-                disabled={isLoading}
-                className="text-sm"
-              >
-                Login as Employer
-              </Button>
-            </div>
-          </div>
 
           {/* Sign Up Link */}
-          <div className="mt-6 text-center">
+          <div className="mt-8 text-center">
             <p className="text-sm text-gray-600">
               Don't have an account?{' '}
               <Link
