@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore, useApplicationsStore } from '@/store/appStore';
-import { productionCandidates, productionJobs, productionApplications, productionStats } from '@/data/productionSampleData\';leData';
+import { productionCandidates, productionJobs, productionApplications, productionStats } from '@/data/productionSampleData';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
