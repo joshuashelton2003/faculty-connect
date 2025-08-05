@@ -835,8 +835,11 @@ export default function EmployerDashboard() {
 
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-6">
+            {/* Quick Actions Panel */}
+            <QuickActionsPanel />
+
             {/* Institution Info */}
-            <Card>
+            <Card className="bg-white border border-gray-200 shadow-md rounded-xl">
               <CardHeader>
                 <CardTitle>Institution Profile</CardTitle>
               </CardHeader>
@@ -866,7 +869,7 @@ export default function EmployerDashboard() {
                   {mockEmployer.profile.institute.website && (
                     <div className="flex items-center text-gray-600">
                       <Globe className="w-4 h-4 mr-2" />
-                      <a 
+                      <a
                         href={mockEmployer.profile.institute.website}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -894,33 +897,8 @@ export default function EmployerDashboard() {
               </CardContent>
             </Card>
 
-            {/* Quick Actions */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <Button className="w-full justify-start" onClick={() => setShowPostJobDialog(true)}>
-                  <Plus className="w-4 h-4 mr-2" />
-                  Post New Job
-                </Button>
-                <Button variant="outline" className="w-full justify-start">
-                  <Users className="w-4 h-4 mr-2" />
-                  Browse Candidates
-                </Button>
-                <Button variant="outline" className="w-full justify-start">
-                  <Download className="w-4 h-4 mr-2" />
-                  Export Applications
-                </Button>
-                <Button variant="outline" className="w-full justify-start">
-                  <TrendingUp className="w-4 h-4 mr-2" />
-                  View Analytics
-                </Button>
-              </CardContent>
-            </Card>
-
             {/* Verification Status */}
-            <Card>
+            <Card className="bg-white border border-gray-200 shadow-md rounded-xl">
               <CardHeader>
                 <CardTitle>Verification Status</CardTitle>
               </CardHeader>
