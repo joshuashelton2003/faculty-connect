@@ -10,11 +10,36 @@ interface AuthStore extends AuthState {
   setLoading: (loading: boolean) => void;
 }
 
+// Initialize store with persisted data
+const initializeAuth = () => {
+  const token = localStorage.getItem('facultyconnect_token');
+  const userJson = localStorage.getItem('facultyconnect_user');
+
+  if (token && userJson) {
+    try {
+      const user = JSON.parse(userJson);
+      return {
+        user,
+        token,
+        isAuthenticated: true,
+        isLoading: false
+      };
+    } catch (error) {
+      localStorage.removeItem('facultyconnect_token');
+      localStorage.removeItem('facultyconnect_user');
+    }
+  }
+
+  return {
+    user: null,
+    token: null,
+    isAuthenticated: false,
+    isLoading: false
+  };
+};
+
 export const useAuthStore = create<AuthStore>((set, get) => ({
-  user: null,
-  token: null,
-  isLoading: false,
-  isAuthenticated: false,
+  ...initializeAuth(),
 
   login: async (email: string, password: string) => {
     try {
