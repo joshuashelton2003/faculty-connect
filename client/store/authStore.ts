@@ -19,23 +19,44 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   login: async (email: string, password: string) => {
     try {
       set({ isLoading: true });
+
+      // Determine role based on email pattern
+      let role: 'faculty' | 'employer' = 'faculty';
+      let name = 'User';
+
+      if (email.includes('employer') || email.includes('institution') || email.includes('college') || email.includes('university')) {
+        role = 'employer';
+        name = 'Institution Representative';
+      } else {
+        name = 'Faculty Member';
+      }
+
       // Mock login for demo
       const mockUser = {
-        _id: '1',
+        id: `user_${Date.now()}`,
         email,
-        role: email.includes('employer') ? 'employer' : 'candidate',
+        name,
+        phone: '+91-9876543210',
+        role,
         isVerified: true,
-        createdAt: new Date().toISOString()
+        profileCompletion: 45,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       } as User;
+
       const mockToken = 'mock-jwt-token';
 
       localStorage.setItem('facultyconnect_token', mockToken);
+      localStorage.setItem('facultyconnect_user', JSON.stringify(mockUser));
+
       set({
         user: mockUser,
         token: mockToken,
         isAuthenticated: true,
         isLoading: false
       });
+
+      return mockUser;
     } catch (error) {
       set({ isLoading: false });
       throw error;
