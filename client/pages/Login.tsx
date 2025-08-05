@@ -37,8 +37,20 @@ export default function Login() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       setError('');
-      await login(data.email, data.password);
-      navigate(from, { replace: true });
+      const user = await login(data.email, data.password);
+
+      // Role-based redirect
+      let redirectPath = from;
+      if (from === '/dashboard') {
+        // Default dashboard redirect based on role
+        if (data.email.includes('employer') || data.email.includes('institution')) {
+          redirectPath = '/employer/dashboard';
+        } else {
+          redirectPath = '/faculty/dashboard';
+        }
+      }
+
+      navigate(redirectPath, { replace: true });
     } catch (err: any) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');
     }
