@@ -719,7 +719,7 @@ const InstitutesMain: React.FC = () => {
               <Button onClick={() => {
                 setSearchTerm('');
                 setTypeFilter('all');
-                setLocationFilter('');
+                setLocationFilter('all-locations');
               }}>
                 Clear Filters
               </Button>
