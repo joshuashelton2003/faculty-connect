@@ -656,7 +656,7 @@ const InstitutesMain: React.FC = () => {
                       <SelectValue placeholder="All Locations" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Locations</SelectItem>
+                      <SelectItem value="all-locations">All Locations</SelectItem>
                       {worldLocationData.states.IN.map((state) => (
                         <SelectItem key={state.code} value={state.name}>
                           {state.name}
