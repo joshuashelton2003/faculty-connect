@@ -165,6 +165,8 @@ const ResumeBuilder: React.FC = () => {
       location: '',
       startDate: '',
       endDate: '',
+      gpa: '',
+      achievements: ''
     };
     setEducation([...education, newEducation]);
   };
