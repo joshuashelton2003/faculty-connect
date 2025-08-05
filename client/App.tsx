@@ -193,6 +193,12 @@ const App = () => (
             </ProtectedRoute>
           } />
 
+          <Route path="/employer/pricing" element={
+            <Layout>
+              <EmployerPricing />
+            </Layout>
+          } />
+
           {/* Profile Route - Accessible to both roles */}
           <Route path="/profile" element={
             <ProtectedRoute>
