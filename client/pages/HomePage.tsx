@@ -135,14 +135,14 @@ const HomePage: React.FC = () => {
   // Success stories
   const testimonials = [
     {
-      name: 'Dr. Mani Geetha',
+      name: 'Dr. Christypunitha',
       role: 'Assistant Professor',
       institute: 'Anna University',
       quote: 'FacultyConnect helped me find my dream position in computer science. The platform made the application process seamless.',
       image: 'https://images.pexels.com/photos/5212317/pexels-photo-5212317.jpeg'
     },
     {
-      name: 'Prof. Christypunitha',
+      name: 'Prof. Mani Geetha',
       role: 'Associate Professor',
       institute: 'PSG College of Technology',
       quote: 'As an employer, FacultyConnect provided access to highly qualified candidates. The filtering system is excellent.',
