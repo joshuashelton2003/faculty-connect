@@ -34,7 +34,8 @@ import {
   BookOpen,
   Users,
   Star,
-  Camera
+  Camera,
+  X
 } from 'lucide-react';
 import { useAuthStore } from '@/store/authStore';
 
