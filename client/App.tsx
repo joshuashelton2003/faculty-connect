@@ -44,6 +44,7 @@ import MyJobs from "./pages/employer/MyJobs";
 import Applications from "./pages/employer/Applications";
 import Analytics from "./pages/employer/Analytics";
 import PostNewJob from "./pages/employer/PostNewJob";
+import EmployerPricing from "./pages/employer/Pricing";
 
 // Candidate Dashboard Pages
 import CandidateDashboardNew from "./pages/candidate/CandidateDashboard";
