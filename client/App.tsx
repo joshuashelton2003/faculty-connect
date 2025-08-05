@@ -236,6 +236,12 @@ const App = () => (
             </Layout>
           } />
 
+          <Route path="/tools/resume-builder" element={
+            <Layout>
+              <ResumeBuilder />
+            </Layout>
+          } />
+
           {/* Footer Content Pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
