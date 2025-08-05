@@ -104,63 +104,29 @@ export default function EmployerDashboard() {
       viewsCount: job.viewCount
     }));
 
-  // Mock applications - In real app: GET /api/jobs/:jobId/applicants
-  const mockApplications = [
-    {
-      _id: '1',
-      jobId: '1',
-      jobTitle: 'Assistant Professor - Computer Science',
+  // Production applications - comprehensive data
+  const jobIds = mockPostedJobs.map(job => job._id);
+  const mockApplications = productionApplications
+    .filter(app => jobIds.includes(app.jobId))
+    .slice(0, 200) // Show 200 applications for this employer
+    .map(app => ({
+      _id: app.id,
+      jobId: app.jobId,
+      jobTitle: app.job.title,
       candidate: {
-        _id: '1',
-        name: 'Rajesh Kumar',
-        email: 'rajesh@email.com',
-        phone: '+91 9876543210',
-        location: 'Chennai, Tamil Nadu',
-        education: 'PhD Computer Science',
-        experience: '5 years',
-        appliedDate: '2024-01-21',
-        profileImage: ''
+        _id: app.candidate.id,
+        name: app.candidate.name,
+        email: app.candidate.email,
+        phone: app.candidate.phone,
+        location: `${app.candidate.profile.location.city}, ${app.candidate.profile.location.state}`,
+        education: app.candidate.profile.qualifications[0] || 'PhD',
+        experience: `${Math.floor(Math.random() * 15) + 1} years`,
+        appliedDate: new Date(app.applicationDate).toLocaleDateString(),
+        profileImage: app.candidate.profileImage
       },
-      status: 'shortlisted',
-      rating: 4
-    },
-    {
-      _id: '2',
-      jobId: '1',
-      jobTitle: 'Assistant Professor - Computer Science',
-      candidate: {
-        _id: '2',
-        name: 'Priya',
-        email: 'priya@email.com',
-        phone: '+91 9876543211',
-        location: 'Coimbatore, Tamil Nadu',
-        education: 'M.Tech Computer Science',
-        experience: '3 years',
-        appliedDate: '2024-01-20',
-        profileImage: ''
-      },
-      status: 'applied',
-      rating: 0
-    },
-    {
-      _id: '3',
-      jobId: '2',
-      jobTitle: 'Professor - Mechanical Engineering',
-      candidate: {
-        _id: '3',
-        name: 'Suresh Krishnan',
-        email: 'suresh@email.com',
-        phone: '+91 9876543212',
-        location: 'Madurai, Tamil Nadu',
-        education: 'PhD Mechanical Engineering',
-        experience: '12 years',
-        appliedDate: '2024-01-19',
-        profileImage: ''
-      },
-      status: 'interviewed',
-      rating: 5
-    }
-  ];
+      status: app.status,
+      rating: Math.floor(Math.random() * 5) + 1
+    }));
 
   const [selectedJob, setSelectedJob] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
