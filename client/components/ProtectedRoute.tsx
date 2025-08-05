@@ -24,10 +24,16 @@ export default function ProtectedRoute({
   // If a specific role is required and user doesn't have it
   if (requiredRole && user?.role !== requiredRole) {
     // Redirect based on user's actual role
-    const roleBasedRedirect = user?.role === 'employer' 
-      ? '/employer/dashboard' 
-      : '/dashboard';
-    
+    let roleBasedRedirect = '/dashboard';
+
+    if (user?.role === 'employer') {
+      roleBasedRedirect = '/employer/dashboard';
+    } else if (user?.role === 'faculty') {
+      roleBasedRedirect = '/faculty/dashboard';
+    } else if (user?.role === 'admin') {
+      roleBasedRedirect = '/admin/dashboard';
+    }
+
     return <Navigate to={roleBasedRedirect} replace />;
   }
 
