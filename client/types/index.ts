@@ -299,6 +299,27 @@ export interface Ranking {
   description?: string;
 }
 
+export interface Publication {
+  id: string;
+  title: string;
+  authors: string[];
+  journal: string;
+  volume?: string;
+  issue?: string;
+  pages?: string;
+  year: number;
+  doi?: string;
+  url?: string;
+  type: 'journal' | 'conference' | 'book' | 'patent' | 'other';
+  status: 'published' | 'accepted' | 'under-review' | 'draft';
+}
+
+// Update legacy type references
+export interface Candidate extends User {
+  role: 'faculty';
+  profile: FacultyProfile;
+}
+
 export interface JobFilters {
   keywords: string;
   location: {
