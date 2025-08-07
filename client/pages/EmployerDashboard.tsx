@@ -650,7 +650,11 @@ export default function EmployerDashboard() {
                               Applied {new Date(application.candidate.appliedDate).toLocaleDateString()}
                             </div>
                             <div className="flex items-center space-x-2">
-                              <Button size="sm" variant="outline">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => navigate(`/employer/applications/${app._id}`)}
+                              >
                                 View Application
                               </Button>
                             </div>
