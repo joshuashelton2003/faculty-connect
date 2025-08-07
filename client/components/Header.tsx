@@ -84,11 +84,11 @@ export default function Header() {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="flex items-center space-x-2">
-                      <User className="w-4 h-4" />
-                      <span className="text-sm">
-                        {user?.name?.split(' ')[0] || (user?.role === 'faculty' ? 'Faculty' : 'Employer')}
-                      </span>
-                    </Button>
+                    <User className="w-4 h-4" />
+                    <span className="text-sm">
+                      {user?.name?.split(' ')[0] || (user?.role === 'faculty' || user?.role === 'candidate' ? 'Faculty' : 'Employer')}
+                    </span>
+                  </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48">
                     <DropdownMenuItem asChild>
