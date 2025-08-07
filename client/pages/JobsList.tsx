@@ -341,8 +341,8 @@ const JobsList: React.FC = () => {
         transition={{ delay: index * 0.05 }}
         className="group"
       >
-        <Card className="bg-white border border-gray-200 shadow-md rounded-xl hover:shadow-lg transition-all duration-300 hover:border-blue-200">
-          <CardContent className="p-6">
+        <Card className="bg-gradient-to-br from-white to-slate-50 border border-slate-200 shadow-lg rounded-2xl hover:shadow-2xl transition-all duration-500 hover:border-blue-300 hover:scale-[1.02] hover:from-blue-50 hover:to-indigo-50">
+          <CardContent className="p-8" style={{ fontFamily: 'Poppins, Inter, sans-serif' }}>
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-start space-x-4 flex-1">
                 <Avatar className="h-12 w-12 border-2 border-gray-100">
