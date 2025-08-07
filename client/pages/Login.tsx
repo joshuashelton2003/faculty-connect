@@ -41,7 +41,7 @@ export default function Login() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       setError('');
-      const user = await login(data.email, data.password);
+      const user = await login(data.email, data.password, roleParam);
 
       // Navigate to dashboard - role-based routing handled by Dashboard component
       navigate(from, { replace: true });
