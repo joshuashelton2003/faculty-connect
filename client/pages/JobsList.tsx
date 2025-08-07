@@ -355,10 +355,10 @@ const JobsList: React.FC = () => {
                 <div className="flex-1">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-xl font-bold bg-gradient-to-r from-slate-800 to-blue-800 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
                         {job.title}
                       </h3>
-                      <p className="text-gray-600 font-medium">{job.institute.name}</p>
+                      <p className="text-slate-600 font-semibold text-base">{job.institute.name}</p>
                       <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
                         <div className="flex items-center">
                           <MapPin className="w-4 h-4 mr-1" />
