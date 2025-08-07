@@ -124,14 +124,24 @@ export default function Header() {
                 </DropdownMenu>
               </>
             ) : (
-              <div className="flex items-center space-x-3">
-                <Link to="/login">
-                  <Button variant="ghost" size="sm">
-                    Sign In
+              <div className="flex items-center space-x-2">
+                {/* Faculty Sign In */}
+                <Link to="/login?role=faculty">
+                  <Button variant="ghost" size="sm" className="text-gray-600 hover:text-blue-600">
+                    Faculty Sign In
                   </Button>
                 </Link>
+
+                {/* Employer Sign In */}
+                <Link to="/login?role=employer">
+                  <Button variant="ghost" size="sm" className="text-gray-600 hover:text-green-600">
+                    Employer Sign In
+                  </Button>
+                </Link>
+
+                {/* General Sign Up */}
                 <Link to="/register">
-                  <Button size="sm">
+                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
                     Sign Up
                   </Button>
                 </Link>
