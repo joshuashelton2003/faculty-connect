@@ -285,20 +285,20 @@ export default function EnhancedRegister() {
           <p className="text-lg text-slate-600 max-w-md mx-auto">Join thousands of educators and institutions on India's premier academic platform</p>
           
           {/* Progress Bar */}
-          <div className="mt-8 max-w-md mx-auto">
-            <div className="flex justify-between text-sm text-gray-500 mb-2">
+          <div className="mt-10 max-w-lg mx-auto">
+            <div className="flex justify-between text-sm font-medium text-slate-600 mb-3">
               <span>Step {currentStep + 1} of 4</span>
               <span>{Math.round(calculateProgress())}% complete</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden shadow-inner">
               <motion.div
-                className="bg-blue-600 h-2 rounded-full"
+                className="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full shadow-sm"
                 initial={{ width: 0 }}
                 animate={{ width: `${calculateProgress()}%` }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
               />
             </div>
-            <div className="mt-2 text-sm font-medium text-gray-700">{getStepTitle()}</div>
+            <div className="mt-4 text-lg font-semibold text-slate-700 tracking-wide">{getStepTitle()}</div>
           </div>
         </div>
 
