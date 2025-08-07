@@ -24,6 +24,10 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
+  // Get role from URL parameter
+  const urlParams = new URLSearchParams(location.search);
+  const roleParam = urlParams.get('role') as 'faculty' | 'employer' | null;
+
   const from = location.state?.from?.pathname || '/dashboard';
 
   const {
