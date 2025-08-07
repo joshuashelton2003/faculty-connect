@@ -61,7 +61,7 @@ export const useAuthStore = create<AuthState>()(
           }
           
           const mockUser: User = {
-            id: role === 'employer' ? 'emp_001' : 'cand_001',
+            id: role === 'employer' ? 'emp_001' : 'fac_001',
             email,
             name,
             phone: '+91 9876543210',
