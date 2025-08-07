@@ -38,6 +38,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import FilterDemo from "./pages/FilterDemo";
 import Profile from "./pages/EnhancedProfile";
 import NotFound from "./pages/NotFound";
+import Settings from "./pages/Settings";
 
 // Employer Dashboard Pages
 import MyJobs from "./pages/employer/MyJobs";
