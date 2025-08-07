@@ -182,11 +182,20 @@ export default function ApplicationDetail() {
 
         {/* Header */}
         <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-          <div className="flex items-start justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 mb-2">
-                {application.jobTitle}
-              </h1>
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <h1 className="text-2xl font-bold text-gray-900">
+                  {application.jobTitle}
+                </h1>
+                {application.jobDetails.isUrgent && (
+                  <Badge className="bg-red-100 text-red-800">Urgent</Badge>
+                )}
+                {application.jobDetails.isRemote && (
+                  <Badge className="bg-blue-100 text-blue-800">Remote</Badge>
+                )}
+              </div>
+
               <div className="flex items-center space-x-4 text-gray-600 mb-4">
                 <div className="flex items-center">
                   <Building className="w-4 h-4 mr-1" />
@@ -196,16 +205,65 @@ export default function ApplicationDetail() {
                   <MapPin className="w-4 h-4 mr-1" />
                   {application.location}
                 </div>
+                <div className="flex items-center">
+                  <GraduationCap className="w-4 h-4 mr-1" />
+                  {application.jobDetails.department}
+                </div>
               </div>
-              <div className="flex items-center space-x-4 text-sm text-gray-500">
+
+              <div className="flex items-center space-x-6 text-sm text-gray-500">
                 <span>Applied: {new Date(application.appliedDate).toLocaleDateString()}</span>
                 <span>Last update: {new Date(application.lastUpdate).toLocaleDateString()}</span>
+                <span>Deadline: {new Date(application.jobDetails.deadline).toLocaleDateString()}</span>
               </div>
             </div>
-            <Badge className={getStatusColor(application.status)}>
-              {getStatusIcon(application.status)}
-              <span className="ml-1 capitalize">{application.status.replace('-', ' ')}</span>
-            </Badge>
+
+            <div className="flex items-center space-x-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleShare}
+                className="flex items-center"
+              >
+                <Share2 className="w-4 h-4 mr-2" />
+                Share
+              </Button>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleSave}
+                className="flex items-center"
+              >
+                {isSaved ? (
+                  <BookmarkCheck className="w-4 h-4 mr-2" />
+                ) : (
+                  <Bookmark className="w-4 h-4 mr-2" />
+                )}
+                {isSaved ? 'Saved' : 'Save'}
+              </Button>
+
+              <Badge className={getStatusColor(application.status)}>
+                {getStatusIcon(application.status)}
+                <span className="ml-1 capitalize">{application.status.replace('-', ' ')}</span>
+              </Badge>
+            </div>
+          </div>
+
+          {/* Job Stats */}
+          <div className="flex items-center space-x-6 text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+            <div className="flex items-center">
+              <Users className="w-4 h-4 mr-1" />
+              {application.jobDetails.applicationCount} applications
+            </div>
+            <div className="flex items-center">
+              <Eye className="w-4 h-4 mr-1" />
+              {application.jobDetails.viewCount} views
+            </div>
+            <div className="flex items-center">
+              <Calendar className="w-4 h-4 mr-1" />
+              Posted {new Date(application.jobDetails.postedDate).toLocaleDateString()}
+            </div>
           </div>
         </div>
 
