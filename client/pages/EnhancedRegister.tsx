@@ -105,9 +105,13 @@ const steps = {
 export default function EnhancedRegister() {
   const navigate = useNavigate();
   const { register: authRegister, isLoading } = useAuthStore();
-  
-  const [currentStep, setCurrentStep] = useState(steps.roleSelection);
-  const [selectedRole, setSelectedRole] = useState<'faculty' | 'employer' | null>(null);
+
+  // Get role from URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const roleParam = urlParams.get('role') as 'faculty' | 'employer' | null;
+
+  const [currentStep, setCurrentStep] = useState(roleParam ? steps.basicInfo : steps.roleSelection);
+  const [selectedRole, setSelectedRole] = useState<'faculty' | 'employer' | null>(roleParam);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [profileImage, setProfileImage] = useState<File | null>(null);
