@@ -50,6 +50,17 @@ const JobsList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [sortBy, setSortBy] = useState('recent');
   const [savedJobs, setSavedJobs] = useState<string[]>([]);
+  const [showJobDetails, setShowJobDetails] = useState(false);
+  const [showApplicationForm, setShowApplicationForm] = useState(false);
+  const [selectedJob, setSelectedJob] = useState<any>(null);
+  const [applicationData, setApplicationData] = useState({
+    fullName: '',
+    email: '',
+    mobile: '',
+    resume: null as File | null,
+    coverLetter: ''
+  });
+  const { toast } = useToast();
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
