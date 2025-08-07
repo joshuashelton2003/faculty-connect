@@ -53,6 +53,9 @@ import CandidateDashboardNew from "./pages/candidate/CandidateDashboard";
 // Faculty Dashboard Pages
 import FacultyDashboard from "./pages/faculty/FacultyDashboard";
 
+// Role-based Dashboard
+import Dashboard from "./pages/Dashboard";
+
 // Institute Pages
 import InstitutesMain from "./pages/institutes/InstitutesMain";
 import InstituteDetails from "./pages/institutes/InstituteDetails";
@@ -129,11 +132,11 @@ const App = () => (
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
 
-          {/* Protected Routes - Faculty */}
+          {/* Protected Routes - Role-based Dashboard */}
           <Route path="/dashboard" element={
-            <ProtectedRoute requiredRole="faculty">
+            <ProtectedRoute>
               <Layout>
-                <FacultyDashboard />
+                <Dashboard />
               </Layout>
             </ProtectedRoute>
           } />
