@@ -94,11 +94,11 @@ export const useAuthStore = create<AuthState>()(
           await new Promise(resolve => setTimeout(resolve, 1500));
           
           const mockUser: User = {
-            id: userData.role === 'employer' ? 'emp_' + Date.now() : 'cand_' + Date.now(),
+            id: userData.role === 'employer' ? 'emp_' + Date.now() : 'fac_' + Date.now(),
             email: userData.email,
-            name: userData.name,
+            name: userData.name || `${userData.firstName} ${userData.lastName}`,
             phone: userData.phone,
-            role: userData.role,
+            role: userData.role === 'employer' ? 'employer' : 'faculty',
             profileImage: '',
             isVerified: false,
             createdAt: new Date().toISOString(),
