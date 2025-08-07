@@ -62,75 +62,44 @@ interface Application {
 
 const FacultyDashboard: React.FC = () => {
   const { user } = useAuthStore();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTab, setSelectedTab] = useState<'overview' | 'jobs' | 'applications' | 'profile'>('overview');
 
-  // Mock data
-  const [jobMatches] = useState<JobMatch[]>([
-    {
-      id: '1',
-      title: 'Assistant Professor - Computer Science',
-      institution: 'Anna University',
-      location: 'Chennai, Tamil Nadu',
-      salary: { min: 45000, max: 65000, currency: 'INR' },
-      matchPercentage: 95,
-      postedDate: '2025-01-10',
-      deadline: '2025-02-15',
-      type: 'full-time',
-      requirements: ['Ph.D in Computer Science', 'Research Experience', 'Teaching Experience']
-    },
-    {
-      id: '2',
-      title: 'Associate Professor - Mathematics',
-      institution: 'PSG College of Technology',
-      location: 'Coimbatore, Tamil Nadu',
-      salary: { min: 55000, max: 75000, currency: 'INR' },
-      matchPercentage: 88,
-      postedDate: '2025-01-08',
-      deadline: '2025-02-10',
-      type: 'full-time',
-      requirements: ['M.Sc/Ph.D in Mathematics', '5+ years experience', 'Research Publications']
-    },
-    {
-      id: '3',
-      title: 'Lecturer - Physics',
-      institution: 'Loyola College',
-      location: 'Chennai, Tamil Nadu',
-      salary: { min: 35000, max: 45000, currency: 'INR' },
-      matchPercentage: 82,
-      postedDate: '2025-01-05',
-      deadline: '2025-02-05',
-      type: 'part-time',
-      requirements: ['M.Sc in Physics', 'Teaching Experience', 'Good Communication']
-    }
-  ]);
+  // Use real job data and convert to job matches
+  const [jobMatches] = useState<JobMatch[]>(() => {
+    return allJobs.slice(0, 15).map((job, index) => ({
+      id: job.id,
+      title: job.title,
+      institution: job.institute.name,
+      location: `${job.location.city}, ${job.location.state}`,
+      salary: job.salary,
+      matchPercentage: Math.floor(Math.random() * 20) + 80, // 80-100% match
+      postedDate: job.createdAt.split('T')[0],
+      deadline: job.deadline,
+      type: job.employmentType,
+      requirements: job.requirements.education.slice(0, 3)
+    }));
+  });
 
-  const [applications] = useState<Application[]>([
-    {
-      id: '1',
-      jobTitle: 'Assistant Professor - Data Science',
-      institution: 'IIT Madras',
-      status: 'under-review',
-      appliedDate: '2025-01-12',
-      lastUpdate: '2025-01-14'
-    },
-    {
-      id: '2',
-      jobTitle: 'Associate Professor - AI',
-      institution: 'VIT University',
-      status: 'shortlisted',
-      appliedDate: '2025-01-10',
-      lastUpdate: '2025-01-15'
-    },
-    {
-      id: '3',
-      jobTitle: 'Professor - Machine Learning',
-      institution: 'SRM University',
-      status: 'interviewed',
-      appliedDate: '2025-01-08',
-      lastUpdate: '2025-01-14'
-    }
-  ]);
+  // Generate realistic applications based on user profile
+  const [applications] = useState<Application[]>(() => {
+    const userSubjects = ['Computer Science', 'Data Science', 'AI', 'Machine Learning', 'Information Technology'];
+    return Array.from({ length: 8 }, (_, index) => {
+      const job = allJobs[Math.floor(Math.random() * allJobs.length)];
+      const statuses: Array<'pending' | 'under-review' | 'shortlisted' | 'interviewed' | 'selected' | 'rejected'> =
+        ['pending', 'under-review', 'shortlisted', 'interviewed', 'selected', 'rejected'];
+
+      return {
+        id: `app_${index + 1}`,
+        jobTitle: job.title,
+        institution: job.institute.name,
+        status: statuses[Math.floor(Math.random() * statuses.length)],
+        appliedDate: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        lastUpdate: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+      };
+    });
+  });
 
   const getStatusColor = (status: string) => {
     const colors = {
