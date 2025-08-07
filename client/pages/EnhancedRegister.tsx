@@ -259,19 +259,30 @@ export default function EnhancedRegister() {
 
       <div className="max-w-4xl mx-auto pt-4">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-6">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">FC</span>
+        <div className="text-center mb-10">
+          <div className="flex justify-center mb-8">
+            <div className="flex items-center space-x-3">
+              <img
+                src="/FC.png"
+                alt="FacultyConnect Logo"
+                className="w-12 h-12 object-contain"
+                onError={(e) => {
+                  // Fallback to text logo if image fails to load
+                  e.currentTarget.style.display = 'none';
+                  const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                  if (fallback) fallback.style.display = 'flex';
+                }}
+              />
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg" style={{display: 'none'}}>
+                <span className="text-white font-bold text-lg">FC</span>
               </div>
-              <span className="text-2xl font-bold text-gray-900">
+              <span className="text-3xl font-bold text-slate-800">
                 Faculty<span className="text-blue-600">Connect</span>
               </span>
             </div>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Create your account</h2>
-          <p className="text-gray-600">Join the leading faculty recruitment platform</p>
+          <h2 className="text-4xl font-bold text-slate-800 mb-3 leading-tight">Create your account</h2>
+          <p className="text-lg text-slate-600 max-w-md mx-auto">Join thousands of educators and institutions on India's premier academic platform</p>
           
           {/* Progress Bar */}
           <div className="mt-8 max-w-md mx-auto">
