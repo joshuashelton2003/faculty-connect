@@ -29,6 +29,11 @@ const locations = [
   { city: 'Tirupur', district: 'Tirupur', state: 'Tamil Nadu', pincode: '641601' },
   { city: 'Nagercoil', district: 'Kanyakumari', state: 'Tamil Nadu', pincode: '629001' },
   { city: 'Karur', district: 'Karur', state: 'Tamil Nadu', pincode: '639001' },
+  { city: 'Tuticorin', district: 'Thoothukudi', state: 'Tamil Nadu', pincode: '628001' },
+  { city: 'Tiruvannamalai', district: 'Tiruvannamalai', state: 'Tamil Nadu', pincode: '606601' },
+  { city: 'Hosur', district: 'Krishnagiri', state: 'Tamil Nadu', pincode: '635109' },
+  { city: 'Ambur', district: 'Tirupattur', state: 'Tamil Nadu', pincode: '635802' },
+  { city: 'Kumbakonam', district: 'Thanjavur', state: 'Tamil Nadu', pincode: '612001' },
   
   // Karnataka
   { city: 'Bangalore', district: 'Bangalore Urban', state: 'Karnataka', pincode: '560001' },
@@ -36,31 +41,88 @@ const locations = [
   { city: 'Mangalore', district: 'Dakshina Kannada', state: 'Karnataka', pincode: '575001' },
   { city: 'Hubli', district: 'Dharwad', state: 'Karnataka', pincode: '580001' },
   { city: 'Belgaum', district: 'Belgaum', state: 'Karnataka', pincode: '590001' },
+  { city: 'Gulbarga', district: 'Gulbarga', state: 'Karnataka', pincode: '585101' },
+  { city: 'Davangere', district: 'Davangere', state: 'Karnataka', pincode: '577001' },
+  { city: 'Bellary', district: 'Bellary', state: 'Karnataka', pincode: '583101' },
+  { city: 'Bijapur', district: 'Bijapur', state: 'Karnataka', pincode: '586101' },
+  { city: 'Shimoga', district: 'Shimoga', state: 'Karnataka', pincode: '577201' },
   
   // Kerala
   { city: 'Kochi', district: 'Ernakulam', state: 'Kerala', pincode: '682001' },
   { city: 'Thiruvananthapuram', district: 'Thiruvananthapuram', state: 'Kerala', pincode: '695001' },
   { city: 'Calicut', district: 'Kozhikode', state: 'Kerala', pincode: '673001' },
   { city: 'Thrissur', district: 'Thrissur', state: 'Kerala', pincode: '680001' },
+  { city: 'Palakkad', district: 'Palakkad', state: 'Kerala', pincode: '678001' },
+  { city: 'Kollam', district: 'Kollam', state: 'Kerala', pincode: '691001' },
+  { city: 'Alappuzha', district: 'Alappuzha', state: 'Kerala', pincode: '688001' },
+  { city: 'Kottayam', district: 'Kottayam', state: 'Kerala', pincode: '686001' },
+  { city: 'Kannur', district: 'Kannur', state: 'Kerala', pincode: '670001' },
+  { city: 'Malappuram', district: 'Malappuram', state: 'Kerala', pincode: '676505' },
   
   // Andhra Pradesh & Telangana
   { city: 'Hyderabad', district: 'Hyderabad', state: 'Telangana', pincode: '500001' },
   { city: 'Visakhapatnam', district: 'Visakhapatnam', state: 'Andhra Pradesh', pincode: '530001' },
   { city: 'Vijayawada', district: 'Krishna', state: 'Andhra Pradesh', pincode: '520001' },
   { city: 'Warangal', district: 'Warangal', state: 'Telangana', pincode: '506001' },
+  { city: 'Guntur', district: 'Guntur', state: 'Andhra Pradesh', pincode: '522001' },
+  { city: 'Nellore', district: 'Nellore', state: 'Andhra Pradesh', pincode: '524001' },
+  { city: 'Tirupati', district: 'Chittoor', state: 'Andhra Pradesh', pincode: '517501' },
+  { city: 'Nizamabad', district: 'Nizamabad', state: 'Telangana', pincode: '503001' },
+  { city: 'Karimnagar', district: 'Karimnagar', state: 'Telangana', pincode: '505001' },
+  { city: 'Rajahmundry', district: 'East Godavari', state: 'Andhra Pradesh', pincode: '533101' },
   
-  // Puducherry
+  // Maharashtra
+  { city: 'Mumbai', district: 'Mumbai', state: 'Maharashtra', pincode: '400001' },
+  { city: 'Pune', district: 'Pune', state: 'Maharashtra', pincode: '411001' },
+  { city: 'Nagpur', district: 'Nagpur', state: 'Maharashtra', pincode: '440001' },
+  { city: 'Nashik', district: 'Nashik', state: 'Maharashtra', pincode: '422001' },
+  { city: 'Aurangabad', district: 'Aurangabad', state: 'Maharashtra', pincode: '431001' },
+  { city: 'Solapur', district: 'Solapur', state: 'Maharashtra', pincode: '413001' },
+  { city: 'Kolhapur', district: 'Kolhapur', state: 'Maharashtra', pincode: '416001' },
+  { city: 'Amravati', district: 'Amravati', state: 'Maharashtra', pincode: '444601' },
+  
+  // Gujarat
+  { city: 'Ahmedabad', district: 'Ahmedabad', state: 'Gujarat', pincode: '380001' },
+  { city: 'Surat', district: 'Surat', state: 'Gujarat', pincode: '395001' },
+  { city: 'Vadodara', district: 'Vadodara', state: 'Gujarat', pincode: '390001' },
+  { city: 'Rajkot', district: 'Rajkot', state: 'Gujarat', pincode: '360001' },
+  { city: 'Bhavnagar', district: 'Bhavnagar', state: 'Gujarat', pincode: '364001' },
+  { city: 'Jamnagar', district: 'Jamnagar', state: 'Gujarat', pincode: '361001' },
+  
+  // Rajasthan
+  { city: 'Jaipur', district: 'Jaipur', state: 'Rajasthan', pincode: '302001' },
+  { city: 'Jodhpur', district: 'Jodhpur', state: 'Rajasthan', pincode: '342001' },
+  { city: 'Udaipur', district: 'Udaipur', state: 'Rajasthan', pincode: '313001' },
+  { city: 'Kota', district: 'Kota', state: 'Rajasthan', pincode: '324001' },
+  { city: 'Ajmer', district: 'Ajmer', state: 'Rajasthan', pincode: '305001' },
+  
+  // West Bengal
+  { city: 'Kolkata', district: 'Kolkata', state: 'West Bengal', pincode: '700001' },
+  { city: 'Howrah', district: 'Howrah', state: 'West Bengal', pincode: '711101' },
+  { city: 'Durgapur', district: 'Paschim Bardhaman', state: 'West Bengal', pincode: '713201' },
+  { city: 'Asansol', district: 'Paschim Bardhaman', state: 'West Bengal', pincode: '713301' },
+  { city: 'Siliguri', district: 'Darjeeling', state: 'West Bengal', pincode: '734001' },
+  
+  // Other States
+  { city: 'Bhubaneswar', district: 'Khordha', state: 'Odisha', pincode: '751001' },
+  { city: 'Cuttack', district: 'Cuttack', state: 'Odisha', pincode: '753001' },
+  { city: 'Bhopal', district: 'Bhopal', state: 'Madhya Pradesh', pincode: '462001' },
+  { city: 'Indore', district: 'Indore', state: 'Madhya Pradesh', pincode: '452001' },
+  { city: 'Ludhiana', district: 'Ludhiana', state: 'Punjab', pincode: '141001' },
+  { city: 'Amritsar', district: 'Amritsar', state: 'Punjab', pincode: '143001' },
+  { city: 'Gurgaon', district: 'Gurgaon', state: 'Haryana', pincode: '122001' },
+  { city: 'Faridabad', district: 'Faridabad', state: 'Haryana', pincode: '121001' },
   { city: 'Puducherry', district: 'Puducherry', state: 'Puducherry', pincode: '605001' }
 ];
 
-// Comprehensive institutes data
+// Comprehensive institutes data (first 20 premium institutes)
 export const enhancedInstitutesData: Institute[] = [
   // Premier IITs and NITs
   {
     id: 'inst-001',
     name: 'Indian Institute of Technology Madras',
     type: 'university',
-    description: 'IIT Madras is a premier technical university and a leading center for engineering education and research in India. Established in 1959, it has consistently been ranked among the top engineering institutions globally.',
+    description: 'IIT Madras is a premier technical university and a leading center for engineering education and research in India. Established in 1959, it has consistently been ranked among the top engineering institutions globally. The institute offers undergraduate, postgraduate, and doctoral programs in various fields of engineering, science, and technology.',
     location: {
       country: 'India',
       state: 'Tamil Nadu',
@@ -92,9 +154,12 @@ export const enhancedInstitutesData: Institute[] = [
       'Mathematics',
       'Physics',
       'Chemistry',
-      'Management Studies'
+      'Management Studies',
+      'Humanities and Social Sciences',
+      'Biotechnology',
+      'Metallurgical and Materials Engineering'
     ],
-    courses: ['B.Tech', 'M.Tech', 'M.S.', 'MBA', 'Ph.D'],
+    courses: ['B.Tech', 'M.Tech', 'M.S.', 'MBA', 'Ph.D', 'Dual Degree'],
     facilities: [
       'Central Library',
       'Research Labs',
@@ -105,7 +170,12 @@ export const enhancedInstitutesData: Institute[] = [
       'Auditorium',
       'Conference Halls',
       'Cafeterias',
-      'Guest House'
+      'Guest House',
+      'Swimming Pool',
+      'Gymnasium',
+      'ATM',
+      'Post Office',
+      'Computer Centers'
     ],
     rankings: [
       { organization: 'NIRF', rank: 1, year: 2024, category: 'Engineering' },
@@ -128,7 +198,7 @@ export const enhancedInstitutesData: Institute[] = [
     id: 'inst-002',
     name: 'National Institute of Technology Tiruchirappalli',
     type: 'university',
-    description: 'NIT Trichy is one of the premier technical institutions in India, known for excellence in engineering education and research. Established in 1964, it continues to be a leader in technological innovation.',
+    description: 'NIT Trichy is one of the premier technical institutions in India, known for excellence in engineering education and research. Established in 1964, it continues to be a leader in technological innovation and has produced numerous successful engineers and entrepreneurs.',
     location: {
       country: 'India',
       state: 'Tamil Nadu',
@@ -161,9 +231,10 @@ export const enhancedInstitutesData: Institute[] = [
       'Mathematics',
       'Physics',
       'Chemistry',
-      'Management Studies'
+      'Management Studies',
+      'Architecture'
     ],
-    courses: ['B.Tech', 'M.Tech', 'MBA', 'MCA', 'Ph.D'],
+    courses: ['B.Tech', 'M.Tech', 'MBA', 'MCA', 'Ph.D', 'B.Arch'],
     facilities: [
       'Central Library',
       'Computer Centers',
@@ -174,7 +245,12 @@ export const enhancedInstitutesData: Institute[] = [
       'Bank',
       'Post Office',
       'Cafeterias',
-      'Guest House'
+      'Guest House',
+      'Swimming Pool',
+      'Gymnasium',
+      'Auditorium',
+      'Convention Center',
+      'Shopping Complex'
     ],
     rankings: [
       { organization: 'NIRF', rank: 9, year: 2024, category: 'Engineering' },
@@ -195,7 +271,7 @@ export const enhancedInstitutesData: Institute[] = [
     id: 'inst-003',
     name: 'Anna University',
     type: 'university',
-    description: 'Anna University is a state university located in Chennai, Tamil Nadu. It is one of the largest technical universities in India, offering a wide range of undergraduate and postgraduate programs in engineering and technology.',
+    description: 'Anna University is a state university located in Chennai, Tamil Nadu. It is one of the largest technical universities in India, offering a wide range of undergraduate and postgraduate programs in engineering and technology. The university has numerous affiliated colleges across Tamil Nadu.',
     location: {
       country: 'India',
       state: 'Tamil Nadu',
@@ -228,7 +304,9 @@ export const enhancedInstitutesData: Institute[] = [
       'Automobile Engineering',
       'Mathematics',
       'Physics',
-      'Chemistry'
+      'Chemistry',
+      'Production Technology',
+      'Printing Technology'
     ],
     courses: ['B.E.', 'B.Tech', 'M.E.', 'M.Tech', 'MBA', 'MCA', 'Ph.D'],
     facilities: [
@@ -240,7 +318,13 @@ export const enhancedInstitutesData: Institute[] = [
       'Sports Complex',
       'Cafeteria',
       'Guest House',
-      'Medical Center'
+      'Medical Center',
+      'Bank',
+      'Post Office',
+      'Hostels',
+      'Transportation',
+      'Placement Cell',
+      'Innovation Center'
     ],
     rankings: [
       { organization: 'NIRF', rank: 15, year: 2024, category: 'Engineering' },
@@ -262,7 +346,7 @@ export const enhancedInstitutesData: Institute[] = [
     id: 'inst-004',
     name: 'PSG College of Technology',
     type: 'engineering-college',
-    description: 'PSG College of Technology is one of the premier engineering institutions in South India. Established in 1951, it is known for its academic excellence, industry partnerships, and high placement rates.',
+    description: 'PSG College of Technology is one of the premier engineering institutions in South India. Established in 1951, it is known for its academic excellence, industry partnerships, and high placement rates. The college is affiliated to Anna University and offers various undergraduate and postgraduate programs.',
     location: {
       country: 'India',
       state: 'Tamil Nadu',
@@ -292,7 +376,9 @@ export const enhancedInstitutesData: Institute[] = [
       'Chemical Engineering',
       'Textile Technology',
       'Applied Mathematics and Computational Sciences',
-      'Applied Science and Technology'
+      'Applied Science and Technology',
+      'Biomedical Engineering',
+      'Fashion Technology'
     ],
     courses: ['B.E.', 'M.E.', 'M.Tech', 'Ph.D'],
     facilities: [
@@ -305,7 +391,12 @@ export const enhancedInstitutesData: Institute[] = [
       'Cafeterias',
       'Auditorium',
       'Placement Cell',
-      'Research Centers'
+      'Research Centers',
+      'Innovation Lab',
+      'Industry Interface',
+      'Transportation',
+      'Banking',
+      'Shopping Complex'
     ],
     rankings: [
       { organization: 'NIRF', rank: 35, year: 2024, category: 'Engineering' },
@@ -326,7 +417,7 @@ export const enhancedInstitutesData: Institute[] = [
     id: 'inst-005',
     name: 'VIT University',
     type: 'university',
-    description: 'VIT is a premier technological university with a global outlook. Established in 1984, VIT has been consistently ranked among the top engineering institutions in India and has been making significant strides in research and development.',
+    description: 'VIT is a premier technological university with a global outlook. Established in 1984, VIT has been consistently ranked among the top engineering institutions in India and has been making significant strides in research and development. The university has campuses in Vellore, Chennai, Bhopal, and Amravati.',
     location: {
       country: 'India',
       state: 'Tamil Nadu',
@@ -360,9 +451,11 @@ export const enhancedInstitutesData: Institute[] = [
       'Aerospace Engineering',
       'Fashion Technology',
       'School of Business',
-      'School of Law'
+      'School of Law',
+      'Applied Sciences',
+      'Architecture'
     ],
-    courses: ['B.Tech', 'M.Tech', 'MBA', 'M.Sc', 'Ph.D', 'Integrated M.Tech'],
+    courses: ['B.Tech', 'M.Tech', 'MBA', 'M.Sc', 'Ph.D', 'Integrated M.Tech', 'B.Arch', 'BBA LLB'],
     facilities: [
       'Central Library',
       'Research Centers',
@@ -374,7 +467,13 @@ export const enhancedInstitutesData: Institute[] = [
       'Shopping Complex',
       'Cafeterias',
       'Auditoriums',
-      'Conference Halls'
+      'Conference Halls',
+      'Swimming Pool',
+      'Gymnasium',
+      'ATM',
+      'Post Office',
+      'Transportation',
+      'International Relations Office'
     ],
     rankings: [
       { organization: 'NIRF', rank: 16, year: 2024, category: 'Engineering' },
@@ -393,11 +492,12 @@ export const enhancedInstitutesData: Institute[] = [
     updatedAt: '2025-01-15T10:30:00Z'
   },
 
+  // Continue with more premium institutes...
   {
     id: 'inst-006',
     name: 'SRM Institute of Science and Technology',
     type: 'university',
-    description: 'SRM Institute of Science and Technology is a leading private university known for its excellence in engineering, medicine, management, and research. It has a strong international presence and industry connections.',
+    description: 'SRM Institute of Science and Technology is a leading private university known for its excellence in engineering, medicine, management, and research. It has a strong international presence and industry connections, offering diverse programs across multiple disciplines.',
     location: {
       country: 'India',
       state: 'Tamil Nadu',
@@ -431,9 +531,11 @@ export const enhancedInstitutesData: Institute[] = [
       'Automobile Engineering',
       'School of Medicine',
       'School of Management',
-      'School of Law'
+      'School of Law',
+      'School of Architecture',
+      'School of Liberal Arts and Sciences'
     ],
-    courses: ['B.Tech', 'M.Tech', 'MBA', 'MBBS', 'BDS', 'Ph.D', 'Integrated M.Tech'],
+    courses: ['B.Tech', 'M.Tech', 'MBA', 'MBBS', 'BDS', 'Ph.D', 'Integrated M.Tech', 'B.Arch', 'BBA LLB'],
     facilities: [
       'Central Library',
       'Research Centers',
@@ -445,7 +547,12 @@ export const enhancedInstitutesData: Institute[] = [
       'Banks',
       'Cafeterias',
       'Auditoriums',
-      'Conference Halls'
+      'Conference Halls',
+      'Swimming Pool',
+      'Gymnasium',
+      'Airport',
+      'Railway Station',
+      'Innovation Center'
     ],
     rankings: [
       { organization: 'NIRF', rank: 41, year: 2024, category: 'Engineering' },
@@ -469,7 +576,7 @@ export const enhancedInstitutesData: Institute[] = [
     id: 'inst-007',
     name: 'Loyola College Chennai',
     type: 'arts-science-college',
-    description: 'Loyola College is an autonomous Jesuit institution of higher education. Founded in 1925, it has been at the forefront of academic excellence and holistic development of students.',
+    description: 'Loyola College is an autonomous Jesuit institution of higher education. Founded in 1925, it has been at the forefront of academic excellence and holistic development of students. The college offers undergraduate and postgraduate programs in various disciplines.',
     location: {
       country: 'India',
       state: 'Tamil Nadu',
@@ -503,9 +610,11 @@ export const enhancedInstitutesData: Institute[] = [
       'Philosophy',
       'Psychology',
       'Social Work',
-      'Visual Communication'
+      'Visual Communication',
+      'Corporate Secretaryship',
+      'Advanced Zoology and Biotechnology'
     ],
-    courses: ['B.Sc', 'B.Com', 'B.A.', 'M.Sc', 'M.Com', 'M.A.', 'Ph.D'],
+    courses: ['B.Sc', 'B.Com', 'B.A.', 'M.Sc', 'M.Com', 'M.A.', 'Ph.D', 'BCA', 'MCA'],
     facilities: [
       'Central Library',
       'Computer Labs',
@@ -515,7 +624,13 @@ export const enhancedInstitutesData: Institute[] = [
       'Cafeteria',
       'Chapel',
       'Conference Halls',
-      'Student Activity Center'
+      'Student Activity Center',
+      'Career Guidance Cell',
+      'Alumni Association',
+      'Research Centers',
+      'Language Lab',
+      'Placement Cell',
+      'Health Center'
     ],
     rankings: [
       { organization: 'NIRF', rank: 3, year: 2024, category: 'Colleges' },
@@ -536,7 +651,7 @@ export const enhancedInstitutesData: Institute[] = [
     id: 'inst-008',
     name: 'Stella Maris College',
     type: 'arts-science-college',
-    description: 'Stella Maris College is a premier women\'s college in Chennai, known for its academic excellence and emphasis on women\'s empowerment. Established in 1947, it offers a wide range of undergraduate and postgraduate programs.',
+    description: 'Stella Maris College is a premier women\'s college in Chennai, known for its academic excellence and emphasis on women\'s empowerment. Established in 1947, it offers a wide range of undergraduate and postgraduate programs with a focus on holistic development.',
     location: {
       country: 'India',
       state: 'Tamil Nadu',
@@ -569,9 +684,12 @@ export const enhancedInstitutesData: Institute[] = [
       'Psychology',
       'Social Work',
       'Home Science',
-      'Fine Arts'
+      'Fine Arts',
+      'International Business',
+      'Plant Biology and Biotechnology',
+      'Zoology'
     ],
-    courses: ['B.Sc', 'B.Com', 'B.A.', 'M.Sc', 'M.Com', 'M.A.', 'Ph.D'],
+    courses: ['B.Sc', 'B.Com', 'B.A.', 'M.Sc', 'M.Com', 'M.A.', 'Ph.D', 'BBA', 'MBA'],
     facilities: [
       'Central Library',
       'Computer Center',
@@ -582,7 +700,12 @@ export const enhancedInstitutesData: Institute[] = [
       'Cafeteria',
       'Chapel',
       'Art Gallery',
-      'Museum'
+      'Museum',
+      'Conference Hall',
+      'Research Centers',
+      'Career Counseling',
+      'Alumni Network',
+      'Student Services'
     ],
     rankings: [
       { organization: 'NIRF', rank: 5, year: 2024, category: 'Colleges' },
@@ -598,24 +721,26 @@ export const enhancedInstitutesData: Institute[] = [
     createdAt: '2024-01-01T00:00:00Z',
     updatedAt: '2025-01-15T10:30:00Z'
   }
-
-  // Continue with more institutes...
 ];
 
-// Generate additional institutes programmatically
+// Generate additional institutes programmatically to reach 200+
 const generateAdditionalInstitutes = (): Institute[] => {
   const additionalInstitutes: Institute[] = [];
   
   const instituteTemplates = [
-    { name: 'Government Arts College', type: 'arts-science-college', description: 'A government arts and science college providing quality education in various disciplines.' },
-    { name: 'Engineering College', type: 'engineering-college', description: 'A premier engineering institution offering undergraduate and postgraduate programs in engineering and technology.' },
-    { name: 'Polytechnic College', type: 'polytechnic', description: 'A technical education institution offering diploma courses in various engineering disciplines.' },
-    { name: 'Medical College', type: 'university', description: 'A medical college providing undergraduate and postgraduate medical education and healthcare services.' },
-    { name: 'Teacher Training Institute', type: 'research-institute', description: 'An institute dedicated to training and developing quality teachers for the education sector.' },
-    { name: 'Technology Institute', type: 'engineering-college', description: 'An institute of technology offering advanced courses in engineering and applied sciences.' }
+    { name: 'Government Arts College', type: 'arts-science-college', description: 'A government arts and science college providing quality education in various disciplines with focus on academic excellence and affordability.' },
+    { name: 'Engineering College', type: 'engineering-college', description: 'A premier engineering institution offering undergraduate and postgraduate programs in engineering and technology with strong industry connections.' },
+    { name: 'Polytechnic College', type: 'polytechnic', description: 'A technical education institution offering diploma courses in various engineering disciplines with emphasis on practical skills and industry readiness.' },
+    { name: 'Medical College', type: 'university', description: 'A medical college providing undergraduate and postgraduate medical education and healthcare services with state-of-the-art facilities.' },
+    { name: 'Teacher Training Institute', type: 'research-institute', description: 'An institute dedicated to training and developing quality teachers for the education sector with focus on modern pedagogy.' },
+    { name: 'Technology Institute', type: 'engineering-college', description: 'An institute of technology offering advanced courses in engineering and applied sciences with research focus.' },
+    { name: 'University', type: 'university', description: 'A comprehensive university offering diverse programs across multiple disciplines with research and innovation focus.' },
+    { name: 'Arts and Science College', type: 'arts-science-college', description: 'A college offering undergraduate and postgraduate programs in arts, science, and commerce with holistic development approach.' },
+    { name: 'Dental College', type: 'university', description: 'A dental college providing dental education and oral healthcare services with modern facilities and experienced faculty.' },
+    { name: 'Management Institute', type: 'university', description: 'An institute specializing in management education with strong industry partnerships and placement support.' }
   ];
 
-  for (let i = 9; i <= 200; i++) {
+  for (let i = 9; i <= 210; i++) {
     const template = instituteTemplates[Math.floor(Math.random() * instituteTemplates.length)];
     const location = locations[Math.floor(Math.random() * locations.length)];
     const locationName = location.city !== location.district ? location.city : location.district;
@@ -631,16 +756,17 @@ const generateAdditionalInstitutes = (): Institute[] => {
         district: location.district,
         city: location.city,
         pincode: location.pincode,
-        address: `${Math.floor(Math.random() * 999) + 1}, ${['Main Road', 'College Road', 'University Road', 'Campus Road', 'Education District'][Math.floor(Math.random() * 5)]}`
+        address: `${Math.floor(Math.random() * 999) + 1}, ${['Main Road', 'College Road', 'University Road', 'Campus Road', 'Education District', 'Knowledge Park', 'Academic Zone'][Math.floor(Math.random() * 7)]}`
       },
       established: getRandomDate(1850, 2020),
-      affiliation: ['Anna University', 'University of Madras', 'Bharathidasan University', 'State Government', 'UGC', 'AICTE'][Math.floor(Math.random() * 6)],
+      affiliation: ['Anna University', 'University of Madras', 'Bharathidasan University', 'State Government', 'UGC', 'AICTE', 'Autonomous', 'Deemed University'][Math.floor(Math.random() * 8)],
       accreditation: [
         Math.random() > 0.3 ? 'NAAC A+' : Math.random() > 0.5 ? 'NAAC A' : 'NAAC B+',
         ...(Math.random() > 0.4 ? ['NBA'] : []),
-        ...(Math.random() > 0.7 ? ['ISO 9001:2015'] : [])
+        ...(Math.random() > 0.7 ? ['ISO 9001:2015'] : []),
+        ...(Math.random() > 0.8 ? ['UGC'] : [])
       ],
-      website: `https://www.${locationName.toLowerCase().replace(/\s+/g, '')}${template.name.toLowerCase().replace(/\s+/g, '')}.edu.in`,
+      website: `https://www.${locationName.toLowerCase().replace(/\s+/g, '')}${template.name.toLowerCase().replace(/\s+/g, '').replace('&', 'and')}.edu.in`,
       logo: `https://images.unsplash.com/photo-${[
         '1562774053-701939374585',
         '1580582932707-520aed937b7b',
@@ -648,8 +774,11 @@ const generateAdditionalInstitutes = (): Institute[] => {
         '1571019613454-1cb2f99b2d8b',
         '1541339907198-e08756dedf3f',
         '1568792923760-d70635a89fdc',
-        '1507003211169-0a1dd7228f2d'
-      ][Math.floor(Math.random() * 7)]}?w=200&h=200&fit=crop`,
+        '1507003211169-0a1dd7228f2d',
+        '1523240795312-9a261bf042b4',
+        '1564981797816-1043664bf78d',
+        '1486312338219-ce68e2c6b696'
+      ][Math.floor(Math.random() * 10)]}?w=200&h=200&fit=crop`,
       images: [`https://images.unsplash.com/photo-${[
         '1562774053-701939374585',
         '1580582932707-520aed937b7b',
@@ -657,44 +786,59 @@ const generateAdditionalInstitutes = (): Institute[] => {
         '1571019613454-1cb2f99b2d8b'
       ][Math.floor(Math.random() * 4)]}?w=800&h=600&fit=crop`],
       contact: {
-        email: `info@${locationName.toLowerCase().replace(/\s+/g, '')}${template.name.toLowerCase().replace(/\s+/g, '')}.edu.in`,
-        phone: `+91-${['044', '0422', '0431', '0427', '0424', '080', '0484', '0471', '040'][Math.floor(Math.random() * 9)]}-${Math.floor(Math.random() * 9000000) + 1000000}`,
-        fax: `+91-${['044', '0422', '0431', '0427', '0424', '080', '0484', '0471', '040'][Math.floor(Math.random() * 9)]}-${Math.floor(Math.random() * 9000000) + 1000000}`
+        email: `info@${locationName.toLowerCase().replace(/\s+/g, '')}${template.name.toLowerCase().replace(/\s+/g, '').replace('&', 'and')}.edu.in`,
+        phone: `+91-${getRandomPhoneCode(location.state)}-${Math.floor(Math.random() * 9000000) + 1000000}`,
+        fax: `+91-${getRandomPhoneCode(location.state)}-${Math.floor(Math.random() * 9000000) + 1000000}`
       },
       departments: getDepartmentsByType(template.type as any),
       courses: getCoursesByType(template.type as any),
-      facilities: [
-        'Library',
-        'Computer Lab',
-        'Laboratories',
-        'Cafeteria',
-        ...(Math.random() > 0.3 ? ['Sports Complex'] : []),
-        ...(Math.random() > 0.5 ? ['Hostel'] : []),
-        ...(Math.random() > 0.6 ? ['Auditorium'] : []),
-        ...(Math.random() > 0.7 ? ['Medical Center'] : []),
-        ...(Math.random() > 0.8 ? ['Transportation'] : [])
-      ],
-      rankings: Math.random() > 0.3 ? [
+      facilities: getFacilitiesByType(template.type as any),
+      rankings: Math.random() > 0.4 ? [
         {
-          organization: 'NIRF',
-          rank: Math.floor(Math.random() * 300) + 1,
+          organization: ['NIRF', 'India Today', 'Outlook', 'The Week'][Math.floor(Math.random() * 4)],
+          rank: Math.floor(Math.random() * 400) + 1,
           year: 2024,
-          category: template.type === 'engineering-college' ? 'Engineering' : 'Overall'
+          category: template.type === 'engineering-college' ? 'Engineering' : 
+                   template.type === 'arts-science-college' ? 'Colleges' : 'Overall'
         }
       ] : [],
       socialMedia: {
-        facebook: `https://facebook.com/${locationName.replace(/\s+/g, '')}${template.name.replace(/\s+/g, '')}`,
-        linkedin: `https://linkedin.com/school/${locationName.toLowerCase().replace(/\s+/g, '-')}-${template.name.toLowerCase().replace(/\s+/g, '-')}`
+        facebook: Math.random() > 0.3 ? `https://facebook.com/${locationName.replace(/\s+/g, '')}${template.name.replace(/\s+/g, '')}` : undefined,
+        linkedin: Math.random() > 0.4 ? `https://linkedin.com/school/${locationName.toLowerCase().replace(/\s+/g, '-')}-${template.name.toLowerCase().replace(/\s+/g, '-')}` : undefined,
+        twitter: Math.random() > 0.7 ? `https://twitter.com/${locationName.replace(/\s+/g, '')}${template.name.replace(/\s+/g, '')}` : undefined,
+        instagram: Math.random() > 0.8 ? `https://instagram.com/${locationName.replace(/\s+/g, '')}${template.name.replace(/\s+/g, '')}` : undefined
       },
-      isVerified: Math.random() > 0.2,
-      isFeatured: Math.random() > 0.8,
+      isVerified: Math.random() > 0.25,
+      isFeatured: Math.random() > 0.85,
       employerId: `emp-${String(i).padStart(3, '0')}`,
-      createdAt: '2024-01-01T00:00:00Z',
-      updatedAt: '2025-01-15T10:30:00Z'
+      createdAt: new Date(Date.now() - Math.random() * 365 * 24 * 60 * 60 * 1000).toISOString(),
+      updatedAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString()
     });
   }
 
   return additionalInstitutes;
+};
+
+const getRandomPhoneCode = (state: string): string => {
+  const phoneCodes: { [key: string]: string[] } = {
+    'Tamil Nadu': ['044', '0422', '0431', '0427', '0424', '04543', '04565'],
+    'Karnataka': ['080', '0821', '0824', '0836', '0831'],
+    'Kerala': ['0484', '0471', '0495', '0487', '0491'],
+    'Andhra Pradesh': ['040', '0891', '0866', '0877', '0863'],
+    'Telangana': ['040', '0870', '0878', '0879'],
+    'Maharashtra': ['022', '020', '0712', '0253', '0240'],
+    'Gujarat': ['079', '0261', '0265', '0281', '0278'],
+    'Rajasthan': ['0141', '0291', '0294', '0744', '0145'],
+    'West Bengal': ['033', '03322', '0343', '0341', '0353'],
+    'Odisha': ['0674', '0671', '0663', '06764'],
+    'Madhya Pradesh': ['0755', '0731', '0751', '07552'],
+    'Punjab': ['0161', '0183', '01832', '01881'],
+    'Haryana': ['0124', '0129', '01274', '01662'],
+    'Puducherry': ['0413']
+  };
+  
+  const codes = phoneCodes[state] || ['0123'];
+  return codes[Math.floor(Math.random() * codes.length)];
 };
 
 const getDepartmentsByType = (type: string): string[] => {
@@ -706,7 +850,15 @@ const getDepartmentsByType = (type: string): string[] => {
       'Electrical and Electronics Engineering',
       'Mechanical Engineering',
       'Civil Engineering',
-      'Chemical Engineering'
+      'Chemical Engineering',
+      'Automobile Engineering',
+      'Biomedical Engineering',
+      'Aerospace Engineering',
+      'Textile Engineering',
+      'Food Technology',
+      'Biotechnology',
+      'Industrial Engineering',
+      'Production Engineering'
     ],
     'arts-science-college': [
       'Mathematics',
@@ -716,14 +868,30 @@ const getDepartmentsByType = (type: string): string[] => {
       'Economics',
       'Commerce',
       'English Literature',
-      'History'
+      'History',
+      'Psychology',
+      'Sociology',
+      'Political Science',
+      'Geography',
+      'Philosophy',
+      'Statistics',
+      'Biotechnology',
+      'Microbiology',
+      'Zoology',
+      'Botany',
+      'Business Administration',
+      'Visual Communication'
     ],
     'polytechnic': [
       'Computer Engineering',
       'Electronics Engineering',
       'Mechanical Engineering',
       'Civil Engineering',
-      'Electrical Engineering'
+      'Electrical Engineering',
+      'Automobile Engineering',
+      'Information Technology',
+      'Instrumentation Engineering',
+      'Chemical Engineering'
     ],
     'university': [
       'Engineering',
@@ -731,31 +899,103 @@ const getDepartmentsByType = (type: string): string[] => {
       'Medicine',
       'Management',
       'Law',
-      'Education'
+      'Education',
+      'Agriculture',
+      'Pharmacy',
+      'Nursing',
+      'Allied Health Sciences',
+      'Architecture',
+      'Fine Arts',
+      'Social Sciences',
+      'Commerce',
+      'Computer Applications'
     ],
     'research-institute': [
       'Research and Development',
       'Training and Development',
       'Academic Research',
-      'Applied Sciences'
+      'Applied Sciences',
+      'Educational Technology',
+      'Curriculum Development',
+      'Teacher Training',
+      'Educational Psychology'
     ]
   };
 
   const baseDepartments = departmentMap[type] || departmentMap['arts-science-college'];
-  return baseDepartments.slice(0, Math.floor(Math.random() * baseDepartments.length) + 3);
+  const numDepartments = Math.floor(Math.random() * (baseDepartments.length - 3)) + 4;
+  return baseDepartments.slice(0, numDepartments);
 };
 
 const getCoursesByType = (type: string): string[] => {
   const courseMap = {
     'engineering-college': ['B.E.', 'B.Tech', 'M.E.', 'M.Tech', 'Ph.D'],
-    'arts-science-college': ['B.Sc', 'B.Com', 'B.A.', 'M.Sc', 'M.Com', 'M.A.', 'Ph.D'],
-    'polytechnic': ['Diploma', 'Advanced Diploma'],
-    'university': ['UG', 'PG', 'Ph.D', 'Professional Courses'],
-    'research-institute': ['Certificate', 'Diploma', 'Research Programs']
+    'arts-science-college': ['B.Sc', 'B.Com', 'B.A.', 'M.Sc', 'M.Com', 'M.A.', 'Ph.D', 'BCA', 'MCA', 'BBA', 'MBA'],
+    'polytechnic': ['Diploma', 'Advanced Diploma', 'Certificate Courses'],
+    'university': ['UG', 'PG', 'Ph.D', 'Professional Courses', 'Diploma', 'Certificate'],
+    'research-institute': ['Certificate', 'Diploma', 'Research Programs', 'Training Programs']
   };
 
   return courseMap[type] || courseMap['arts-science-college'];
 };
+
+const getFacilitiesByType = (type: string): string[] => {
+  const baseFacilities = [
+    'Library',
+    'Computer Lab',
+    'Laboratories',
+    'Cafeteria',
+    'Parking'
+  ];
+
+  const additionalFacilities = [
+    'Sports Complex',
+    'Hostel',
+    'Auditorium',
+    'Medical Center',
+    'Transportation',
+    'ATM',
+    'Bank',
+    'Post Office',
+    'Conference Hall',
+    'Seminar Hall',
+    'Gymnasium',
+    'Swimming Pool',
+    'Placement Cell',
+    'Career Counseling',
+    'Alumni Association',
+    'Research Centers',
+    'Innovation Lab',
+    'Entrepreneurship Cell',
+    'Industry Interface',
+    'International Relations',
+    'Student Activity Center',
+    'Cultural Center',
+    'Language Lab',
+    'Digital Library',
+    'WiFi Campus',
+    'Shopping Complex',
+    'Guest House',
+    'Security',
+    'CCTV Surveillance',
+    'Fire Safety',
+    'Backup Power'
+  ];
+
+  const numAdditional = Math.floor(Math.random() * 15) + 5;
+  const selectedAdditional = additionalFacilities.sort(() => 0.5 - Math.random()).slice(0, numAdditional);
+  
+  return [...baseFacilities, ...selectedAdditional];
+};
+
+// Institute jobs data - jobs available for each institute
+export const instituteJobsData: { [instituteId: string]: number } = {};
+
+// Generate random job counts for each institute (3-25 jobs per institute)
+for (let i = 1; i <= 210; i++) {
+  const instituteId = `inst-${String(i).padStart(3, '0')}`;
+  instituteJobsData[instituteId] = Math.floor(Math.random() * 23) + 3; // 3-25 jobs
+}
 
 // Export complete institutes data
 export const allInstitutesData: Institute[] = [
