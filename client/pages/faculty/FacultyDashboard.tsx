@@ -478,7 +478,14 @@ const FacultyDashboard: React.FC = () => {
                         <span>Applied: {formatDate(app.appliedDate)}</span>
                         <span>Last update: {formatDate(app.lastUpdate)}</span>
                       </div>
-                      <Button variant="outline" size="sm">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          // Navigate to detailed application view
+                          navigate(`/applications/${app.id}`);
+                        }}
+                      >
                         View Application
                       </Button>
                     </div>
