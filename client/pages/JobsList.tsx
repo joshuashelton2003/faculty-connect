@@ -429,10 +429,11 @@ const JobsList: React.FC = () => {
               </div>
               
               <div className="text-right">
-                <p className="text-lg font-semibold text-green-600">
+                <p className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent flex items-center justify-end">
+                  <DollarSign className="w-5 h-5 text-emerald-600 mr-1" />
                   ₹{job.salary.min.toLocaleString()} - ₹{job.salary.max.toLocaleString()}
                 </p>
-                <p className="text-xs text-gray-500">per month</p>
+                <p className="text-sm text-slate-500 font-medium">per month</p>
               </div>
             </div>
 
