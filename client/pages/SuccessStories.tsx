@@ -23,7 +23,7 @@ interface SuccessStory {
 const successStories: SuccessStory[] = [
   {
     id: '1',
-    name: 'Priya Krishnamurthy',
+    name: 'Rahul',
     role: 'Senior Software Engineer',
     company: 'Google',
     location: 'Bangalore, Karnataka',
