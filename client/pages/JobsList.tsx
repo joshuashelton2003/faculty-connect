@@ -453,7 +453,8 @@ const JobsList: React.FC = () => {
                 </div>
               </div>
               
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-slate-600 font-medium flex items-center">
+                <Calendar className="w-4 h-4 mr-1 text-orange-500" />
                 Deadline: {new Date(job.deadline).toLocaleDateString()}
               </div>
             </div>
