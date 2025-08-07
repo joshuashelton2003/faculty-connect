@@ -521,28 +521,28 @@ export default function EnhancedRegister() {
                       </div>
 
                       <div>
-                        <Label htmlFor="confirmPassword">Confirm Password *</Label>
-                        <div className="relative mt-1">
-                          <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        <Label htmlFor="confirmPassword" className="text-sm font-semibold text-slate-700 mb-2 block">Confirm Password *</Label>
+                        <div className="relative mt-2">
+                          <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                           <Input
-                            {...register('confirmPassword', { 
+                            {...register('confirmPassword', {
                               required: 'Please confirm your password',
                               validate: (value) => value === watchAllFields.password || 'Passwords do not match'
                             })}
                             type={showConfirmPassword ? 'text' : 'password'}
                             placeholder="Confirm your password"
-                            className="pl-10 pr-10"
+                            className="pl-12 pr-12 h-12 border-slate-300 rounded-xl focus:border-blue-500 focus:ring-blue-500 bg-slate-50 focus:bg-white transition-all duration-200"
                           />
                           <button
                             type="button"
-                            className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                            className="absolute inset-y-0 right-0 pr-4 flex items-center hover:text-blue-600 transition-colors"
                             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                           >
-                            {showConfirmPassword ? <EyeOff className="h-5 w-5 text-gray-400" /> : <Eye className="h-5 w-5 text-gray-400" />}
+                            {showConfirmPassword ? <EyeOff className="h-5 w-5 text-slate-400" /> : <Eye className="h-5 w-5 text-slate-400" />}
                           </button>
                         </div>
                         {errors.confirmPassword && (
-                          <p className="text-red-600 text-sm mt-1">{errors.confirmPassword.message}</p>
+                          <p className="text-red-600 text-sm mt-2 font-medium">{errors.confirmPassword.message}</p>
                         )}
                       </div>
                     </div>
