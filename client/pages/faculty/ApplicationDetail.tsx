@@ -83,6 +83,64 @@ export default function ApplicationDetail() {
     job.institute.name === application.institution && job.id !== id
   ).slice(0, 5);
 
+  // Handler functions
+  const handleShare = async () => {
+    const shareData = {
+      title: `${application.jobTitle} at ${application.institution}`,
+      text: `Check out this job application: ${application.jobTitle} at ${application.institution}`,
+      url: window.location.href
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        toast({
+          title: "Shared successfully",
+          description: "Application details have been shared.",
+        });
+      } catch (error) {
+        console.log('Error sharing:', error);
+      }
+    } else {
+      // Fallback: copy to clipboard
+      navigator.clipboard.writeText(window.location.href);
+      toast({
+        title: "Link copied",
+        description: "Application link copied to clipboard.",
+      });
+    }
+  };
+
+  const handleSave = () => {
+    setIsSaved(!isSaved);
+    toast({
+      title: isSaved ? "Application unsaved" : "Application saved",
+      description: isSaved ? "Removed from saved applications" : "Added to saved applications",
+    });
+  };
+
+  const handleDownload = () => {
+    toast({
+      title: "Download started",
+      description: "Your application documents are being downloaded.",
+    });
+    // In real app, this would trigger actual download
+  };
+
+  const handleContactEmployer = () => {
+    const subject = encodeURIComponent(`Inquiry about ${application.jobTitle} position`);
+    const body = encodeURIComponent(`Dear Hiring Manager,\n\nI am writing to inquire about my application for the ${application.jobTitle} position at ${application.institution}.\n\nApplication ID: ${application.id}\nApplied on: ${new Date(application.appliedDate).toLocaleDateString()}\n\nThank you for your time.\n\nBest regards`);
+    window.open(`mailto:${instituteData.email}?subject=${subject}&body=${body}`);
+  };
+
+  const handleViewJob = () => {
+    navigate(`/jobs/${jobData.id}`);
+  };
+
+  const handleApplyToSimilar = (jobId: string) => {
+    navigate(`/jobs/${jobId}`);
+  };
+
   const getStatusColor = (status: string) => {
     const colors = {
       pending: 'bg-yellow-100 text-yellow-800',
