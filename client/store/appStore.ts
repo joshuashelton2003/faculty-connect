@@ -396,12 +396,12 @@ export const useInstitutesStore = create<InstitutesState>((set, get) => ({
       
       await new Promise(resolve => setTimeout(resolve, 800));
       
-      const { sampleInstitutes } = await import('@/data/sampleInstitutes');
-      
-      set({ 
-        institutes: sampleInstitutes, 
-        filteredInstitutes: sampleInstitutes,
-        isLoading: false 
+      const { allInstitutesData } = await import('@/data/enhancedInstitutesData');
+
+      set({
+        institutes: allInstitutesData,
+        filteredInstitutes: allInstitutesData,
+        isLoading: false
       });
     } catch (error) {
       set({ isLoading: false });
