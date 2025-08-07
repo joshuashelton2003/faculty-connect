@@ -212,11 +212,18 @@ export default function Header() {
                 ) : (
                   <div className="space-y-1">
                     <Link
-                      to="/login"
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                      to="/login?role=faculty"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      Sign In
+                      Faculty Sign In
+                    </Link>
+                    <Link
+                      to="/login?role=employer"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-green-50"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Employer Sign In
                     </Link>
                     <Link
                       to="/register"
