@@ -857,7 +857,10 @@ export default function EnhancedRegister() {
         <div className="text-center mt-6">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
+            <Link
+              to={selectedRole ? `/login?role=${selectedRole}` : "/login"}
+              className="font-medium text-blue-600 hover:text-blue-500"
+            >
               Sign in here
             </Link>
           </p>
