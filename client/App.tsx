@@ -264,6 +264,12 @@ const App = () => (
             </Layout>
           } />
 
+          <Route path="/how-it-works" element={
+            <Layout>
+              <HowItWorks />
+            </Layout>
+          } />
+
           <Route path="/resources/career-tips" element={
             <Layout>
               <CareerTips />
