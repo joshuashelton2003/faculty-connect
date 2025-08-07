@@ -653,7 +653,7 @@ export default function EmployerDashboard() {
                               <Button
                                 size="sm"
                                 variant="outline"
-                                onClick={() => navigate(`/employer/applications/${app._id}`)}
+                                onClick={() => navigate(`/employer/applications/${application._id}`)}
                               >
                                 View Application
                               </Button>
