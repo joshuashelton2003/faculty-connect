@@ -82,7 +82,7 @@ export default function Footer() {
                     href="mailto:support@facultyconnect.in"
                     className="hover:text-white transition-colors"
                   >
-                    support@facultyconnect.in
+                    searchfirst@facultyconnect.in
                   </a>
                 </div>
                 <div className="flex items-center space-x-3 text-sm text-gray-400">
