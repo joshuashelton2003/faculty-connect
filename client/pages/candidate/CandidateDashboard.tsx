@@ -462,7 +462,10 @@ const CandidateDashboard: React.FC = () => {
                               <Button size="sm" variant="outline">
                                 Remove
                               </Button>
-                              <Button size="sm">
+                              <Button
+                                size="sm"
+                                onClick={() => navigate('/jobs')}
+                              >
                                 Apply Now
                               </Button>
                             </div>
