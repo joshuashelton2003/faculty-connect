@@ -495,7 +495,184 @@ const JobsList: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50" style={{ fontFamily: 'Poppins, Inter, sans-serif' }}>
+      {/* Job Details Modal */}
+      <Dialog open={showJobDetails} onOpenChange={setShowJobDetails}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-slate-800">
+              {selectedJob?.title}
+            </DialogTitle>
+          </DialogHeader>
+          {selectedJob && (
+            <div className="space-y-6 p-6">
+              <div className="flex items-center space-x-4">
+                <Avatar className="h-16 w-16">
+                  <AvatarImage src={selectedJob.institute.logo} />
+                  <AvatarFallback className="bg-blue-100 text-blue-600 font-bold text-lg">
+                    {selectedJob.institute.name.split(' ').map((n: string) => n[0]).join('')}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-800">{selectedJob.institute.name}</h3>
+                  <p className="text-slate-600 flex items-center">
+                    <MapPin className="w-4 h-4 mr-1" />
+                    {selectedJob.location.city}, {selectedJob.location.state}
+                  </p>
+                  <p className="text-lg font-semibold text-emerald-600 flex items-center">
+                    <DollarSign className="w-4 h-4 mr-1" />
+                    ₹{selectedJob.salary.min.toLocaleString()} - ₹{selectedJob.salary.max.toLocaleString()}/month
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold text-slate-800 mb-2">Job Type & Mode</h4>
+                  <div className="space-y-2">
+                    <Badge className="bg-blue-100 text-blue-800">{selectedJob.employmentType}</Badge>
+                    <Badge className="bg-green-100 text-green-800 ml-2">{selectedJob.workMode}</Badge>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-800 mb-2 flex items-center">
+                    <Calendar className="w-4 h-4 mr-1" />
+                    Application Deadline
+                  </h4>
+                  <p className="text-slate-600">{new Date(selectedJob.deadline).toLocaleDateString()}</p>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-slate-800 mb-3">Job Description</h4>
+                <p className="text-slate-700 leading-relaxed">{selectedJob.description}</p>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-slate-800 mb-3">Required Qualifications</h4>
+                <ul className="space-y-2">
+                  {selectedJob.requirements.education.map((req: string, index: number) => (
+                    <li key={index} className="flex items-start">
+                      <GraduationCap className="w-4 h-4 mr-2 mt-1 text-blue-600" />
+                      <span className="text-slate-700">{req}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex justify-end space-x-3 pt-4 border-t">
+                <Button variant="outline" onClick={() => setShowJobDetails(false)}>
+                  Close
+                </Button>
+                <Button
+                  onClick={() => {
+                    setShowJobDetails(false);
+                    handleApplyNow(selectedJob);
+                  }}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                >
+                  Apply Now
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Application Form Modal */}
+      <Dialog open={showApplicationForm} onOpenChange={setShowApplicationForm}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-slate-800">
+              Apply for {selectedJob?.title}
+            </DialogTitle>
+            <p className="text-slate-600">at {selectedJob?.institute.name}</p>
+          </DialogHeader>
+          <form onSubmit={handleApplicationSubmit} className="space-y-6 p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="fullName" className="text-sm font-semibold text-slate-700">Full Name *</Label>
+                <Input
+                  id="fullName"
+                  value={applicationData.fullName}
+                  onChange={(e) => setApplicationData(prev => ({ ...prev, fullName: e.target.value }))}
+                  placeholder="Enter your full name"
+                  className="mt-1 border-slate-300 focus:border-blue-500"
+                  required
+                />
+              </div>
+              <div>
+                <Label htmlFor="email" className="text-sm font-semibold text-slate-700">Email Address *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={applicationData.email}
+                  onChange={(e) => setApplicationData(prev => ({ ...prev, email: e.target.value }))}
+                  placeholder="Enter your email"
+                  className="mt-1 border-slate-300 focus:border-blue-500"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label htmlFor="mobile" className="text-sm font-semibold text-slate-700">Mobile Number *</Label>
+              <Input
+                id="mobile"
+                type="tel"
+                value={applicationData.mobile}
+                onChange={(e) => setApplicationData(prev => ({ ...prev, mobile: e.target.value }))}
+                placeholder="Enter your mobile number"
+                className="mt-1 border-slate-300 focus:border-blue-500"
+                required
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="resume" className="text-sm font-semibold text-slate-700">Resume Upload *</Label>
+              <Input
+                id="resume"
+                type="file"
+                accept=".pdf,.doc,.docx"
+                onChange={handleFileUpload}
+                className="mt-1 border-slate-300 focus:border-blue-500"
+                required
+              />
+              {applicationData.resume && (
+                <p className="text-sm text-green-600 mt-1">✓ {applicationData.resume.name}</p>
+              )}
+            </div>
+
+            <div>
+              <Label htmlFor="coverLetter" className="text-sm font-semibold text-slate-700">Cover Letter</Label>
+              <Textarea
+                id="coverLetter"
+                value={applicationData.coverLetter}
+                onChange={(e) => setApplicationData(prev => ({ ...prev, coverLetter: e.target.value }))}
+                placeholder="Write a brief cover letter explaining why you're interested in this position..."
+                className="mt-1 border-slate-300 focus:border-blue-500"
+                rows={4}
+              />
+            </div>
+
+            <div className="flex justify-end space-x-3 pt-4 border-t">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setShowApplicationForm(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold"
+              >
+                Submit Application
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
       {/* Back Button */}
       <div className="sticky top-0 z-10 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
