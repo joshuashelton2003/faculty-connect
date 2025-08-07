@@ -132,10 +132,12 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
   logout: () => {
     localStorage.removeItem('facultyconnect_token');
+    localStorage.removeItem('facultyconnect_user');
     set({
       user: null,
       token: null,
-      isAuthenticated: false
+      isAuthenticated: false,
+      isLoading: false
     });
   },
 
