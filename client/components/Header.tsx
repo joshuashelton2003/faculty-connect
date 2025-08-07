@@ -179,7 +179,7 @@ export default function Header() {
                 {isAuthenticated ? (
                   <div className="space-y-1">
                     <Link
-                      to={user?.role === 'employer' ? '/employer/dashboard' : '/dashboard'}
+                      to={user?.role === 'employer' ? '/employer/dashboard' : (user?.role === 'faculty' || user?.role === 'candidate' ? '/faculty/dashboard' : '/dashboard')}
                       className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
