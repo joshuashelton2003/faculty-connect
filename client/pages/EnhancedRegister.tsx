@@ -247,17 +247,17 @@ export default function EnhancedRegister() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-8 px-4 sm:px-6 lg:px-8 font-inter">
       {/* Back Button */}
       <Link
         to="/"
-        className="absolute top-2 left-2 z-50 text-blue-500 font-semibold flex items-center hover:text-blue-600 transition-colors"
+        className="absolute top-6 left-6 z-50 text-slate-600 font-medium flex items-center hover:text-blue-600 transition-all duration-200 hover:scale-105"
       >
-        <ArrowLeft className="w-4 h-4 mr-1" />
-        Back
+        <ArrowLeft className="w-4 h-4 mr-2" />
+        Back to Home
       </Link>
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto pt-4">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-6">
