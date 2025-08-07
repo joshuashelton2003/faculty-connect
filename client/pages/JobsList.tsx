@@ -278,6 +278,57 @@ const JobsList: React.FC = () => {
     return count;
   };
 
+  // Handler functions for job actions
+  const handleViewDetails = (job: any) => {
+    setSelectedJob(job);
+    setShowJobDetails(true);
+  };
+
+  const handleApplyNow = (job: any) => {
+    setSelectedJob(job);
+    setShowApplicationForm(true);
+  };
+
+  const handleApplicationSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validate form
+    if (!applicationData.fullName || !applicationData.email || !applicationData.mobile || !applicationData.resume) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields and upload your resume.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Submit application (simulate API call)
+    setTimeout(() => {
+      toast({
+        title: "✅ Application Submitted Successfully!",
+        description: `Your application for ${selectedJob?.title} at ${selectedJob?.institute.name} has been submitted.`,
+        duration: 5000,
+      });
+
+      // Reset form and close modal
+      setApplicationData({
+        fullName: '',
+        email: '',
+        mobile: '',
+        resume: null,
+        coverLetter: ''
+      });
+      setShowApplicationForm(false);
+    }, 1000);
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setApplicationData(prev => ({ ...prev, resume: file }));
+    }
+  };
+
   const JobCard: React.FC<{ job: any; index: number }> = ({ job, index }) => {
     const daysUntilDeadline = getDaysUntilDeadline(job.deadline);
     const isUrgent = daysUntilDeadline <= 7;
