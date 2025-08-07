@@ -49,15 +49,15 @@ export const useAuthStore = create<AuthState>()(
           await new Promise(resolve => setTimeout(resolve, 1000));
           
           // Determine role based on email or use demo accounts
-          let role: 'candidate' | 'employer' = 'candidate';
+          let role: 'faculty' | 'employer' = 'faculty';
           let name = 'Demo User';
-          
+
           if (email.includes('employer') || email === 'employer@demo.com') {
             role = 'employer';
             name = 'Anna University HR';
-          } else if (email === 'candidate@demo.com') {
-            role = 'candidate';
-            name = 'Mani Geetha';
+          } else {
+            role = 'faculty';
+            name = 'Dr. Mani Geetha';
           }
           
           const mockUser: User = {
