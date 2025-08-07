@@ -467,7 +467,7 @@ export default function EmployerDashboard() {
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Applications</p>
-                  <p className="text-2xl font-bold text-gray-900">{allSampleApplications.length}</p>
+                  <p className="text-2xl font-bold text-gray-900">{mockApplications.length}</p>
                   <div className="flex items-center mt-1">
                     <ExternalLink className="w-3 h-3 text-gray-400 mr-1" />
                     <span className="text-xs text-gray-500">Review candidates</span>
