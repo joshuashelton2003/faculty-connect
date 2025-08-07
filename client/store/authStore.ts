@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { User, AuthState } from '@/types';
 
 interface AuthStore extends AuthState {
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string, roleParam?: 'faculty' | 'employer') => Promise<void>;
   register: (userData: any) => Promise<void>;
   logout: () => void;
   setUser: (user: User | null) => void;
@@ -41,15 +41,20 @@ const initializeAuth = () => {
 export const useAuthStore = create<AuthStore>((set, get) => ({
   ...initializeAuth(),
 
-  login: async (email: string, password: string) => {
+  login: async (email: string, password: string, roleParam?: 'faculty' | 'employer') => {
     try {
       set({ isLoading: true });
 
-      // Determine role based on email pattern
-      let role: 'faculty' | 'employer' = 'faculty';
+      // Determine role - prioritize URL role parameter, fallback to email pattern
+      let role: 'faculty' | 'employer' = roleParam || 'faculty';
       let name = 'User';
 
-      if (email.includes('employer') || email.includes('institution') || email.includes('college') || email.includes('university')) {
+      if (roleParam) {
+        // Use the role from URL parameter
+        role = roleParam;
+        name = roleParam === 'employer' ? 'Institution Representative' : 'Faculty Member';
+      } else if (email.includes('employer') || email.includes('institution') || email.includes('college') || email.includes('university')) {
+        // Fallback to email pattern detection
         role = 'employer';
         name = 'Institution Representative';
       } else {
