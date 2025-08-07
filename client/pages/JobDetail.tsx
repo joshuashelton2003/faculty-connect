@@ -148,8 +148,8 @@ export default function JobDetail() {
       navigate('/login', { state: { from: location.pathname } });
       return;
     }
-    if (user?.role !== 'candidate') {
-      alert('Only candidates can apply for jobs');
+    if (user?.role !== 'faculty' && user?.role !== 'candidate') {
+      alert('Only faculty members can apply for jobs');
       return;
     }
     applyMutation.mutate();
