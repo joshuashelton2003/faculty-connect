@@ -434,11 +434,18 @@ const FacultyDashboard: React.FC = () => {
                         </span>
                       </div>
                       <div className="flex space-x-2">
-                        <Button variant="outline" size="sm">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => navigate(`/jobs/${job.id}`)}
+                        >
                           <Eye className="w-4 h-4 mr-2" />
                           View Details
                         </Button>
-                        <Button size="sm">
+                        <Button
+                          size="sm"
+                          onClick={() => navigate(`/jobs/${job.id}`)}
+                        >
                           Apply Now
                         </Button>
                       </div>
