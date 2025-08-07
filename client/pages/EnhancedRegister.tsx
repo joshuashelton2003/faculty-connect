@@ -129,6 +129,13 @@ export default function EnhancedRegister() {
 
   const watchAllFields = watch();
 
+  // Set role from URL parameter on component mount
+  useEffect(() => {
+    if (roleParam) {
+      setValue('role', roleParam);
+    }
+  }, [roleParam, setValue]);
+
   const handleRoleSelect = (role: 'faculty' | 'employer') => {
     setSelectedRole(role);
     setValue('role', role);
