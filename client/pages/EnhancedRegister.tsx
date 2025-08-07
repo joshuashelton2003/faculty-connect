@@ -489,14 +489,14 @@ export default function EnhancedRegister() {
                       </div>
                     )}
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div>
-                        <Label htmlFor="password">Password *</Label>
-                        <div className="relative mt-1">
-                          <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        <Label htmlFor="password" className="text-sm font-semibold text-slate-700 mb-2 block">Password *</Label>
+                        <div className="relative mt-2">
+                          <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                           <Input
-                            {...register('password', { 
-                              required: 'Password is required', 
+                            {...register('password', {
+                              required: 'Password is required',
                               minLength: { value: 8, message: 'Password must be at least 8 characters' },
                               pattern: {
                                 value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
@@ -505,18 +505,18 @@ export default function EnhancedRegister() {
                             })}
                             type={showPassword ? 'text' : 'password'}
                             placeholder="Create a strong password"
-                            className="pl-10 pr-10"
+                            className="pl-12 pr-12 h-12 border-slate-300 rounded-xl focus:border-blue-500 focus:ring-blue-500 bg-slate-50 focus:bg-white transition-all duration-200"
                           />
                           <button
                             type="button"
-                            className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                            className="absolute inset-y-0 right-0 pr-4 flex items-center hover:text-blue-600 transition-colors"
                             onClick={() => setShowPassword(!showPassword)}
                           >
-                            {showPassword ? <EyeOff className="h-5 w-5 text-gray-400" /> : <Eye className="h-5 w-5 text-gray-400" />}
+                            {showPassword ? <EyeOff className="h-5 w-5 text-slate-400" /> : <Eye className="h-5 w-5 text-slate-400" />}
                           </button>
                         </div>
                         {errors.password && (
-                          <p className="text-red-600 text-sm mt-1">{errors.password.message}</p>
+                          <p className="text-red-600 text-sm mt-2 font-medium">{errors.password.message}</p>
                         )}
                       </div>
 
