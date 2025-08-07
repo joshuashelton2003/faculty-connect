@@ -18,6 +18,7 @@ import {
   Users,
   User,
   Building,
+  Building2,
   TrendingUp,
   BookOpen,
   Award,
