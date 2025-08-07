@@ -211,6 +211,15 @@ const App = () => (
             </ProtectedRoute>
           } />
 
+          {/* Settings Route - Accessible to both roles */}
+          <Route path="/settings" element={
+            <ProtectedRoute>
+              <Layout>
+                <Settings />
+              </Layout>
+            </ProtectedRoute>
+          } />
+
           {/* About and Contact Routes */}
           <Route path="/about" element={
             <Layout>
