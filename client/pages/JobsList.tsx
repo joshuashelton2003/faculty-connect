@@ -468,20 +468,22 @@ const JobsList: React.FC = () => {
                 ))}
               </div>
               
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-3">
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => navigate(`/jobs/${job.id}`)}
+                  onClick={() => handleViewDetails(job)}
+                  className="bg-gradient-to-r from-slate-100 to-gray-100 hover:from-blue-100 hover:to-indigo-100 border-2 border-slate-300 hover:border-blue-400 text-slate-700 hover:text-blue-700 font-semibold transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg"
                 >
+                  <Eye className="w-4 h-4 mr-2" />
                   View Details
                 </Button>
                 <Button
                   size="sm"
-                  onClick={() => navigate(`/jobs/${job.id}`)}
-                  className="bg-blue-600 hover:bg-blue-700"
+                  onClick={() => handleApplyNow(job)}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 transform"
                 >
-                  <ExternalLink className="w-4 h-4 mr-2" />
+                  <Briefcase className="w-4 h-4 mr-2" />
                   Apply Now
                 </Button>
               </div>
