@@ -226,7 +226,7 @@ const FacultyDashboard: React.FC = () => {
                     </div>
                     <div className="ml-4">
                       <p className="text-sm font-medium text-gray-600">Job Matches</p>
-                      <p className="text-2xl font-bold text-gray-900">24</p>
+                      <p className="text-2xl font-bold text-gray-900">{jobMatches.length}</p>
                     </div>
                   </div>
                 </CardContent>
