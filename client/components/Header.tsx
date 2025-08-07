@@ -9,7 +9,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Menu, X, User, LogOut, Briefcase } from 'lucide-react';
+import NotificationSystem from '@/components/NotificationSystem';
+import { Menu, X, User, LogOut, Briefcase, Settings } from 'lucide-react';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
