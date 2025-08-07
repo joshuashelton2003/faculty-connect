@@ -282,15 +282,26 @@ const FacultyDashboard: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Button className="h-auto p-4 flex flex-col items-center space-y-2">
+                  <Button
+                    className="h-auto p-4 flex flex-col items-center space-y-2"
+                    onClick={() => navigate('/jobs')}
+                  >
                     <Search className="w-6 h-6" />
                     <span>Browse Jobs</span>
                   </Button>
-                  <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
+                  <Button
+                    variant="outline"
+                    className="h-auto p-4 flex flex-col items-center space-y-2"
+                    onClick={() => navigate('/profile')}
+                  >
                     <Upload className="w-6 h-6" />
                     <span>Upload Resume</span>
                   </Button>
-                  <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
+                  <Button
+                    variant="outline"
+                    className="h-auto p-4 flex flex-col items-center space-y-2"
+                    onClick={() => navigate('/profile')}
+                  >
                     <Users className="w-6 h-6" />
                     <span>Update Profile</span>
                   </Button>
