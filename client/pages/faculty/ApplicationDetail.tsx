@@ -36,32 +36,52 @@ import {
 export default function ApplicationDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [isSaved, setIsSaved] = useState(false);
+  const [activeTab, setActiveTab] = useState('overview');
 
-  // Mock application data - in real app this would come from API
+  // Get real job data from comprehensive sample data
+  const jobData = allJobs.find(job => job.id === id) || allJobs[0];
+
+  // Get comprehensive institute data
+  const instituteData = allInstitutesData.find(inst =>
+    inst.name.toLowerCase() === jobData.institute.name.toLowerCase()
+  ) || allInstitutesData[0];
+
+  // Enhanced application data with real information
   const application = {
     id: id || 'app_1',
-    jobTitle: 'Assistant Professor - Computer Science',
-    institution: 'Anna University',
-    location: 'Chennai, Tamil Nadu',
+    jobTitle: jobData.title,
+    institution: jobData.institute.name,
+    location: `${jobData.location.city}, ${jobData.location.state}`,
     appliedDate: '2024-01-15',
     lastUpdate: '2024-01-20',
     status: 'under-review' as const,
-    salary: '₹50,000 - ₹70,000',
-    jobType: 'Full-time',
-    description: 'We are seeking a qualified Assistant Professor to join our Computer Science department. The candidate should have expertise in software engineering, data structures, and algorithms.',
-    requirements: [
-      'PhD in Computer Science or related field',
-      'Minimum 2 years teaching experience',
-      'Publications in peer-reviewed journals',
-      'Strong programming skills'
-    ],
+    salary: `₹${jobData.salary.min.toLocaleString()} - ₹${jobData.salary.max.toLocaleString()}`,
+    jobType: jobData.employmentType,
+    description: jobData.description,
+    requirements: jobData.requirements.education.concat(jobData.requirements.experience),
     applicationDetails: {
       resumeSubmitted: true,
       coverLetterSubmitted: true,
-      documentsUploaded: ['Resume.pdf', 'Cover_Letter.pdf', 'Certificates.pdf'],
-      applicationNotes: 'Application submitted successfully. All required documents have been uploaded.'
+      documentsUploaded: ['Resume.pdf', 'Cover_Letter.pdf', 'Certificates.pdf', 'PhD_Certificate.pdf'],
+      applicationNotes: 'Application submitted successfully. All required documents have been uploaded and verified.'
+    },
+    jobDetails: {
+      department: jobData.department,
+      deadline: jobData.deadline,
+      postedDate: jobData.createdAt,
+      applicationCount: jobData.applicationCount,
+      viewCount: jobData.viewCount,
+      isUrgent: jobData.isUrgent,
+      isRemote: jobData.isRemote
     }
   };
+
+  // Get related jobs from the same institution
+  const relatedJobs = allJobs.filter(job =>
+    job.institute.name === application.institution && job.id !== id
+  ).slice(0, 5);
 
   const getStatusColor = (status: string) => {
     const colors = {
