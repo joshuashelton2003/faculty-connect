@@ -442,7 +442,11 @@ const HomePage: React.FC = () => {
                         <Calendar className="w-3 h-3 mr-1" />
                         {job.deadline}
                       </Badge>
-                      <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                      <Button
+                        size="sm"
+                        className="bg-blue-600 hover:bg-blue-700"
+                        onClick={() => navigate('/jobs')}
+                      >
                         Apply Now
                       </Button>
                     </div>
