@@ -843,13 +843,13 @@ export default function EnhancedRegister() {
               </AnimatePresence>
 
               {/* Navigation Buttons */}
-              <div className="flex justify-between mt-8 pt-6 border-t border-gray-200">
+              <div className="flex justify-between mt-12 pt-8 border-t border-slate-200">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={prevStep}
                   disabled={currentStep === steps.roleSelection}
-                  className="px-6"
+                  className="px-8 py-3 h-12 border-slate-300 text-slate-600 hover:bg-slate-50 hover:border-slate-400 rounded-xl font-medium transition-all duration-200"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Previous
@@ -860,16 +860,16 @@ export default function EnhancedRegister() {
                     type="button"
                     onClick={nextStep}
                     disabled={!selectedRole && currentStep === steps.roleSelection}
-                    className="px-6"
+                    className="px-8 py-3 h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
                   >
-                    Next
+                    Next Step
                     <ArrowLeft className="w-4 h-4 ml-2 rotate-180" />
                   </Button>
                 ) : (
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="px-8 bg-blue-600 hover:bg-blue-700"
+                    className="px-10 py-3 h-12 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
                   >
                     {isLoading ? 'Creating Account...' : 'Create Account'}
                     <CheckCircle className="w-4 h-4 ml-2" />
