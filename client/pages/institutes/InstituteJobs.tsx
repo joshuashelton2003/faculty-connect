@@ -460,7 +460,11 @@ const InstituteJobs: React.FC = () => {
                           <Eye className="w-4 h-4 mr-2" />
                           View Details
                         </Button>
-                        <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                        <Button
+                          size="sm"
+                          className="bg-blue-600 hover:bg-blue-700"
+                          onClick={() => navigate(`/jobs/${job.id}`)}
+                        >
                           Apply Now
                         </Button>
                       </div>
