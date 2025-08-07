@@ -88,8 +88,8 @@ export default function EmployerDashboard() {
     }
   };
 
-  // Production posted jobs - using comprehensive data
-  const mockPostedJobs = productionJobs
+  // Real posted jobs using comprehensive data
+  const mockPostedJobs = allJobs
     .slice(0, 25) // Show 25 jobs for this employer
     .map(job => ({
       _id: job.id,
