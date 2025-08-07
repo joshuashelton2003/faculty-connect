@@ -54,6 +54,8 @@ import FacultyDashboard from "./pages/faculty/FacultyDashboard";
 
 // Institute Pages
 import InstitutesMain from "./pages/institutes/InstitutesMain";
+import InstituteDetails from "./pages/institutes/InstituteDetails";
+import InstituteJobs from "./pages/institutes/InstituteJobs";
 
 const queryClient = new QueryClient({
   defaultOptions: {
