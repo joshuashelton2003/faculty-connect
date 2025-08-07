@@ -508,6 +508,56 @@ export default function ApplicationDetail() {
             </Card>
           </div>
         </div>
+
+        {/* Additional Actions Footer */}
+        <div className="mt-8 bg-white rounded-lg border border-gray-200 p-6">
+          <div className="text-center">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Next Steps</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Card className="p-4">
+                <h4 className="font-medium text-gray-900 mb-2">View Similar Jobs</h4>
+                <p className="text-sm text-gray-600 mb-3">Find more opportunities matching your profile</p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => navigate('/jobs')}
+                  className="w-full"
+                >
+                  <Briefcase className="w-4 h-4 mr-2" />
+                  Browse Jobs
+                </Button>
+              </Card>
+
+              <Card className="p-4">
+                <h4 className="font-medium text-gray-900 mb-2">Track Applications</h4>
+                <p className="text-sm text-gray-600 mb-3">Monitor all your job applications in one place</p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => navigate('/faculty/dashboard')}
+                  className="w-full"
+                >
+                  <Eye className="w-4 h-4 mr-2" />
+                  View Dashboard
+                </Button>
+              </Card>
+
+              <Card className="p-4">
+                <h4 className="font-medium text-gray-900 mb-2">Share Application</h4>
+                <p className="text-sm text-gray-600 mb-3">Share this opportunity with colleagues</p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleShare}
+                  className="w-full"
+                >
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Share Now
+                </Button>
+              </Card>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
