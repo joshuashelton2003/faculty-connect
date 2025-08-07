@@ -93,7 +93,7 @@ export default function Header() {
                   <DropdownMenuContent align="end" className="w-48">
                     <DropdownMenuItem asChild>
                       <Link
-                        to={user?.role === 'employer' ? '/employer/dashboard' : '/dashboard'}
+                        to={user?.role === 'employer' ? '/employer/dashboard' : (user?.role === 'faculty' || user?.role === 'candidate' ? '/faculty/dashboard' : '/dashboard')}
                         className="flex items-center"
                       >
                         <Briefcase className="w-4 h-4 mr-2" />
