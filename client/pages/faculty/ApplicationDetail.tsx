@@ -366,24 +366,144 @@ export default function ApplicationDetail() {
               </CardContent>
             </Card>
 
+            {/* Institution Details */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Institution Information</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-2">{instituteData.name}</h4>
+                  <p className="text-sm text-gray-600 mb-3">{instituteData.description}</p>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-center text-sm">
+                    <Building2 className="w-4 h-4 mr-3 text-gray-500" />
+                    <span className="capitalize">{instituteData.type}</span>
+                  </div>
+
+                  <div className="flex items-center text-sm">
+                    <MapIcon className="w-4 h-4 mr-3 text-gray-500" />
+                    <span>{instituteData.location.city}, {instituteData.location.state}</span>
+                  </div>
+
+                  <div className="flex items-center text-sm">
+                    <Calendar className="w-4 h-4 mr-3 text-gray-500" />
+                    <span>Established {instituteData.established}</span>
+                  </div>
+
+                  <div className="flex items-center text-sm">
+                    <Star className="w-4 h-4 mr-3 text-gray-500" />
+                    <span>{instituteData.ranking ? `Ranked #${instituteData.ranking}` : 'Premier Institution'}</span>
+                  </div>
+
+                  {instituteData.website && (
+                    <div className="flex items-center text-sm">
+                      <Globe className="w-4 h-4 mr-3 text-gray-500" />
+                      <a
+                        href={instituteData.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        Visit Website
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                <div className="pt-4 border-t border-gray-200">
+                  <h5 className="font-medium text-gray-900 mb-2">Contact Information</h5>
+                  <div className="space-y-2">
+                    <div className="flex items-center text-sm">
+                      <Mail className="w-4 h-4 mr-3 text-gray-500" />
+                      <span className="text-gray-700">{instituteData.email}</span>
+                    </div>
+                    <div className="flex items-center text-sm">
+                      <Phone className="w-4 h-4 mr-3 text-gray-500" />
+                      <span className="text-gray-700">{instituteData.phone}</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Quick Actions */}
             <Card>
               <CardHeader>
-                <CardTitle>Actions</CardTitle>
+                <CardTitle>Quick Actions</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <Button variant="outline" className="w-full">
-                  <FileText className="w-4 h-4 mr-2" />
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={handleDownload}
+                >
+                  <Download className="w-4 h-4 mr-2" />
                   Download Application
                 </Button>
-                <Button variant="outline" className="w-full">
+
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={handleContactEmployer}
+                >
                   <Mail className="w-4 h-4 mr-2" />
                   Contact Employer
                 </Button>
-                <Button variant="outline" className="w-full">
-                  <Eye className="w-4 h-4 mr-2" />
+
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={handleViewJob}
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
                   View Job Posting
                 </Button>
+
+                <Button
+                  className="w-full bg-blue-600 hover:bg-blue-700"
+                  onClick={() => navigate('/jobs')}
+                >
+                  <Briefcase className="w-4 h-4 mr-2" />
+                  Browse More Jobs
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Related Jobs */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Related Jobs at {application.institution}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {relatedJobs.map((job) => (
+                    <div key={job.id} className="p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                      <h4 className="font-medium text-gray-900 mb-1">{job.title}</h4>
+                      <p className="text-sm text-gray-600 mb-2">{job.department}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-green-600 font-medium">
+                          ₹{job.salary.min.toLocaleString()} - ₹{job.salary.max.toLocaleString()}
+                        </span>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleApplyToSimilar(job.id)}
+                        >
+                          View
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+
+                  {relatedJobs.length === 0 && (
+                    <p className="text-sm text-gray-500 text-center py-4">
+                      No other jobs available at this institution currently.
+                    </p>
+                  )}
+                </div>
               </CardContent>
             </Card>
           </div>
