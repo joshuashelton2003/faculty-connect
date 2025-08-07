@@ -302,11 +302,11 @@ export default function EnhancedRegister() {
           </div>
         </div>
 
-        <Card className="bg-white shadow-xl border border-gray-200">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-center text-xl text-gray-800">{getStepTitle()}</CardTitle>
+        <Card className="bg-white shadow-2xl border-0 rounded-2xl overflow-hidden backdrop-blur-sm">
+          <CardHeader className="pb-6 bg-gradient-to-r from-slate-50 to-blue-50 border-b border-slate-100">
+            <CardTitle className="text-center text-2xl font-bold text-slate-800 tracking-wide">{getStepTitle()}</CardTitle>
           </CardHeader>
-          <CardContent className="p-8">
+          <CardContent className="p-10 sm:p-12">
             <form onSubmit={handleSubmit(onSubmit)}>
               <AnimatePresence mode="wait">
                 {/* Step 1: Role Selection */}
