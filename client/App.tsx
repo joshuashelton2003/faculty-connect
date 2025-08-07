@@ -150,6 +150,14 @@ const App = () => (
             </ProtectedRoute>
           } />
 
+          <Route path="/applications/:id" element={
+            <ProtectedRoute requiredRole="faculty">
+              <Layout>
+                <ApplicationDetail />
+              </Layout>
+            </ProtectedRoute>
+          } />
+
           {/* Legacy Candidate Routes - Redirect to Faculty */}
           <Route path="/candidate/dashboard" element={
             <ProtectedRoute requiredRole="faculty">
