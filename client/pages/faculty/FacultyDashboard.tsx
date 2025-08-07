@@ -240,7 +240,7 @@ const FacultyDashboard: React.FC = () => {
                     </div>
                     <div className="ml-4">
                       <p className="text-sm font-medium text-gray-600">Applications</p>
-                      <p className="text-2xl font-bold text-gray-900">8</p>
+                      <p className="text-2xl font-bold text-gray-900">{applications.length}</p>
                     </div>
                   </div>
                 </CardContent>
