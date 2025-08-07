@@ -113,13 +113,13 @@ const App = () => (
 
           <Route path="/institutes/:id" element={
             <Layout>
-              <Institutes />
+              <InstituteDetails />
             </Layout>
           } />
 
           <Route path="/institutes/:id/jobs" element={
             <Layout>
-              <JobsList />
+              <InstituteJobs />
             </Layout>
           } />
 
