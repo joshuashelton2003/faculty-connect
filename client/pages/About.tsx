@@ -85,14 +85,14 @@ export default function About() {
       image: ''
     },
     {
-      name: 'Joshua Shelton',
+      name: 'Dr. Joshua Shelton',
       role: 'Head of Operations',
       education: 'MCA from IIM Chennai',
       experience: '12+ years in HR & Recruitment',
       image: ''
     },
     {
-      name: 'Manikandan',
+      name: 'Dr. Manikandan',
       role: 'CTO',
       education: 'MCA from Anna University',
       experience: '10+ years in Product Development',
