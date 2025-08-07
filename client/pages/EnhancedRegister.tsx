@@ -319,39 +319,41 @@ export default function EnhancedRegister() {
                     transition={{ duration: 0.3 }}
                     className="space-y-6"
                   >
-                    <div className="text-center mb-8">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">I want to join as:</h3>
-                      <p className="text-gray-600">Choose your role to get started</p>
+                    <div className="text-center mb-10">
+                      <h3 className="text-2xl font-bold text-slate-800 mb-3">I want to join as:</h3>
+                      <p className="text-slate-600 text-lg">Choose your role to get started on your academic journey</p>
                     </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <motion.button
                         type="button"
                         onClick={() => handleRoleSelect('faculty')}
-                        className="group p-8 border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all text-left"
-                        whileHover={{ scale: 1.02 }}
+                        className="group p-8 border-2 border-slate-200 rounded-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 transition-all duration-300 text-left shadow-lg hover:shadow-xl"
+                        whileHover={{ scale: 1.02, y: -4 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <div className="flex items-center mb-4">
-                          <div className="p-3 bg-blue-100 rounded-lg mr-4 group-hover:bg-blue-200 transition-colors">
+                        <div className="flex items-center mb-6">
+                          <div className="p-4 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl mr-4 group-hover:from-blue-200 group-hover:to-blue-300 transition-all duration-300 shadow-md">
                             <GraduationCap className="w-8 h-8 text-blue-600" />
                           </div>
                           <div>
-                            <h4 className="text-xl font-semibold text-gray-900 mb-1">Faculty</h4>
-                            <Badge className="bg-green-100 text-green-800">For Educators</Badge>
+                            <h4 className="text-2xl font-bold text-slate-800 mb-2">Faculty</h4>
+                            <Badge className="bg-emerald-100 text-emerald-700 font-medium px-3 py-1">For Educators</Badge>
                           </div>
                         </div>
-                        <p className="text-gray-600 text-sm leading-relaxed">
-                          I'm an educator looking for teaching positions at schools, colleges, and universities. 
+                        <p className="text-slate-600 leading-relaxed mb-4">
+                          I'm an educator looking for teaching positions at schools, colleges, and universities.
                           I want to find opportunities that match my expertise and career goals.
                         </p>
-                        <div className="mt-4 flex items-center text-sm text-blue-600">
-                          <CheckCircle className="w-4 h-4 mr-2" />
-                          <span>Access to teaching jobs</span>
-                        </div>
-                        <div className="flex items-center text-sm text-blue-600">
-                          <CheckCircle className="w-4 h-4 mr-2" />
-                          <span>Profile showcase</span>
+                        <div className="space-y-2">
+                          <div className="flex items-center text-sm text-blue-600 font-medium">
+                            <CheckCircle className="w-4 h-4 mr-3" />
+                            <span>Access to teaching jobs</span>
+                          </div>
+                          <div className="flex items-center text-sm text-blue-600 font-medium">
+                            <CheckCircle className="w-4 h-4 mr-3" />
+                            <span>Profile showcase</span>
+                          </div>
                         </div>
                       </motion.button>
 
