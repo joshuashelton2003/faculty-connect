@@ -29,7 +29,7 @@ import {
   Briefcase,
   GraduationCap,
   Star,
-  MapIcon,
+  Map as MapIcon,
   Building2
 } from 'lucide-react';
 
