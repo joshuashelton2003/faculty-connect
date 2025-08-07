@@ -249,6 +249,66 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
             </motion.div>
+
+            {/* Role-based Call to Actions */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+            >
+              {/* Faculty CTA */}
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 text-center border border-blue-200">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <GraduationCap className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">For Educators</h3>
+                <p className="text-gray-600 mb-6">
+                  Find your dream teaching position at top institutions across India
+                </p>
+                <div className="space-y-3">
+                  <Button
+                    onClick={() => navigate('/login?role=faculty')}
+                    className="w-full bg-blue-600 hover:bg-blue-700"
+                  >
+                    Faculty Sign In
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => navigate('/register?role=faculty')}
+                    className="w-full border-blue-300 text-blue-700 hover:bg-blue-50"
+                  >
+                    Join as Faculty
+                  </Button>
+                </div>
+              </div>
+
+              {/* Employer CTA */}
+              <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8 text-center border border-green-200">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Building2 className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">For Institutions</h3>
+                <p className="text-gray-600 mb-6">
+                  Post jobs and find qualified faculty for your institution
+                </p>
+                <div className="space-y-3">
+                  <Button
+                    onClick={() => navigate('/login?role=employer')}
+                    className="w-full bg-green-600 hover:bg-green-700"
+                  >
+                    Employer Sign In
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => navigate('/register?role=employer')}
+                    className="w-full border-green-300 text-green-700 hover:bg-green-50"
+                  >
+                    Post Jobs
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
