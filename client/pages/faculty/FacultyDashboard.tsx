@@ -31,6 +31,8 @@ import {
   Building
 } from 'lucide-react';
 import { useAuthStore } from '@/store/authStore';
+import { allJobs, allCandidates } from '@/data/comprehensiveSampleData';
+import { useNavigate } from 'react-router-dom';
 
 interface JobMatch {
   id: string;
