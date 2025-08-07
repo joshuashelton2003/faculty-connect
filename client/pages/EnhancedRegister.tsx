@@ -400,30 +400,30 @@ export default function EnhancedRegister() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.3 }}
-                    className="space-y-6"
+                    className="space-y-8"
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div>
-                        <Label htmlFor="firstName">First Name *</Label>
+                        <Label htmlFor="firstName" className="text-sm font-semibold text-slate-700 mb-2 block">First Name *</Label>
                         <Input
                           {...register('firstName', { required: 'First name is required' })}
                           placeholder="Enter your first name"
-                          className="mt-1"
+                          className="mt-2 h-12 border-slate-300 rounded-xl focus:border-blue-500 focus:ring-blue-500 bg-slate-50 focus:bg-white transition-all duration-200"
                         />
                         {errors.firstName && (
-                          <p className="text-red-600 text-sm mt-1">{errors.firstName.message}</p>
+                          <p className="text-red-600 text-sm mt-2 font-medium">{errors.firstName.message}</p>
                         )}
                       </div>
 
                       <div>
-                        <Label htmlFor="lastName">Last Name *</Label>
+                        <Label htmlFor="lastName" className="text-sm font-semibold text-slate-700 mb-2 block">Last Name *</Label>
                         <Input
                           {...register('lastName', { required: 'Last name is required' })}
                           placeholder="Enter your last name"
-                          className="mt-1"
+                          className="mt-2 h-12 border-slate-300 rounded-xl focus:border-blue-500 focus:ring-blue-500 bg-slate-50 focus:bg-white transition-all duration-200"
                         />
                         {errors.lastName && (
-                          <p className="text-red-600 text-sm mt-1">{errors.lastName.message}</p>
+                          <p className="text-red-600 text-sm mt-2 font-medium">{errors.lastName.message}</p>
                         )}
                       </div>
                     </div>
