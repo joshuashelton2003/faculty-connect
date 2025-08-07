@@ -360,30 +360,32 @@ export default function EnhancedRegister() {
                       <motion.button
                         type="button"
                         onClick={() => handleRoleSelect('employer')}
-                        className="group p-8 border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all text-left"
-                        whileHover={{ scale: 1.02 }}
+                        className="group p-8 border-2 border-slate-200 rounded-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-emerald-50 transition-all duration-300 text-left shadow-lg hover:shadow-xl"
+                        whileHover={{ scale: 1.02, y: -4 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <div className="flex items-center mb-4">
-                          <div className="p-3 bg-blue-100 rounded-lg mr-4 group-hover:bg-blue-200 transition-colors">
-                            <Building className="w-8 h-8 text-blue-600" />
+                        <div className="flex items-center mb-6">
+                          <div className="p-4 bg-gradient-to-br from-green-100 to-green-200 rounded-xl mr-4 group-hover:from-green-200 group-hover:to-green-300 transition-all duration-300 shadow-md">
+                            <Building className="w-8 h-8 text-green-600" />
                           </div>
                           <div>
-                            <h4 className="text-xl font-semibold text-gray-900 mb-1">Institution</h4>
-                            <Badge className="bg-purple-100 text-purple-800">For Employers</Badge>
+                            <h4 className="text-2xl font-bold text-slate-800 mb-2">Institution</h4>
+                            <Badge className="bg-purple-100 text-purple-700 font-medium px-3 py-1">For Employers</Badge>
                           </div>
                         </div>
-                        <p className="text-gray-600 text-sm leading-relaxed">
-                          I represent an educational institution and want to post job openings, 
+                        <p className="text-slate-600 leading-relaxed mb-4">
+                          I represent an educational institution and want to post job openings,
                           find qualified faculty members, and manage recruitment efficiently.
                         </p>
-                        <div className="mt-4 flex items-center text-sm text-blue-600">
-                          <CheckCircle className="w-4 h-4 mr-2" />
-                          <span>Post unlimited jobs</span>
-                        </div>
-                        <div className="flex items-center text-sm text-blue-600">
-                          <CheckCircle className="w-4 h-4 mr-2" />
-                          <span>Access to qualified candidates</span>
+                        <div className="space-y-2">
+                          <div className="flex items-center text-sm text-green-600 font-medium">
+                            <CheckCircle className="w-4 h-4 mr-3" />
+                            <span>Post unlimited jobs</span>
+                          </div>
+                          <div className="flex items-center text-sm text-green-600 font-medium">
+                            <CheckCircle className="w-4 h-4 mr-3" />
+                            <span>Access to qualified candidates</span>
+                          </div>
                         </div>
                       </motion.button>
                     </div>
