@@ -698,8 +698,8 @@ const JobsList: React.FC = () => {
           </div>
           
           {/* Search Bar */}
-          <Card className="bg-white border border-gray-200 shadow-md rounded-xl">
-            <CardContent className="p-6">
+          <Card className="bg-gradient-to-r from-white to-slate-50 border border-slate-200 shadow-xl rounded-2xl">
+            <CardContent className="p-8">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1">
                   <div className="relative">
