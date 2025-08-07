@@ -429,11 +429,11 @@ export default function EnhancedRegister() {
                     </div>
 
                     <div>
-                      <Label htmlFor="email">Email Address *</Label>
-                      <div className="relative mt-1">
-                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <Label htmlFor="email" className="text-sm font-semibold text-slate-700 mb-2 block">Email Address *</Label>
+                      <div className="relative mt-2">
+                        <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                         <Input
-                          {...register('email', { 
+                          {...register('email', {
                             required: 'Email is required',
                             pattern: {
                               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -441,21 +441,21 @@ export default function EnhancedRegister() {
                             }
                           })}
                           type="email"
-                          placeholder="Enter your email"
-                          className="pl-10"
+                          placeholder="Enter your email address"
+                          className="pl-12 h-12 border-slate-300 rounded-xl focus:border-blue-500 focus:ring-blue-500 bg-slate-50 focus:bg-white transition-all duration-200"
                         />
                       </div>
                       {errors.email && (
-                        <p className="text-red-600 text-sm mt-1">{errors.email.message}</p>
+                        <p className="text-red-600 text-sm mt-2 font-medium">{errors.email.message}</p>
                       )}
                     </div>
 
                     <div>
-                      <Label htmlFor="phone">Phone Number *</Label>
-                      <div className="relative mt-1">
-                        <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <Label htmlFor="phone" className="text-sm font-semibold text-slate-700 mb-2 block">Phone Number *</Label>
+                      <div className="relative mt-2">
+                        <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                         <Input
-                          {...register('phone', { 
+                          {...register('phone', {
                             required: 'Phone number is required',
                             pattern: {
                               value: /^[+]?[1-9][\d\s\-\(\)]{8,15}$/,
@@ -464,7 +464,7 @@ export default function EnhancedRegister() {
                           })}
                           type="tel"
                           placeholder="Enter your phone number"
-                          className="pl-10"
+                          className="pl-12 h-12 border-slate-300 rounded-xl focus:border-blue-500 focus:ring-blue-500 bg-slate-50 focus:bg-white transition-all duration-200"
                         />
                       </div>
                       {errors.phone && (
