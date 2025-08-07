@@ -862,20 +862,21 @@ export default function EnhancedRegister() {
                 )}
               </div>
             </form>
+
+            {/* Sign In Link */}
+            <div className="mt-8 text-center">
+              <p className="text-sm text-gray-600">
+                Already have an account?{' '}
+                <Link
+                  to={selectedRole ? `/login?role=${selectedRole}` : "/login"}
+                  className="font-medium text-blue-600 hover:text-blue-500"
+                >
+                  Sign in here
+                </Link>
+              </p>
+            </div>
           </CardContent>
         </Card>
-
-        <div className="text-center mt-6">
-          <p className="text-sm text-gray-600">
-            Already have an account?{' '}
-            <Link
-              to={selectedRole ? `/login?role=${selectedRole}` : "/login"}
-              className="font-medium text-blue-600 hover:text-blue-500"
-            >
-              Sign in here
-            </Link>
-          </p>
-        </div>
       </div>
     </div>
   );
