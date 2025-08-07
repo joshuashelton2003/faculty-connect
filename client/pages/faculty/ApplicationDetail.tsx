@@ -1,18 +1,36 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
-  ArrowLeft, 
-  Building, 
-  MapPin, 
-  Calendar, 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useToast } from '@/hooks/use-toast';
+import { allJobs } from '@/data/comprehensiveSampleData';
+import { allInstitutesData } from '@/data/enhancedInstitutesData';
+import {
+  ArrowLeft,
+  Building,
+  MapPin,
+  Calendar,
   Clock,
   CheckCircle,
   Eye,
   FileText,
   Mail,
-  Phone
+  Phone,
+  Share2,
+  Bookmark,
+  BookmarkCheck,
+  Globe,
+  Users,
+  Award,
+  ExternalLink,
+  Download,
+  Briefcase,
+  GraduationCap,
+  Star,
+  MapIcon,
+  Building2
 } from 'lucide-react';
 
 export default function ApplicationDetail() {
