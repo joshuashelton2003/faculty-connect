@@ -104,29 +104,34 @@ export default function EmployerDashboard() {
       viewsCount: job.viewCount
     }));
 
-  // Production applications - comprehensive data
+  // Real applications using comprehensive candidate data
   const jobIds = mockPostedJobs.map(job => job._id);
-  const mockApplications = productionApplications
-    .filter(app => jobIds.includes(app.jobId))
+  const mockApplications = allCandidates
     .slice(0, 200) // Show 200 applications for this employer
-    .map(app => ({
-      _id: app.id,
-      jobId: app.jobId,
-      jobTitle: app.job.title,
-      candidate: {
-        _id: app.candidate.id,
-        name: app.candidate.name,
-        email: app.candidate.email,
-        phone: app.candidate.phone,
-        location: `${app.candidate.profile.location.city}, ${app.candidate.profile.location.state}`,
-        education: app.candidate.profile.qualifications[0] || 'PhD',
-        experience: `${Math.floor(Math.random() * 15) + 1} years`,
-        appliedDate: new Date(app.applicationDate).toLocaleDateString(),
-        profileImage: app.candidate.profileImage
-      },
-      status: app.status,
-      rating: Math.floor(Math.random() * 5) + 1
-    }));
+    .map((candidate, index) => {
+      const jobId = jobIds[Math.floor(Math.random() * jobIds.length)];
+      const job = mockPostedJobs.find(j => j._id === jobId);
+      const statuses = ['submitted', 'under-review', 'shortlisted', 'interviewed', 'selected', 'rejected'];
+
+      return {
+        _id: `app_${index + 1}`,
+        jobId: jobId,
+        jobTitle: job?.title || 'Assistant Professor',
+        candidate: {
+          _id: candidate.id,
+          name: candidate.name,
+          email: candidate.email,
+          phone: candidate.phone,
+          location: `${candidate.profile.location.city}, ${candidate.profile.location.state}`,
+          education: candidate.profile.qualifications[0] || 'PhD',
+          experience: `${Math.floor(Math.random() * 15) + 1} years`,
+          appliedDate: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString(),
+          profileImage: candidate.profileImage
+        },
+        status: statuses[Math.floor(Math.random() * statuses.length)],
+        rating: Math.floor(Math.random() * 5) + 1
+      };
+    });
 
   const [selectedJob, setSelectedJob] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
