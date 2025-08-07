@@ -680,7 +680,7 @@ const InstitutesMain: React.FC = () => {
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Educational Institutes</h1>
               <p className="text-gray-600">
-                Discover {institutes.length} educational institutions across India
+                Discover {sortedAndFilteredInstitutes.length} educational institutions across India
               </p>
             </div>
             
