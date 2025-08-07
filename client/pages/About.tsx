@@ -78,28 +78,28 @@ export default function About() {
 
   const teamMembers = [
     {
-      name: 'Dr. Rajesh Kumar',
+      name: 'Dr. Sathyan',
       role: 'Founder & CEO',
       education: 'PhD in Computer Science, IIT Madras',
       experience: '15+ years in EdTech',
       image: ''
     },
     {
-      name: 'Priya Sharma',
+      name: 'Joshua Shelton',
       role: 'Head of Operations',
-      education: 'MBA from IIM Chennai',
+      education: 'MCA from IIM Chennai',
       experience: '12+ years in HR & Recruitment',
       image: ''
     },
     {
-      name: 'Suresh Krishnan',
+      name: 'Manikandan',
       role: 'CTO',
-      education: 'M.Tech from Anna University',
+      education: 'MCA from Anna University',
       experience: '10+ years in Product Development',
       image: ''
     },
     {
-      name: 'Dr. Meera Nair',
+      name: 'Dr. Christypunitha',
       role: 'Head of Partnerships',
       education: 'PhD in Education, University of Madras',
       experience: '18+ years in Academic Administration',
