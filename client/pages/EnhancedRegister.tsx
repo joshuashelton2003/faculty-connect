@@ -879,12 +879,12 @@ export default function EnhancedRegister() {
             </form>
 
             {/* Sign In Link */}
-            <div className="mt-8 text-center">
-              <p className="text-sm text-gray-600">
+            <div className="mt-10 text-center">
+              <p className="text-slate-600 text-lg">
                 Already have an account?{' '}
                 <Link
                   to={selectedRole ? `/login?role=${selectedRole}` : "/login"}
-                  className="font-medium text-blue-600 hover:text-blue-500"
+                  className="font-semibold text-blue-600 hover:text-blue-700 underline underline-offset-2 hover:underline-offset-4 transition-all duration-200"
                 >
                   Sign in here
                 </Link>
