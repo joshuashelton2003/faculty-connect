@@ -107,7 +107,26 @@ const InstitutesMain: React.FC = () => {
 
   // Enhanced filtering and sorting logic
   const sortedAndFilteredInstitutes = React.useMemo(() => {
-    let result = [...(filteredInstitutes.length > 0 ? filteredInstitutes : allInstitutesData)];
+    // Always use allInstitutesData as the primary source
+    let result = institutes.length > 0 ? [...institutes] : [...allInstitutesData];
+
+    // Apply local filtering
+    if (searchTerm) {
+      result = result.filter(institute =>
+        institute.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        institute.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        institute.location.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        institute.location.state.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    if (typeFilter !== 'all') {
+      result = result.filter(institute => institute.type === typeFilter);
+    }
+
+    if (locationFilter !== 'all-locations') {
+      result = result.filter(institute => institute.location.state === locationFilter);
+    }
 
     // Apply sorting
     result.sort((a, b) => {
@@ -124,7 +143,7 @@ const InstitutesMain: React.FC = () => {
     });
 
     return result;
-  }, [filteredInstitutes, allInstitutesData, sortBy]);
+  }, [institutes, allInstitutesData, searchTerm, typeFilter, locationFilter, sortBy]);
 
   // Pagination logic
   const totalPages = Math.ceil(sortedAndFilteredInstitutes.length / itemsPerPage);
