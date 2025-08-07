@@ -468,23 +468,23 @@ export default function EnhancedRegister() {
                         />
                       </div>
                       {errors.phone && (
-                        <p className="text-red-600 text-sm mt-1">{errors.phone.message}</p>
+                        <p className="text-red-600 text-sm mt-2 font-medium">{errors.phone.message}</p>
                       )}
                     </div>
 
                     {selectedRole === 'employer' && (
                       <div>
-                        <Label htmlFor="designation">Your Designation *</Label>
-                        <div className="relative mt-1">
-                          <Briefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        <Label htmlFor="designation" className="text-sm font-semibold text-slate-700 mb-2 block">Your Designation *</Label>
+                        <div className="relative mt-2">
+                          <Briefcase className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                           <Input
                             {...register('designation', { required: 'Designation is required' })}
                             placeholder="e.g., HR Manager, Principal, Dean"
-                            className="pl-10"
+                            className="pl-12 h-12 border-slate-300 rounded-xl focus:border-blue-500 focus:ring-blue-500 bg-slate-50 focus:bg-white transition-all duration-200"
                           />
                         </div>
                         {errors.designation && (
-                          <p className="text-red-600 text-sm mt-1">{errors.designation.message}</p>
+                          <p className="text-red-600 text-sm mt-2 font-medium">{errors.designation.message}</p>
                         )}
                       </div>
                     )}
