@@ -728,8 +728,12 @@ const JobsList: React.FC = () => {
                     </SelectContent>
                   </Select>
                   
-                  <Button onClick={handleSearch} disabled={isLoading}>
-                    {isLoading ? 'Searching...' : 'Search'}
+                  <Button
+                    onClick={handleSearch}
+                    disabled={isLoading}
+                    className="h-12 px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  >
+                    {isLoading ? 'Searching...' : '🔍 Search'}
                   </Button>
                   
                   <Button
