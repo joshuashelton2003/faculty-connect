@@ -688,12 +688,12 @@ const JobsList: React.FC = () => {
       </div>
 
       {/* Header Section */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Faculty Jobs</h1>
-            <p className="text-gray-600">
-              Find your perfect teaching position from {jobs.length} available opportunities
+      <div className="bg-gradient-to-r from-white via-blue-50 to-indigo-50 border-b border-slate-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="mb-8">
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-slate-800 via-blue-700 to-purple-700 bg-clip-text text-transparent mb-4">Faculty Jobs</h1>
+            <p className="text-xl text-slate-600 font-medium">
+              🎓 Find your perfect teaching position from <span className="font-bold text-blue-600">{jobs.length}</span> available opportunities
             </p>
           </div>
           
