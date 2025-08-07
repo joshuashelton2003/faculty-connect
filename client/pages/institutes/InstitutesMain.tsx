@@ -95,14 +95,9 @@ const InstitutesMain: React.FC = () => {
   });
 
   useEffect(() => {
-    // Use enhanced institutes data
-    if (institutes.length === 0) {
-      // Simulate loading the enhanced data with pagination
-      setTimeout(() => {
-        console.log('Loading enhanced institutes data:', allInstitutesData.length, 'institutes');
-      }, 100);
-    }
+    // Load enhanced institutes data
     fetchInstitutes();
+    console.log('Total institutes available:', allInstitutesData.length);
   }, [fetchInstitutes]);
 
   // Enhanced filtering and sorting logic
