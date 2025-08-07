@@ -213,7 +213,8 @@ const HomePage: React.FC = () => {
                         <SelectItem value="Coimbatore">Coimbatore</SelectItem>
                         <SelectItem value="Madurai">Madurai</SelectItem>
                         <SelectItem value="Tiruchirappalli">Tiruchirappalli</SelectItem>
-                        <SelectItem value="Salem">Salem</SelectItem>
+                        <SelectItem value="Salem">Salem</SelectItem>  
+                        <SelectItem value="Erode">Erode</SelectItem>                   
                       </SelectContent>
                     </Select>
                   </div>
