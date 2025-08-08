@@ -160,7 +160,7 @@ const HomePage: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-white opacity-80"
             >
-              Find the best teaching opportunities that suit your expertise and passion.
+              Discover opportunities in Polytechnics, ITI, Engineering, Arts & Science and Schools. Your teaching career starts here.
             </motion.p>
 
             {/* Hero Search - Compact Transparent */}
