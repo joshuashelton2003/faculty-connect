@@ -281,31 +281,31 @@ const JobManager: React.FC = () => {
                 <SelectValue placeholder="All Locations" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Locations</SelectItem>
+                <SelectItem value="all">All Locations</SelectItem>
                 <SelectItem value="Chennai">Chennai</SelectItem>
                 <SelectItem value="Coimbatore">Coimbatore</SelectItem>
                 <SelectItem value="Tiruchirappalli">Tiruchirappalli</SelectItem>
               </SelectContent>
             </Select>
-            
+
             <Select value={typeFilter} onValueChange={setTypeFilter}>
               <SelectTrigger>
                 <SelectValue placeholder="All Types" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Types</SelectItem>
+                <SelectItem value="all">All Types</SelectItem>
                 <SelectItem value="Full-Time">Full-Time</SelectItem>
                 <SelectItem value="Part-Time">Part-Time</SelectItem>
                 <SelectItem value="Contract">Contract</SelectItem>
               </SelectContent>
             </Select>
-            
+
             <Select value={statusFilter} onValueChange={setStatusFilter}>
               <SelectTrigger>
                 <SelectValue placeholder="All Status" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Status</SelectItem>
+                <SelectItem value="all">All Status</SelectItem>
                 <SelectItem value="active">Active</SelectItem>
                 <SelectItem value="inactive">Inactive</SelectItem>
               </SelectContent>
