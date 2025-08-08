@@ -100,7 +100,7 @@ const App = () => (
           
           <Route path="/jobs" element={
             <Layout>
-              <JobsList />
+              <Jobs />
             </Layout>
           } />
           
