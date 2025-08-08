@@ -104,36 +104,19 @@ const HomePage: React.FC = () => {
     }
   ];
 
-  // Recent job postings
-  const recentJobs = [
-    {
-      title: 'Assistant Professor - Computer Science',
-      institute: 'Anna University',
-      location: 'Chennai, Tamil Nadu',
-      salary: '₹60,000 - ₹85,000',
-      postedDate: '2 days ago',
-      applicants: 28,
-      deadline: '15 days left'
-    },
-    {
-      title: 'Mathematics Lecturer',
-      institute: 'PSG College of Technology',
-      location: 'Coimbatore, Tamil Nadu',
-      salary: '₹45,000 - ₹65,000',
-      postedDate: '1 day ago',
-      applicants: 19,
-      deadline: '20 days left'
-    },
-    {
-      title: 'Physics Professor',
-      institute: 'NIT Trichy',
-      location: 'Tiruchirappalli, Tamil Nadu',
-      salary: '₹80,000 - ₹1,20,000',
-      postedDate: '3 days ago',
-      applicants: 35,
-      deadline: '12 days left'
-    }
-  ];
+  // Get recent jobs from sample data (first 3)
+  const recentJobs = sampleJobs.slice(0, 3);
+
+  // Handle job actions
+  const handleViewDetails = (job: any) => {
+    // Navigate to job details page
+    navigate(`/jobs/${job.id}`);
+  };
+
+  const handleApply = (job: any) => {
+    // Navigate to application form
+    navigate(`/apply/${job.id}`);
+  };
 
   // Success stories
   const testimonials = [
