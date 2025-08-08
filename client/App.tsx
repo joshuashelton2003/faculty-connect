@@ -308,6 +308,15 @@ const App = () => (
           />
 
           <Route
+            path="/how-it-works"
+            element={
+              <Layout>
+                <HowItWorks />
+              </Layout>
+            }
+          />
+
+          <Route
             path="/contact"
             element={
               <Layout>
