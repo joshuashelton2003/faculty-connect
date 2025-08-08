@@ -179,7 +179,7 @@ const HomePage: React.FC = () => {
                       placeholder="Job title, subject, or keywords..."
                       value={searchKeywords}
                       onChange={(e) => setSearchKeywords(e.target.value)}
-                      className="pl-10 h-12 text-white placeholder-white/0 bg-white/10 border-white/30 focus:border-white/50 backdrop-blur-sm"
+                      className="pl-10 h-12 text-white bg-white/10 border-white/30 focus:border-white/50 backdrop-blur-sm"
                     />
                   </div>
                 </div>
