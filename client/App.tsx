@@ -14,7 +14,7 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 
 // Pages
 import HomePage from "./pages/HomePage";
-import JobsList from "./pages/JobsList";
+import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
 import Institutes from "./pages/Institutes";
 import Login from "./pages/Login";
