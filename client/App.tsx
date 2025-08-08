@@ -24,6 +24,7 @@ import EmployerDashboard from "./pages/EmployerDashboard";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
+import HowItWorks from "./pages/HowItWorks";
 import SuccessStories from "./pages/SuccessStories";
 import Help from "./pages/Help";
 import CareerTips from "./pages/CareerTips";
