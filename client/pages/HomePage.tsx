@@ -173,8 +173,7 @@ const HomePage: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto"
-              style={{ fontSize: '22px', color: '#ffffffcc' }}
+              className="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-white opacity-80"
             >
               Find the best teaching opportunities that suit your expertise and passion.
             </motion.p>
