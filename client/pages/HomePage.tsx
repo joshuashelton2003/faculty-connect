@@ -452,51 +452,13 @@ const HomePage: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {recentJobs.map((job, index) => (
-              <motion.div
-                key={job.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="hover:shadow-lg transition-all duration-300 cursor-pointer bg-white border border-gray-200">
-                  <CardContent className="p-6">
-                    <div className="mb-4">
-                      <h3 className="font-semibold text-gray-900 mb-2">{job.title}</h3>
-                      <p className="text-gray-600 text-sm mb-1">{job.institute}</p>
-                      <p className="text-gray-500 text-xs">{job.location}</p>
-                    </div>
-                    
-                    <div className="space-y-2 text-sm mb-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Salary:</span>
-                        <span className="font-medium text-green-600">{job.salary}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Posted:</span>
-                        <span className="text-gray-900">{job.postedDate}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Applicants:</span>
-                        <span className="text-gray-900">{job.applicants}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <Badge variant="outline" className="text-orange-600 border-orange-200">
-                        <Calendar className="w-3 h-3 mr-1" />
-                        {job.deadline}
-                      </Badge>
-                      <Button
-                        size="sm"
-                        className="bg-blue-600 hover:bg-blue-700"
-                        onClick={() => navigate('/jobs')}
-                      >
-                        Apply Now
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <JobCard
+                key={job.id}
+                job={job}
+                onViewDetails={handleViewDetails}
+                onApply={handleApply}
+                index={index}
+              />
             ))}
           </div>
         </div>
