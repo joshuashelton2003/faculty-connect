@@ -74,8 +74,8 @@ const JobManager: React.FC = () => {
   // Get filtered jobs
   const filteredJobs = getJobs({
     title: searchTerm,
-    location: locationFilter,
-    jobType: typeFilter,
+    location: locationFilter === 'all' ? '' : locationFilter,
+    jobType: typeFilter === 'all' ? '' : typeFilter,
     isActive: statusFilter === 'active' ? true : statusFilter === 'inactive' ? false : undefined
   });
 
