@@ -154,30 +154,30 @@ const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-purple-50 py-20">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section className="relative min-h-screen flex items-center justify-center bg-center bg-cover bg-no-repeat" style={{ backgroundImage: 'url(/freepik.png)' }}>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-5xl font-bold text-gray-900 mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+              style={{ fontSize: '48px' }}
             >
-              Find Your Perfect
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                {' '}Faculty Position
-              </span>
+              Connect with Top Faculty Across Tamil Nadu
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto"
+              className="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto"
+              style={{ fontSize: '22px', color: '#ffffffcc' }}
             >
-              Connect with top educational institutions across India. Discover opportunities in engineering, 
-              arts & science, polytechnics, and schools. Your teaching career starts here.
+              Find the best teaching opportunities that suit your expertise and passion.
             </motion.p>
 
             {/* Hero Search */}
