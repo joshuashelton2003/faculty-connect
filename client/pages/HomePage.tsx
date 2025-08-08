@@ -151,7 +151,7 @@ const HomePage: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 hero-title"
             >
-              Connect with Top Faculty Across Tamil Nadu
+              Find Your Perfect Faculty Position
             </motion.h1>
 
             <motion.p
