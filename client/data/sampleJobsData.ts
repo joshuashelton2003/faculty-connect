@@ -1,0 +1,226 @@
+import { JobData } from '@/components/JobCard';
+
+export const sampleJobs: JobData[] = [
+  {
+    id: '1',
+    title: 'Assistant Professor - Computer Science',
+    institution: 'Anna University',
+    location: 'Chennai, Tamil Nadu',
+    jobType: 'Full-Time',
+    responsibilities: [
+      'Deliver lectures and practicals in Computer Science.',
+      'Prepare academic materials and internal assessments.',
+      'Guide students in projects and research activities.',
+      'Participate in curriculum development and academic planning.',
+      'Conduct research in emerging technologies and publish papers.',
+      'Mentor students in academic and career guidance.'
+    ],
+    requirements: [
+      'M.E/M.Tech or Ph.D. in Computer Science.',
+      'Minimum 2 years of teaching experience.',
+      'Strong communication and mentoring skills.',
+      'Research publications in reputed journals.',
+      'Knowledge of current industry trends in technology.'
+    ],
+    preferredSkills: [
+      'Knowledge of Outcome-Based Education (OBE)',
+      'Experience in using LMS platforms',
+      'Machine Learning expertise',
+      'Web development proficiency',
+      'Research methodology'
+    ],
+    salary: '₹60,000 - ₹85,000',
+    postedDate: '2 days ago',
+    applicants: 28,
+    deadline: '15 days left',
+    isActive: true
+  },
+  {
+    id: '2',
+    title: 'Mathematics Lecturer',
+    institution: 'PSG College of Technology',
+    location: 'Coimbatore, Tamil Nadu',
+    jobType: 'Full-Time',
+    responsibilities: [
+      'Teach undergraduate mathematics courses.',
+      'Develop course materials and assignments.',
+      'Evaluate student performance and provide feedback.',
+      'Coordinate with department for academic activities.'
+    ],
+    requirements: [
+      'M.Sc in Mathematics or related field.',
+      'Minimum 1 year teaching experience.',
+      'Strong analytical and problem-solving skills.',
+      'Excellent communication abilities.'
+    ],
+    preferredSkills: [
+      'Statistical software knowledge',
+      'Research experience in applied mathematics',
+      'Online teaching experience'
+    ],
+    salary: '₹45,000 - ₹65,000',
+    postedDate: '1 day ago',
+    applicants: 19,
+    deadline: '20 days left',
+    isActive: true
+  },
+  {
+    id: '3',
+    title: 'Physics Professor',
+    institution: 'NIT Trichy',
+    location: 'Tiruchirappalli, Tamil Nadu',
+    jobType: 'Full-Time',
+    responsibilities: [
+      'Conduct advanced physics courses for UG and PG students.',
+      'Supervise Ph.D. students and research projects.',
+      'Publish research papers in international journals.',
+      'Collaborate with industry and research institutions.',
+      'Organize seminars and workshops.'
+    ],
+    requirements: [
+      'Ph.D. in Physics with specialization.',
+      'Minimum 5 years of teaching and research experience.',
+      'Published research papers in peer-reviewed journals.',
+      'Experience in grant writing and project management.'
+    ],
+    preferredSkills: [
+      'Quantum mechanics expertise',
+      'Laboratory equipment handling',
+      'Computational physics knowledge',
+      'International collaboration experience'
+    ],
+    salary: '₹80,000 - ₹1,20,000',
+    postedDate: '3 days ago',
+    applicants: 35,
+    deadline: '12 days left',
+    isActive: true
+  },
+  {
+    id: '4',
+    title: 'Chemistry Associate Professor',
+    institution: 'Madras Institute of Technology',
+    location: 'Chennai, Tamil Nadu',
+    jobType: 'Full-Time',
+    responsibilities: [
+      'Teach organic and inorganic chemistry courses.',
+      'Lead research in chemical synthesis and analysis.',
+      'Mentor graduate students in research projects.',
+      'Develop laboratory safety protocols.',
+      'Collaborate with industry partners for research.'
+    ],
+    requirements: [
+      'Ph.D. in Chemistry with postdoctoral experience.',
+      'Minimum 3 years of teaching experience.',
+      'Strong research background in organic chemistry.',
+      'Safety certification for chemical handling.'
+    ],
+    preferredSkills: [
+      'Spectroscopy techniques',
+      'Green chemistry knowledge',
+      'Patent filing experience',
+      'Industrial chemistry background'
+    ],
+    salary: '₹70,000 - ₹95,000',
+    postedDate: '5 days ago',
+    applicants: 22,
+    deadline: '18 days left',
+    isActive: true
+  },
+  {
+    id: '5',
+    title: 'Mechanical Engineering Lecturer',
+    institution: 'Coimbatore Institute of Technology',
+    location: 'Coimbatore, Tamil Nadu',
+    jobType: 'Part-Time',
+    responsibilities: [
+      'Deliver lectures on mechanical engineering fundamentals.',
+      'Supervise laboratory sessions and projects.',
+      'Assess student performance through examinations.',
+      'Participate in department meetings and activities.'
+    ],
+    requirements: [
+      'M.E in Mechanical Engineering.',
+      'Industry experience of 2+ years.',
+      'Knowledge of CAD software and manufacturing processes.',
+      'Good presentation and communication skills.'
+    ],
+    preferredSkills: [
+      'AutoCAD proficiency',
+      'Manufacturing process knowledge',
+      'Project management experience'
+    ],
+    salary: '₹35,000 - ₹50,000',
+    postedDate: '1 week ago',
+    applicants: 15,
+    deadline: '10 days left',
+    isActive: true
+  },
+  {
+    id: '6',
+    title: 'English Literature Professor',
+    institution: 'Stella Maris College',
+    location: 'Chennai, Tamil Nadu',
+    jobType: 'Full-Time',
+    responsibilities: [
+      'Teach undergraduate and postgraduate English literature.',
+      'Conduct research in contemporary literary studies.',
+      'Guide thesis work for postgraduate students.',
+      'Organize literary events and workshops.',
+      'Contribute to curriculum development.'
+    ],
+    requirements: [
+      'Ph.D. in English Literature.',
+      'Minimum 4 years of teaching experience.',
+      'Published research in literary journals.',
+      'Excellent written and verbal communication skills.'
+    ],
+    preferredSkills: [
+      'Creative writing experience',
+      'Digital humanities knowledge',
+      'Event management skills',
+      'Multilingual abilities'
+    ],
+    salary: '₹55,000 - ₹75,000',
+    postedDate: '4 days ago',
+    applicants: 31,
+    deadline: '14 days left',
+    isActive: false
+  }
+];
+
+export const jobCategories = [
+  'Computer Science',
+  'Mathematics',
+  'Physics',
+  'Chemistry',
+  'Mechanical Engineering',
+  'Civil Engineering',
+  'Electronics',
+  'English Literature',
+  'Economics',
+  'Biology'
+];
+
+export const locations = [
+  'Chennai, Tamil Nadu',
+  'Coimbatore, Tamil Nadu',
+  'Madurai, Tamil Nadu',
+  'Tiruchirappalli, Tamil Nadu',
+  'Salem, Tamil Nadu',
+  'Erode, Tamil Nadu',
+  'Tirunelveli, Tamil Nadu',
+  'Vellore, Tamil Nadu'
+];
+
+export const institutions = [
+  'Anna University',
+  'IIT Madras',
+  'NIT Trichy',
+  'PSG College of Technology',
+  'Madras Institute of Technology',
+  'Coimbatore Institute of Technology',
+  'Stella Maris College',
+  'Loyola College',
+  'Presidency College',
+  'Thiagarajar College of Engineering'
+];
