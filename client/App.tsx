@@ -318,6 +318,15 @@ const App = () => (
           />
 
           <Route
+            path="/faq"
+            element={
+              <Layout>
+                <FAQ />
+              </Layout>
+            }
+          />
+
+          <Route
             path="/contact"
             element={
               <Layout>
