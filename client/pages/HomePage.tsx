@@ -178,32 +178,32 @@ const HomePage: React.FC = () => {
               Find the best teaching opportunities that suit your expertise and passion.
             </motion.p>
 
-            {/* Hero Search */}
-            <motion.div 
+            {/* Hero Search - Compact Transparent */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto"
+              className="backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-xl p-6 max-w-3xl mx-auto"
             >
-              <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex flex-col md:flex-row gap-3">
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70 w-4 h-4" />
                     <Input
                       type="text"
                       placeholder="Job title, subject, or keywords..."
                       value={searchKeywords}
                       onChange={(e) => setSearchKeywords(e.target.value)}
-                      className="pl-12 h-14 text-lg border-gray-300 focus:border-blue-500"
+                      className="pl-10 h-12 text-white placeholder-white/70 bg-white/10 border-white/30 focus:border-white/50 backdrop-blur-sm"
                     />
                   </div>
                 </div>
-                
+
                 <div className="flex-1">
                   <div className="relative">
-                    <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70 w-4 h-4" />
                     <Select value={searchLocation} onValueChange={setSearchLocation}>
-                      <SelectTrigger className="pl-12 h-14 text-lg border-gray-300 focus:border-blue-500">
+                      <SelectTrigger className="pl-10 h-12 text-white bg-white/10 border-white/30 focus:border-white/50 backdrop-blur-sm">
                         <SelectValue placeholder="Location" />
                       </SelectTrigger>
                       <SelectContent>
@@ -212,31 +212,31 @@ const HomePage: React.FC = () => {
                         <SelectItem value="Coimbatore">Coimbatore</SelectItem>
                         <SelectItem value="Madurai">Madurai</SelectItem>
                         <SelectItem value="Tiruchirappalli">Tiruchirappalli</SelectItem>
-                        <SelectItem value="Salem">Salem</SelectItem>  
-                        <SelectItem value="Erode">Erode</SelectItem>                   
+                        <SelectItem value="Salem">Salem</SelectItem>
+                        <SelectItem value="Erode">Erode</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
-                
-                <Button 
+
+                <Button
                   onClick={handleSearch}
                   size="lg"
-                  className="h-14 px-8 bg-blue-600 hover:bg-blue-700 text-lg font-semibold"
+                  className="h-12 px-6 bg-blue-600/90 hover:bg-blue-700 text-white font-semibold backdrop-blur-sm"
                 >
-                  <Search className="w-5 h-5 mr-2" />
+                  <Search className="w-4 h-4 mr-2" />
                   Search Jobs
                 </Button>
               </div>
-              
-              <div className="mt-6">
-                <p className="text-sm text-gray-500 mb-3">Popular searches:</p>
+
+              <div className="mt-4">
+                <p className="text-sm text-white/70 mb-2">Popular searches:</p>
                 <div className="flex flex-wrap gap-2">
                   {['Computer Science', 'Mathematics', 'Physics', 'Chemistry', 'Engineering'].map((term) => (
-                    <Badge 
-                      key={term} 
-                      variant="secondary" 
-                      className="cursor-pointer hover:bg-blue-100 hover:text-blue-800 transition-colors"
+                    <Badge
+                      key={term}
+                      variant="secondary"
+                      className="cursor-pointer bg-white/20 text-white/90 hover:bg-white/30 transition-colors border-white/20"
                       onClick={() => {
                         setSearchKeywords(term);
                         handleSearch();
@@ -249,33 +249,33 @@ const HomePage: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Role-based Call to Actions */}
+            {/* Role-based Call to Actions - Compact Transparent */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+              className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto"
             >
               {/* Faculty CTA */}
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 text-center border border-blue-200">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <GraduationCap className="w-8 h-8 text-blue-600" />
+              <div className="backdrop-blur-md bg-white/20 border border-white/30 rounded-xl p-6 text-center">
+                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <GraduationCap className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">For Educators</h3>
-                <p className="text-gray-600 mb-6">
-                  Find your dream teaching position at top institutions across India
+                <h3 className="text-lg font-bold text-white mb-2">For Educators</h3>
+                <p className="text-white/80 mb-4 text-sm">
+                  Find your dream teaching position at top institutions
                 </p>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <Button
                     onClick={() => navigate('/login?role=faculty')}
-                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    className="w-full bg-blue-600/90 hover:bg-blue-700 text-white h-10"
                   >
                     Faculty Sign In
                   </Button>
                   <Button
                     variant="outline"
                     onClick={() => navigate('/register?role=faculty')}
-                    className="w-full border-blue-300 text-blue-700 hover:bg-blue-50"
+                    className="w-full border-white/30 text-white hover:bg-white/10 h-10"
                   >
                     Join as Faculty
                   </Button>
@@ -283,25 +283,25 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Employer CTA */}
-              <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8 text-center border border-green-200">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Building2 className="w-8 h-8 text-green-600" />
+              <div className="backdrop-blur-md bg-white/20 border border-white/30 rounded-xl p-6 text-center">
+                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Building2 className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">For Institutions</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="text-lg font-bold text-white mb-2">For Institutions</h3>
+                <p className="text-white/80 mb-4 text-sm">
                   Post jobs and find qualified faculty for your institution
                 </p>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <Button
                     onClick={() => navigate('/login?role=employer')}
-                    className="w-full bg-green-600 hover:bg-green-700"
+                    className="w-full bg-green-600/90 hover:bg-green-700 text-white h-10"
                   >
                     Employer Sign In
                   </Button>
                   <Button
                     variant="outline"
                     onClick={() => navigate('/register?role=employer')}
-                    className="w-full border-green-300 text-green-700 hover:bg-green-50"
+                    className="w-full border-white/30 text-white hover:bg-white/10 h-10"
                   >
                     Post Jobs
                   </Button>
