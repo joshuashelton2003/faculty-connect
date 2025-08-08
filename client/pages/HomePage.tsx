@@ -154,7 +154,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-center bg-cover bg-no-repeat" style={{ backgroundImage: 'url(/freepik.png)' }}>
+      <section className="relative min-h-screen flex items-center justify-center bg-center bg-cover bg-no-repeat" style={{ backgroundImage: 'url(https://cdn.builder.io/api/v1/image/assets%2Ff92995b2d56b4f0a8225b3c3ca0a3e61%2F28f72d0f61c14b6aa1290cd560bb98a9?format=webp&width=800)' }}>
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
