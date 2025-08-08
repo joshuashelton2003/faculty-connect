@@ -253,6 +253,17 @@ const App = () => (
           />
 
           <Route
+            path="/employer/candidates"
+            element={
+              <ProtectedRoute requiredRole="employer">
+                <Layout>
+                  <Candidates />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
             path="/employer/pricing"
             element={
               <Layout>
