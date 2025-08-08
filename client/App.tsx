@@ -76,9 +76,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
       <Footer />
     </div>
   );
@@ -92,41 +90,59 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={
-            <Layout>
-              <HomePage />
-            </Layout>
-          } />
-          
-          <Route path="/jobs" element={
-            <Layout>
-              <Jobs />
-            </Layout>
-          } />
-          
-          <Route path="/jobs/:id" element={
-            <Layout>
-              <JobDetail />
-            </Layout>
-          } />
-          
-          <Route path="/institutes" element={
-            <Layout>
-              <InstitutesMain />
-            </Layout>
-          } />
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <HomePage />
+              </Layout>
+            }
+          />
 
-          <Route path="/institutes/:id" element={
-            <Layout>
-              <InstituteDetails />
-            </Layout>
-          } />
+          <Route
+            path="/jobs"
+            element={
+              <Layout>
+                <Jobs />
+              </Layout>
+            }
+          />
 
-          <Route path="/institutes/:id/jobs" element={
-            <Layout>
-              <InstituteJobs />
-            </Layout>
-          } />
+          <Route
+            path="/jobs/:id"
+            element={
+              <Layout>
+                <JobDetail />
+              </Layout>
+            }
+          />
+
+          <Route
+            path="/institutes"
+            element={
+              <Layout>
+                <InstitutesMain />
+              </Layout>
+            }
+          />
+
+          <Route
+            path="/institutes/:id"
+            element={
+              <Layout>
+                <InstituteDetails />
+              </Layout>
+            }
+          />
+
+          <Route
+            path="/institutes/:id/jobs"
+            element={
+              <Layout>
+                <InstituteJobs />
+              </Layout>
+            }
+          />
 
           {/* Auth Routes */}
           <Route path="/login" element={<Login />} />
@@ -134,158 +150,221 @@ const App = () => (
           <Route path="/forgot-password" element={<ForgotPassword />} />
 
           {/* Protected Routes - Role-based Dashboard */}
-          <Route path="/dashboard" element={
-            <ProtectedRoute>
-              <Layout>
-                <Dashboard />
-              </Layout>
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <Dashboard />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="/faculty/dashboard" element={
-            <ProtectedRoute requiredRole="faculty">
-              <Layout>
-                <FacultyDashboard />
-              </Layout>
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/faculty/dashboard"
+            element={
+              <ProtectedRoute requiredRole="faculty">
+                <Layout>
+                  <FacultyDashboard />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="/applications/:id" element={
-            <ProtectedRoute requiredRole="faculty">
-              <Layout>
-                <ApplicationDetail />
-              </Layout>
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/applications/:id"
+            element={
+              <ProtectedRoute requiredRole="faculty">
+                <Layout>
+                  <ApplicationDetail />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
 
           {/* Legacy Candidate Routes - Redirect to Faculty */}
-          <Route path="/candidate/dashboard" element={
-            <ProtectedRoute requiredRole="faculty">
-              <Layout>
-                <FacultyDashboard />
-              </Layout>
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/candidate/dashboard"
+            element={
+              <ProtectedRoute requiredRole="faculty">
+                <Layout>
+                  <FacultyDashboard />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
 
           {/* Protected Routes - Employer */}
-          <Route path="/employer/dashboard" element={
-            <ProtectedRoute requiredRole="employer">
-              <Layout>
-                <EmployerDashboard />
-              </Layout>
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/employer/dashboard"
+            element={
+              <ProtectedRoute requiredRole="employer">
+                <Layout>
+                  <EmployerDashboard />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="/employer/my-jobs" element={
-            <ProtectedRoute requiredRole="employer">
-              <Layout>
-                <MyJobs />
-              </Layout>
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/employer/my-jobs"
+            element={
+              <ProtectedRoute requiredRole="employer">
+                <Layout>
+                  <MyJobs />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="/employer/applications/:jobId?" element={
-            <ProtectedRoute requiredRole="employer">
-              <Layout>
-                <Applications />
-              </Layout>
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/employer/applications/:jobId?"
+            element={
+              <ProtectedRoute requiredRole="employer">
+                <Layout>
+                  <Applications />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="/employer/analytics" element={
-            <ProtectedRoute requiredRole="employer">
-              <Layout>
-                <Analytics />
-              </Layout>
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/employer/analytics"
+            element={
+              <ProtectedRoute requiredRole="employer">
+                <Layout>
+                  <Analytics />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="/employer/post-job" element={
-            <ProtectedRoute requiredRole="employer">
-              <Layout>
-                <PostNewJob />
-              </Layout>
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/employer/post-job"
+            element={
+              <ProtectedRoute requiredRole="employer">
+                <Layout>
+                  <PostNewJob />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="/employer/pricing" element={
-            <Layout>
-              <EmployerPricing />
-            </Layout>
-          } />
+          <Route
+            path="/employer/pricing"
+            element={
+              <Layout>
+                <EmployerPricing />
+              </Layout>
+            }
+          />
 
           {/* Profile Route - Accessible to both roles */}
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <Layout>
-                <Profile />
-              </Layout>
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <Profile />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
 
           {/* Settings Route - Accessible to both roles */}
-          <Route path="/settings" element={
-            <ProtectedRoute>
-              <Layout>
-                <Settings />
-              </Layout>
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <Settings />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
 
           {/* About and Contact Routes */}
-          <Route path="/about" element={
-            <Layout>
-              <About />
-            </Layout>
-          } />
+          <Route
+            path="/about"
+            element={
+              <Layout>
+                <About />
+              </Layout>
+            }
+          />
 
-          <Route path="/contact" element={
-            <Layout>
-              <Contact />
-            </Layout>
-          } />
+          <Route
+            path="/contact"
+            element={
+              <Layout>
+                <Contact />
+              </Layout>
+            }
+          />
 
-          <Route path="/blog" element={
-            <Layout>
-              <Blog />
-            </Layout>
-          } />
+          <Route
+            path="/blog"
+            element={
+              <Layout>
+                <Blog />
+              </Layout>
+            }
+          />
 
-          <Route path="/resources/success-stories" element={
-            <Layout>
-              <SuccessStories />
-            </Layout>
-          } />
+          <Route
+            path="/resources/success-stories"
+            element={
+              <Layout>
+                <SuccessStories />
+              </Layout>
+            }
+          />
 
-          <Route path="/help" element={
-            <Layout>
-              <Help />
-            </Layout>
-          } />
+          <Route
+            path="/help"
+            element={
+              <Layout>
+                <Help />
+              </Layout>
+            }
+          />
 
-          <Route path="/resources/career-tips" element={
-            <Layout>
-              <CareerTips />
-            </Layout>
-          } />
+          <Route
+            path="/resources/career-tips"
+            element={
+              <Layout>
+                <CareerTips />
+              </Layout>
+            }
+          />
 
-          <Route path="/tools/resume-builder" element={
-            <Layout>
-              <ResumeBuilder />
-            </Layout>
-          } />
+          <Route
+            path="/tools/resume-builder"
+            element={
+              <Layout>
+                <ResumeBuilder />
+              </Layout>
+            }
+          />
 
-          <Route path="/feedback" element={
-            <Layout>
-              <Feedback />
-            </Layout>
-          } />
+          <Route
+            path="/feedback"
+            element={
+              <Layout>
+                <Feedback />
+              </Layout>
+            }
+          />
 
-          <Route path="/partnerships" element={
-            <Layout>
-              <Partnerships />
-            </Layout>
-          } />
+          <Route
+            path="/partnerships"
+            element={
+              <Layout>
+                <Partnerships />
+              </Layout>
+            }
+          />
 
           {/* Footer Content Pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
@@ -294,11 +373,14 @@ const App = () => (
           <Route path="/about-us" element={<AboutUs />} />
 
           {/* Filter Demo Route */}
-          <Route path="/filter-demo" element={
-            <Layout>
-              <FilterDemo />
-            </Layout>
-          } />
+          <Route
+            path="/filter-demo"
+            element={
+              <Layout>
+                <FilterDemo />
+              </Layout>
+            }
+          />
 
           {/* 404 Route */}
           <Route path="*" element={<NotFound />} />

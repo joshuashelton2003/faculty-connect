@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Dialog,
   DialogContent,
@@ -11,16 +11,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
+} from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { useJobCRUD, CreateJobData } from '@/hooks/useJobCRUD';
-import JobCard, { JobData } from '@/components/JobCard';
+} from "@/components/ui/select";
+import { useJobCRUD, CreateJobData } from "@/hooks/useJobCRUD";
+import JobCard, { JobData } from "@/components/JobCard";
 import {
   Plus,
   Search,
@@ -30,8 +30,8 @@ import {
   Users,
   Briefcase,
   TrendingUp,
-  AlertCircle
-} from 'lucide-react';
+  AlertCircle,
+} from "lucide-react";
 
 const JobManager: React.FC = () => {
   const {
@@ -45,13 +45,13 @@ const JobManager: React.FC = () => {
     toggleJobStatus,
     resetToSampleData,
     getJobStats,
-    clearError
+    clearError,
   } = useJobCRUD();
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [locationFilter, setLocationFilter] = useState('all');
-  const [typeFilter, setTypeFilter] = useState('all');
-  const [statusFilter, setStatusFilter] = useState('all');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [locationFilter, setLocationFilter] = useState("all");
+  const [typeFilter, setTypeFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("all");
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [editingJob, setEditingJob] = useState<JobData | null>(null);
@@ -60,23 +60,28 @@ const JobManager: React.FC = () => {
 
   // Form states for create/edit
   const [formData, setFormData] = useState<CreateJobData>({
-    title: '',
-    institution: '',
-    location: '',
-    jobType: 'Full-Time',
+    title: "",
+    institution: "",
+    location: "",
+    jobType: "Full-Time",
     responsibilities: [],
     requirements: [],
     preferredSkills: [],
-    salary: '',
-    deadline: ''
+    salary: "",
+    deadline: "",
   });
 
   // Get filtered jobs
   const filteredJobs = getJobs({
     title: searchTerm,
-    location: locationFilter === 'all' ? '' : locationFilter,
-    jobType: typeFilter === 'all' ? '' : typeFilter,
-    isActive: statusFilter === 'active' ? true : statusFilter === 'inactive' ? false : undefined
+    location: locationFilter === "all" ? "" : locationFilter,
+    jobType: typeFilter === "all" ? "" : typeFilter,
+    isActive:
+      statusFilter === "active"
+        ? true
+        : statusFilter === "inactive"
+          ? false
+          : undefined,
   });
 
   const stats = getJobStats();
@@ -88,21 +93,21 @@ const JobManager: React.FC = () => {
       setShowCreateDialog(false);
       resetForm();
     } catch (err) {
-      console.error('Error creating job:', err);
+      console.error("Error creating job:", err);
     }
   };
 
   // Handle edit job
   const handleEditJob = async () => {
     if (!editingJob) return;
-    
+
     try {
       await updateJob(editingJob.id, formData);
       setShowEditDialog(false);
       setEditingJob(null);
       resetForm();
     } catch (err) {
-      console.error('Error updating job:', err);
+      console.error("Error updating job:", err);
     }
   };
 
@@ -128,8 +133,8 @@ const JobManager: React.FC = () => {
       responsibilities: job.responsibilities,
       requirements: job.requirements,
       preferredSkills: job.preferredSkills,
-      salary: job.salary || '',
-      deadline: job.deadline
+      salary: job.salary || "",
+      deadline: job.deadline,
     });
     setShowEditDialog(true);
   };
@@ -137,21 +142,24 @@ const JobManager: React.FC = () => {
   // Reset form
   const resetForm = () => {
     setFormData({
-      title: '',
-      institution: '',
-      location: '',
-      jobType: 'Full-Time',
+      title: "",
+      institution: "",
+      location: "",
+      jobType: "Full-Time",
       responsibilities: [],
       requirements: [],
       preferredSkills: [],
-      salary: '',
-      deadline: ''
+      salary: "",
+      deadline: "",
     });
   };
 
   // Parse comma-separated strings to arrays
   const parseToArray = (str: string): string[] => {
-    return str.split(',').map(item => item.trim()).filter(item => item.length > 0);
+    return str
+      .split(",")
+      .map((item) => item.trim())
+      .filter((item) => item.length > 0);
   };
 
   return (
@@ -160,7 +168,9 @@ const JobManager: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Job Management</h1>
-          <p className="text-gray-600">Create, update, and manage job listings</p>
+          <p className="text-gray-600">
+            Create, update, and manage job listings
+          </p>
         </div>
         <div className="flex gap-3">
           <Button
@@ -219,43 +229,55 @@ const JobManager: React.FC = () => {
               <Briefcase className="h-8 w-8 text-blue-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-gray-600">Total Jobs</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.totalJobs}</p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {stats.totalJobs}
+                </p>
               </div>
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
               <TrendingUp className="h-8 w-8 text-green-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-gray-600">Active Jobs</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.activeJobs}</p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {stats.activeJobs}
+                </p>
               </div>
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
               <Users className="h-8 w-8 text-purple-600" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Total Applicants</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.totalApplicants}</p>
+                <p className="text-sm font-medium text-gray-600">
+                  Total Applicants
+                </p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {stats.totalApplicants}
+                </p>
               </div>
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
               <BarChart3 className="h-8 w-8 text-orange-600" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Avg Applicants</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.averageApplicants}</p>
+                <p className="text-sm font-medium text-gray-600">
+                  Avg Applicants
+                </p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {stats.averageApplicants}
+                </p>
               </div>
             </div>
           </CardContent>
@@ -275,7 +297,7 @@ const JobManager: React.FC = () => {
                 className="pl-10"
               />
             </div>
-            
+
             <Select value={locationFilter} onValueChange={setLocationFilter}>
               <SelectTrigger>
                 <SelectValue placeholder="All Locations" />
@@ -334,8 +356,12 @@ const JobManager: React.FC = () => {
         <Card>
           <CardContent className="p-12 text-center">
             <Briefcase className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No jobs found</h3>
-            <p className="text-gray-600">Try adjusting your filters or create a new job.</p>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">
+              No jobs found
+            </h3>
+            <p className="text-gray-600">
+              Try adjusting your filters or create a new job.
+            </p>
           </CardContent>
         </Card>
       )}
@@ -345,9 +371,7 @@ const JobManager: React.FC = () => {
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Edit Job</DialogTitle>
-            <DialogDescription>
-              Update the job details below.
-            </DialogDescription>
+            <DialogDescription>Update the job details below.</DialogDescription>
           </DialogHeader>
           <JobForm
             formData={formData}
@@ -396,7 +420,7 @@ const JobForm: React.FC<JobFormProps> = ({
   onSubmit,
   onCancel,
   loading,
-  parseToArray
+  parseToArray,
 }) => {
   return (
     <div className="space-y-4">
@@ -405,16 +429,20 @@ const JobForm: React.FC<JobFormProps> = ({
           <label className="block text-sm font-medium mb-2">Job Title</label>
           <Input
             value={formData.title}
-            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, title: e.target.value })
+            }
             placeholder="e.g., Assistant Professor - Computer Science"
           />
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium mb-2">Institution</label>
           <Input
             value={formData.institution}
-            onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, institution: e.target.value })
+            }
             placeholder="e.g., Anna University"
           />
         </div>
@@ -425,14 +453,21 @@ const JobForm: React.FC<JobFormProps> = ({
           <label className="block text-sm font-medium mb-2">Location</label>
           <Input
             value={formData.location}
-            onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, location: e.target.value })
+            }
             placeholder="e.g., Chennai, Tamil Nadu"
           />
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium mb-2">Job Type</label>
-          <Select value={formData.jobType} onValueChange={(value: any) => setFormData({ ...formData, jobType: value })}>
+          <Select
+            value={formData.jobType}
+            onValueChange={(value: any) =>
+              setFormData({ ...formData, jobType: value })
+            }
+          >
             <SelectTrigger>
               <SelectValue />
             </SelectTrigger>
@@ -447,54 +482,84 @@ const JobForm: React.FC<JobFormProps> = ({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium mb-2">Salary (Optional)</label>
+          <label className="block text-sm font-medium mb-2">
+            Salary (Optional)
+          </label>
           <Input
             value={formData.salary}
-            onChange={(e) => setFormData({ ...formData, salary: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, salary: e.target.value })
+            }
             placeholder="e.g., ₹60,000 - ₹85,000"
           />
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium mb-2">Deadline</label>
           <Input
             value={formData.deadline}
-            onChange={(e) => setFormData({ ...formData, deadline: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, deadline: e.target.value })
+            }
             placeholder="e.g., 15 days left"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">Responsibilities (comma-separated)</label>
+        <label className="block text-sm font-medium mb-2">
+          Responsibilities (comma-separated)
+        </label>
         <Input
-          value={formData.responsibilities.join(', ')}
-          onChange={(e) => setFormData({ ...formData, responsibilities: parseToArray(e.target.value) })}
+          value={formData.responsibilities.join(", ")}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              responsibilities: parseToArray(e.target.value),
+            })
+          }
           placeholder="e.g., Deliver lectures, Prepare materials, Guide students"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">Requirements (comma-separated)</label>
+        <label className="block text-sm font-medium mb-2">
+          Requirements (comma-separated)
+        </label>
         <Input
-          value={formData.requirements.join(', ')}
-          onChange={(e) => setFormData({ ...formData, requirements: parseToArray(e.target.value) })}
+          value={formData.requirements.join(", ")}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              requirements: parseToArray(e.target.value),
+            })
+          }
           placeholder="e.g., M.E/M.Tech degree, Teaching experience, Communication skills"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">Preferred Skills (comma-separated)</label>
+        <label className="block text-sm font-medium mb-2">
+          Preferred Skills (comma-separated)
+        </label>
         <Input
-          value={formData.preferredSkills.join(', ')}
-          onChange={(e) => setFormData({ ...formData, preferredSkills: parseToArray(e.target.value) })}
+          value={formData.preferredSkills.join(", ")}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              preferredSkills: parseToArray(e.target.value),
+            })
+          }
           placeholder="e.g., OBE knowledge, LMS experience, Research skills"
         />
       </div>
 
       <div className="flex gap-3 pt-4">
-        <Button onClick={onSubmit} disabled={loading || !formData.title || !formData.institution}>
-          {loading ? 'Saving...' : 'Save Job'}
+        <Button
+          onClick={onSubmit}
+          disabled={loading || !formData.title || !formData.institution}
+        >
+          {loading ? "Saving..." : "Save Job"}
         </Button>
         <Button variant="outline" onClick={onCancel}>
           Cancel
@@ -565,7 +630,9 @@ const JobDetails: React.FC<{ job: JobData }> = ({ job }) => {
           <h4 className="font-semibold text-gray-900 mb-2">Preferred Skills</h4>
           <div className="flex flex-wrap gap-2">
             {job.preferredSkills.map((skill, idx) => (
-              <Badge key={idx} variant="secondary">{skill}</Badge>
+              <Badge key={idx} variant="secondary">
+                {skill}
+              </Badge>
             ))}
           </div>
         </div>

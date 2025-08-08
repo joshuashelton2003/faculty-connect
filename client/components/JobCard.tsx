@@ -1,8 +1,8 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { motion } from 'framer-motion';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 import {
   MapPin,
   Clock,
@@ -13,15 +13,15 @@ import {
   Building,
   CheckCircle,
   Target,
-  Star
-} from 'lucide-react';
+  Star,
+} from "lucide-react";
 
 export interface JobData {
   id: string;
   title: string;
   institution: string;
   location: string;
-  jobType: 'Full-Time' | 'Part-Time' | 'Contract';
+  jobType: "Full-Time" | "Part-Time" | "Contract";
   responsibilities: string[];
   requirements: string[];
   preferredSkills: string[];
@@ -49,7 +49,7 @@ const JobCard: React.FC<JobCardProps> = ({
   onEdit,
   onDelete,
   showAdminActions = false,
-  index = 0
+  index = 0,
 }) => {
   return (
     <motion.div
@@ -84,7 +84,11 @@ const JobCard: React.FC<JobCardProps> = ({
                     size="sm"
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (window.confirm('Are you sure you want to delete this job?')) {
+                      if (
+                        window.confirm(
+                          "Are you sure you want to delete this job?",
+                        )
+                      ) {
                         onDelete?.(job.id);
                       }
                     }}
@@ -95,7 +99,7 @@ const JobCard: React.FC<JobCardProps> = ({
                 </div>
               )}
             </div>
-            
+
             {/* Subtitle */}
             <div className="space-y-1 text-gray-600">
               <div className="flex items-center">
@@ -228,11 +232,17 @@ const JobCard: React.FC<JobCardProps> = ({
           <div className="mt-2 flex justify-between items-center">
             <Badge
               variant={job.isActive ? "default" : "secondary"}
-              className={job.isActive ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-600"}
+              className={
+                job.isActive
+                  ? "bg-green-100 text-green-800"
+                  : "bg-gray-100 text-gray-600"
+              }
             >
               {job.isActive ? "Active" : "Inactive"}
             </Badge>
-            <span className="text-xs text-gray-500">Posted {job.postedDate}</span>
+            <span className="text-xs text-gray-500">
+              Posted {job.postedDate}
+            </span>
           </div>
         </CardContent>
       </Card>
