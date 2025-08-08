@@ -165,4 +165,23 @@
   .fade-in-up {
     animation: fadeInUp 0.6s ease-out;
   }
+
+  /* Hero text responsive sizing */
+  @media (min-width: 1024px) {
+    .hero-title {
+      font-size: 48px !important;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .hero-title {
+      font-size: 36px !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-title {
+      font-size: 28px !important;
+    }
+  }
 }
