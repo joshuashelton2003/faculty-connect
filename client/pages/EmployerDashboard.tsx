@@ -253,7 +253,7 @@ export default function EmployerDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 mb-2">
-                Employer Dashboard
+                Institution Dashboard
               </h1>
               <p className="text-gray-600">
                 Manage your job postings and candidate applications for {mockEmployer.profile.institute.name}
