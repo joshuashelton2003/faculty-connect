@@ -55,12 +55,20 @@ import {
   Send,
   ArrowLeft,
   ExternalLink,
-  BarChart3
+  BarChart3,
+  LogOut
 } from 'lucide-react';
 
 export default function EmployerDashboard() {
-  const { user } = useAuthStore();
+  const { user, logout } = useAuthStore();
   const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    if (window.confirm('Are you sure you want to sign out?')) {
+      logout();
+      navigate('/login');
+    }
+  };
   const [showPostJobDialog, setShowPostJobDialog] = useState(false);
   
   // Mock employer data - In real app: GET /api/employer/profile
