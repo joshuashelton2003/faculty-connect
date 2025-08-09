@@ -57,6 +57,7 @@ import CandidateDashboardNew from "./pages/candidate/CandidateDashboard";
 // Faculty Dashboard Pages
 import FacultyDashboard from "./pages/faculty/FacultyDashboard";
 import ApplicationDetail from "./pages/faculty/ApplicationDetail";
+import FacultyNotifications from "./pages/faculty/Notifications";
 
 // Role-based Dashboard
 import Dashboard from "./pages/Dashboard";
