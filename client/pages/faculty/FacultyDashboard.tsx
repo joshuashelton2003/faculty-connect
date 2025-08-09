@@ -162,7 +162,7 @@ const FacultyDashboard: React.FC = () => {
               <Avatar className="h-16 w-16">
                 <AvatarImage src={user?.profileImage} />
                 <AvatarFallback className="bg-blue-100 text-blue-600 text-lg font-semibold">
-                  {user?.name?.split(' ').map(n => n[0]).join('') || 'FC'}
+                  {user?.name?.split(' ').map(n => n[0]).join('') || 'U'}
                 </AvatarFallback>
               </Avatar>
               <div>
@@ -182,7 +182,7 @@ const FacultyDashboard: React.FC = () => {
                     <Avatar className="h-8 w-8 mr-2">
                       <AvatarImage src={user?.profileImage} />
                       <AvatarFallback className="bg-blue-100 text-blue-600 text-sm">
-                        {user?.name?.split(' ').map(n => n[0]).join('') || 'FC'}
+                        {user?.name?.split(' ').map(n => n[0]).join('') || 'U'}
                       </AvatarFallback>
                     </Avatar>
                     <span className="hidden md:inline">
