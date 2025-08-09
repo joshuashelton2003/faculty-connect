@@ -63,18 +63,23 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {navigation.map((item) => (
-              <Link
+            {navigation.map((item, index) => (
+              <motion.div
                 key={item.name}
-                to={item.href}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  isActivePath(item.href)
-                    ? 'text-blue-600 border-b-2 border-blue-600 pb-4'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               >
-                {item.name}
-              </Link>
+                <Link
+                  to={item.href}
+                  className={`nav-link text-sm font-medium text-slate-700 hover:text-gray-900 ${
+                    isActivePath(item.href) ? 'active' : ''
+                  }`}
+                  aria-current={isActivePath(item.href) ? 'page' : undefined}
+                >
+                  {item.name}
+                </Link>
+              </motion.div>
             ))}
           </nav>
 
