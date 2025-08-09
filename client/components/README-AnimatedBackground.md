@@ -78,7 +78,13 @@ useEffect(() => {
 return (
   <div>
     {!reducedMotion && <AnimatedBackground />}
-    {/* Your content */}
+    <main className="relative z-10">
+      <Header />
+      <div className="content">
+        {children}
+      </div>
+      <Footer />
+    </main>
   </div>
 );
 ```
