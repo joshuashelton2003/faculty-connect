@@ -63,8 +63,12 @@ export default function Footer() {
             {/* Company Info */}
             <div className="lg:col-span-1">
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">FC</span>
+                <div className="w-8 h-8 rounded-lg overflow-hidden">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2Ff92995b2d56b4f0a8225b3c3ca0a3e61%2Fedeb625211be4bf3b33f96c0d13d421a?format=webp&width=64"
+                    alt="FacultyConnect Logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <span className="text-xl font-bold">
                   Faculty<span className="text-blue-400">Connect</span>
