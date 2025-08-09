@@ -438,10 +438,13 @@ const App = () => (
 
 // Only create root if it doesn't exist
 const container = document.getElementById("root")!;
-if (!container._reactRoot) {
+
+// Type-safe check for existing root
+const existingRoot = (container as any)._reactRoot;
+if (!existingRoot) {
   const root = createRoot(container);
-  container._reactRoot = root;
+  (container as any)._reactRoot = root;
   root.render(<App />);
 } else {
-  container._reactRoot.render(<App />);
+  existingRoot.render(<App />);
 }
