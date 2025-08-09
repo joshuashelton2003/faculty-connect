@@ -71,10 +71,17 @@ interface Application {
 }
 
 const FacultyDashboard: React.FC = () => {
-  const { user } = useAuthStore();
+  const { user, logout } = useAuthStore();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTab, setSelectedTab] = useState<'overview' | 'jobs' | 'applications' | 'profile'>('overview');
+
+  const handleSignOut = () => {
+    if (window.confirm('Are you sure you want to sign out?')) {
+      logout();
+      navigate('/login');
+    }
+  };
 
   // Use real job data and convert to job matches
   const [jobMatches] = useState<JobMatch[]>(() => {
