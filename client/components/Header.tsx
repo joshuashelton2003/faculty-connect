@@ -209,21 +209,21 @@ export default function Header() {
                   <div className="space-y-1">
                     <Link
                       to={user?.role === 'employer' ? '/employer/dashboard' : (user?.role === 'faculty' || user?.role === 'candidate' ? '/faculty/dashboard' : '/dashboard')}
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white/90 hover:bg-white/10"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Dashboard
                     </Link>
                     <Link
                       to="/profile"
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white/90 hover:bg-white/10"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Profile
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-red-50"
+                      className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-400 hover:bg-red-500/10"
                     >
                       Logout
                     </button>
@@ -232,14 +232,14 @@ export default function Header() {
                   <div className="space-y-1">
                     <Link
                       to="/login?role=faculty"
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-blue-300 hover:bg-blue-500/10"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Faculty Sign In
                     </Link>
                     <Link
                       to="/login?role=employer"
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-green-50"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-green-300 hover:bg-green-500/10"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Institution Sign In
