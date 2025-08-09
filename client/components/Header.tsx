@@ -1,31 +1,31 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useAuthStore } from "@/store/appStore";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useAuthStore } from '@/store/appStore';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import NotificationSystem from "@/components/NotificationSystem";
-import { Menu, X, User, LogOut, Briefcase, Settings } from "lucide-react";
-import { motion } from "framer-motion";
-import "../styles/nav-links.css";
+} from '@/components/ui/dropdown-menu';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import NotificationSystem from '@/components/NotificationSystem';
+import { Menu, X, User, LogOut, Briefcase, Settings } from 'lucide-react';
+import { motion } from 'framer-motion';
+import '../styles/nav-links.css';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuthStore();
   const location = useLocation();
-  const isLandingPage = location.pathname === "/";
+  const isLandingPage = location.pathname === '/';
 
   const navigation = [
-    { name: "Jobs", href: "/jobs" },
-    { name: "Institutes", href: "/institutes" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: 'Jobs', href: '/jobs' },
+    { name: 'Institutes', href: '/institutes' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   const isActivePath = (path: string) => {
@@ -79,9 +79,9 @@ export default function Header() {
                 <Link
                   to={item.href}
                   className={`nav-link text-sm font-medium text-white hover:text-white/90 ${
-                    isActivePath(item.href) ? "active" : ""
+                    isActivePath(item.href) ? 'active' : ''
                   }`}
-                  aria-current={isActivePath(item.href) ? "page" : undefined}
+                  aria-current={isActivePath(item.href) ? 'page' : undefined}
                 >
                   {item.name}
                 </Link>
@@ -97,12 +97,7 @@ export default function Header() {
                 <NotificationSystem />
 
                 {/* Settings */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  asChild
-                  className="text-white hover:text-white/90 hover:bg-white/10"
-                >
+                <Button variant="ghost" size="sm" asChild className="text-white hover:text-white/90 hover:bg-white/10">
                   <Link to="/settings">
                     <Settings className="w-4 h-4" />
                   </Link>
@@ -111,31 +106,17 @@ export default function Header() {
                 {/* User Menu */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      className="flex items-center space-x-2 text-white hover:text-white/90 hover:bg-white/10"
-                    >
-                      <User className="w-4 h-4" />
-                      <span className="text-sm">
-                        {user?.name?.split(" ")[0] ||
-                          (user?.role === "faculty" ||
-                          user?.role === "candidate"
-                            ? "Faculty"
-                            : "Employer")}
-                      </span>
-                    </Button>
+                    <Button variant="ghost" className="flex items-center space-x-2 text-white hover:text-white/90 hover:bg-white/10">
+                    <User className="w-4 h-4" />
+                    <span className="text-sm">
+                      {user?.name?.split(' ')[0] || (user?.role === 'faculty' || user?.role === 'candidate' ? 'Faculty' : 'Employer')}
+                    </span>
+                  </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48">
                     <DropdownMenuItem asChild>
                       <Link
-                        to={
-                          user?.role === "employer"
-                            ? "/employer/dashboard"
-                            : user?.role === "faculty" ||
-                                user?.role === "candidate"
-                              ? "/faculty/dashboard"
-                              : "/dashboard"
-                        }
+                        to={user?.role === 'employer' ? '/employer/dashboard' : (user?.role === 'faculty' || user?.role === 'candidate' ? '/faculty/dashboard' : '/dashboard')}
                         className="flex items-center"
                       >
                         <Briefcase className="w-4 h-4 mr-2" />
@@ -169,22 +150,14 @@ export default function Header() {
               <div className="flex items-center space-x-2">
                 {/* Faculty Sign In */}
                 <Link to="/login?role=faculty">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-white hover:text-blue-300"
-                  >
+                  <Button variant="ghost" size="sm" className="text-white hover:text-blue-300">
                     Faculty Sign In
                   </Button>
                 </Link>
 
                 {/* Institution Sign In */}
                 <Link to="/login?role=employer">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-white hover:text-green-300"
-                  >
+                  <Button variant="ghost" size="sm" className="text-white hover:text-green-300">
                     Institution Sign In
                   </Button>
                 </Link>
@@ -192,10 +165,7 @@ export default function Header() {
                 {/* General Sign Up - Only on landing page */}
                 {isLandingPage && (
                   <Link to="/register">
-                    <Button
-                      size="sm"
-                      className="bg-blue-600 hover:bg-blue-700 text-white"
-                    >
+                    <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
                       Sign Up
                     </Button>
                   </Link>
@@ -207,7 +177,7 @@ export default function Header() {
                     <Avatar className="w-8 h-8 border-2 border-white/30 hover:border-white/50 transition-colors cursor-pointer">
                       <AvatarImage src={user?.profileImage} alt="Profile" />
                       <AvatarFallback className="bg-blue-600 text-white text-sm">
-                        {user?.name?.charAt(0)?.toUpperCase() || "U"}
+                        {user?.name?.charAt(0)?.toUpperCase() || 'U'}
                       </AvatarFallback>
                     </Avatar>
                   </Link>
@@ -243,29 +213,22 @@ export default function Header() {
                   to={item.href}
                   className={`nav-link-mobile block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                     isActivePath(item.href)
-                      ? "active"
-                      : "text-white hover:text-white/90 hover:bg-white/10"
+                      ? 'active'
+                      : 'text-white hover:text-white/90 hover:bg-white/10'
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  aria-current={isActivePath(item.href) ? "page" : undefined}
+                  aria-current={isActivePath(item.href) ? 'page' : undefined}
                 >
                   {item.name}
                 </Link>
               ))}
-
+              
               {/* Mobile Auth Section */}
               <div className="pt-4 border-t border-white/20">
                 {isAuthenticated ? (
                   <div className="space-y-1">
                     <Link
-                      to={
-                        user?.role === "employer"
-                          ? "/employer/dashboard"
-                          : user?.role === "faculty" ||
-                              user?.role === "candidate"
-                            ? "/faculty/dashboard"
-                            : "/dashboard"
-                      }
+                      to={user?.role === 'employer' ? '/employer/dashboard' : (user?.role === 'faculty' || user?.role === 'candidate' ? '/faculty/dashboard' : '/dashboard')}
                       className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white/90 hover:bg-white/10"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -321,7 +284,7 @@ export default function Header() {
                         <Avatar className="w-6 h-6 mr-3 border border-white/30">
                           <AvatarImage src={user?.profileImage} alt="Profile" />
                           <AvatarFallback className="bg-blue-600 text-white text-xs">
-                            {user?.name?.charAt(0)?.toUpperCase() || "U"}
+                            {user?.name?.charAt(0)?.toUpperCase() || 'U'}
                           </AvatarFallback>
                         </Avatar>
                         Profile
