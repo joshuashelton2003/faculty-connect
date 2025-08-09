@@ -41,13 +41,23 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">FC</span>
-              </div>
-              <span className="text-xl font-bold text-gray-900">
+            <Link to="/" className="flex items-center space-x-3">
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg"
+              >
+                <span className="text-white font-bold text-sm md:text-base lg:text-xl">FC</span>
+              </motion.div>
+              <motion.span
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-base md:text-lg lg:text-2xl font-semibold text-gray-900"
+              >
                 Faculty<span className="text-blue-600">Connect</span>
-              </span>
+              </motion.span>
             </Link>
           </div>
 
