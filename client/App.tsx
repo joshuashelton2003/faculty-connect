@@ -78,9 +78,14 @@ const queryClient = new QueryClient({
 // Layout wrapper component
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
+      <AnimatedBackground
+        tint={[0.5, 0.6, 0.8]}
+        speed={1.0}
+        mouse={true}
+      />
       <Header />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 relative z-10">{children}</main>
       <Footer />
     </div>
   );
