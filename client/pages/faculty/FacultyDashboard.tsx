@@ -28,7 +28,8 @@ import {
   BarChart3,
   Target,
   Award,
-  Building
+  Building,
+  LogOut
 } from 'lucide-react';
 import { useAuthStore } from '@/store/authStore';
 import { allJobs, allCandidates } from '@/data/comprehensiveSampleData';
