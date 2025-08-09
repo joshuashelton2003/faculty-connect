@@ -190,12 +190,13 @@ export default function Header() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                  className={`nav-link-mobile block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                     isActivePath(item.href)
-                      ? 'text-blue-600 bg-blue-50'
+                      ? 'active'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
+                  aria-current={isActivePath(item.href) ? 'page' : undefined}
                 >
                   {item.name}
                 </Link>
