@@ -172,14 +172,41 @@ const FacultyDashboard: React.FC = () => {
             </div>
             
             <div className="flex items-center space-x-3">
-              <Button variant="outline" size="sm">
-                <Bell className="w-4 h-4 mr-2" />
-                Notifications
-              </Button>
-              <Button variant="outline" size="sm">
-                <Settings className="w-4 h-4 mr-2" />
-                Settings
-              </Button>
+              <NotificationsDropdown />
+              <SettingsModal />
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="ml-2">
+                    <Avatar className="h-8 w-8 mr-2">
+                      <AvatarImage src={user?.profileImage} />
+                      <AvatarFallback className="bg-blue-100 text-blue-600 text-sm">
+                        {user?.name?.split(' ').map(n => n[0]).join('') || 'FC'}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="hidden md:inline">
+                      {user?.name?.split(' ')[0] || 'Faculty'}
+                    </span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => navigate('/profile')}>
+                    <User className="w-4 h-4 mr-2" />
+                    View Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate('/settings')}>
+                    <Settings className="w-4 h-4 mr-2" />
+                    Settings
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={handleSignOut}
+                    className="text-red-600 hover:text-red-800 hover:bg-red-50"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
 
