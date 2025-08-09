@@ -56,7 +56,8 @@ import {
   ArrowLeft,
   ExternalLink,
   BarChart3,
-  LogOut
+  LogOut,
+  Settings
 } from 'lucide-react';
 
 export default function EmployerDashboard() {
