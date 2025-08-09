@@ -1,11 +1,12 @@
 import { createRoot } from 'react-dom/client';
 import App from './App';
 
-const rootElement = document.getElementById('root')!;
+const rootElement = document.getElementById('root');
 
-// Ensure we only create the root once
-if (!rootElement.dataset.reactRoot) {
-  const root = createRoot(rootElement);
-  rootElement.dataset.reactRoot = 'true';
-  root.render(<App />);
+if (!rootElement) {
+  throw new Error('Root element not found');
 }
+
+// Create root and render app
+const root = createRoot(rootElement);
+root.render(<App />);
