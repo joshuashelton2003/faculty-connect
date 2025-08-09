@@ -1,9 +1,9 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useNavigate } from "react-router-dom";
 import {
   User,
   Mail,
@@ -18,11 +18,11 @@ import {
   Edit,
   Building,
   Globe,
-  Users
-} from 'lucide-react';
+  Users,
+} from "lucide-react";
 
 interface FacultyProfileData {
-  type: 'faculty';
+  type: "faculty";
   name: string;
   email: string;
   phone: string;
@@ -38,7 +38,7 @@ interface FacultyProfileData {
 }
 
 interface InstitutionProfileData {
-  type: 'institution';
+  type: "institution";
   institutionName: string;
   contactPersonName: string;
   email: string;
@@ -59,12 +59,14 @@ interface UserProfileDetailsProps {
   profileData: FacultyProfileData | InstitutionProfileData;
 }
 
-const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) => {
+const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({
+  profileData,
+}) => {
   const navigate = useNavigate();
 
-  if (profileData.type === 'faculty') {
+  if (profileData.type === "faculty") {
     const faculty = profileData as FacultyProfileData;
-    
+
     return (
       <Card>
         <CardHeader>
@@ -73,7 +75,7 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
             <Button
               variant="outline"
               size="sm"
-              onClick={() => navigate('/settings')}
+              onClick={() => navigate("/settings")}
             >
               <Edit className="w-4 h-4 mr-2" />
               Edit Profile
@@ -88,7 +90,10 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
                 <Avatar className="h-32 w-32 mb-4">
                   <AvatarImage src={faculty.profileImage} />
                   <AvatarFallback className="bg-blue-100 text-blue-600 text-2xl">
-                    {faculty.name?.split(' ').map(n => n[0]).join('') || 'FC'}
+                    {faculty.name
+                      ?.split(" ")
+                      .map((n) => n[0])
+                      .join("") || "FC"}
                   </AvatarFallback>
                 </Avatar>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -96,7 +101,7 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
                 </h2>
                 <Badge className="mb-4">Faculty Member</Badge>
                 <p className="text-gray-600 text-center max-w-md">
-                  {faculty.bio || 'No bio available'}
+                  {faculty.bio || "No bio available"}
                 </p>
               </div>
 
@@ -138,7 +143,9 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
                   </div>
                   <div className="flex items-center">
                     <BookOpen className="w-4 h-4 mr-3 text-gray-400" />
-                    <span className="text-gray-600">{faculty.qualification}</span>
+                    <span className="text-gray-600">
+                      {faculty.qualification}
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <Briefcase className="w-4 h-4 mr-3 text-gray-400" />
@@ -147,7 +154,9 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
                   {faculty.currentInstitution && (
                     <div className="flex items-center">
                       <Building className="w-4 h-4 mr-3 text-gray-400" />
-                      <span className="text-gray-600">{faculty.currentInstitution}</span>
+                      <span className="text-gray-600">
+                        {faculty.currentInstitution}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -161,11 +170,15 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
                 <div className="space-y-3">
                   <div className="flex items-center">
                     <Calendar className="w-4 h-4 mr-3 text-gray-400" />
-                    <span className="text-gray-600">Joined {faculty.joinedDate}</span>
+                    <span className="text-gray-600">
+                      Joined {faculty.joinedDate}
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <Clock className="w-4 h-4 mr-3 text-gray-400" />
-                    <span className="text-gray-600">Last login {faculty.lastLogin}</span>
+                    <span className="text-gray-600">
+                      Last login {faculty.lastLogin}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -178,7 +191,7 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
 
   // Institution Profile
   const institution = profileData as InstitutionProfileData;
-  
+
   return (
     <Card>
       <CardHeader>
@@ -187,7 +200,7 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
           <Button
             variant="outline"
             size="sm"
-            onClick={() => navigate('/settings')}
+            onClick={() => navigate("/settings")}
           >
             <Edit className="w-4 h-4 mr-2" />
             Edit Profile
@@ -202,7 +215,11 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
               <Avatar className="h-32 w-32 mb-4">
                 <AvatarImage src={institution.logo} />
                 <AvatarFallback className="bg-blue-100 text-blue-600 text-2xl">
-                  {institution.institutionName?.split(' ').map(n => n[0]).join('').slice(0, 2) || 'IN'}
+                  {institution.institutionName
+                    ?.split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .slice(0, 2) || "IN"}
                 </AvatarFallback>
               </Avatar>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -217,11 +234,15 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
             {/* Quick Stats */}
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center p-4 bg-blue-50 rounded-lg">
-                <div className="text-2xl font-bold text-blue-600">{institution.totalJobs}</div>
+                <div className="text-2xl font-bold text-blue-600">
+                  {institution.totalJobs}
+                </div>
                 <div className="text-sm text-gray-600">Total Jobs</div>
               </div>
               <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="text-2xl font-bold text-green-600">{institution.activeJobs}</div>
+                <div className="text-2xl font-bold text-green-600">
+                  {institution.activeJobs}
+                </div>
                 <div className="text-sm text-gray-600">Active Jobs</div>
               </div>
             </div>
@@ -237,7 +258,9 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
               <div className="space-y-3">
                 <div className="flex items-center">
                   <User className="w-4 h-4 mr-3 text-gray-400" />
-                  <span className="text-gray-600">{institution.contactPersonName}</span>
+                  <span className="text-gray-600">
+                    {institution.contactPersonName}
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-3 text-gray-400" />
@@ -266,7 +289,9 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
                 )}
                 <div className="flex items-center">
                   <Calendar className="w-4 h-4 mr-3 text-gray-400" />
-                  <span className="text-gray-600">Established {institution.establishedYear}</span>
+                  <span className="text-gray-600">
+                    Established {institution.establishedYear}
+                  </span>
                 </div>
               </div>
             </div>
@@ -279,11 +304,15 @@ const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ profileData }) 
               <div className="space-y-3">
                 <div className="flex items-center">
                   <Calendar className="w-4 h-4 mr-3 text-gray-400" />
-                  <span className="text-gray-600">Joined {institution.joinedDate}</span>
+                  <span className="text-gray-600">
+                    Joined {institution.joinedDate}
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <Clock className="w-4 h-4 mr-3 text-gray-400" />
-                  <span className="text-gray-600">Last login {institution.lastLogin}</span>
+                  <span className="text-gray-600">
+                    Last login {institution.lastLogin}
+                  </span>
                 </div>
               </div>
             </div>

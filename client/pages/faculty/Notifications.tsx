@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { useNavigate } from 'react-router-dom';
+} from "@/components/ui/select";
+import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   Bell,
@@ -23,121 +23,129 @@ import {
   Filter,
   Award,
   Settings,
-  Trash2
-} from 'lucide-react';
+  Trash2,
+} from "lucide-react";
 
 interface Notification {
   id: string;
-  type: 'application' | 'interview' | 'job-match' | 'message' | 'system';
+  type: "application" | "interview" | "job-match" | "message" | "system";
   title: string;
   message: string;
   timestamp: string;
   isRead: boolean;
   actionUrl?: string;
-  priority: 'low' | 'medium' | 'high';
+  priority: "low" | "medium" | "high";
 }
 
 const Notifications: React.FC = () => {
   const navigate = useNavigate();
-  
+
   const [notifications, setNotifications] = useState<Notification[]>([
     {
-      id: '1',
-      type: 'application',
-      title: 'Application Shortlisted',
-      message: 'Your application for Computer Science Professor at Anna University has been shortlisted. Interview details will be shared soon.',
-      timestamp: '2024-01-15T10:30:00Z',
+      id: "1",
+      type: "application",
+      title: "Application Shortlisted",
+      message:
+        "Your application for Computer Science Professor at Anna University has been shortlisted. Interview details will be shared soon.",
+      timestamp: "2024-01-15T10:30:00Z",
       isRead: false,
-      actionUrl: '/applications/1',
-      priority: 'high'
+      actionUrl: "/applications/1",
+      priority: "high",
     },
     {
-      id: '2',
-      type: 'job-match',
-      title: 'New Job Match - 92% Match',
-      message: 'Mathematics Professor position at PSG College of Technology matches your profile. This position requires PhD in Mathematics with 3+ years experience.',
-      timestamp: '2024-01-15T08:15:00Z',
+      id: "2",
+      type: "job-match",
+      title: "New Job Match - 92% Match",
+      message:
+        "Mathematics Professor position at PSG College of Technology matches your profile. This position requires PhD in Mathematics with 3+ years experience.",
+      timestamp: "2024-01-15T08:15:00Z",
       isRead: false,
-      actionUrl: '/jobs/2',
-      priority: 'medium'
+      actionUrl: "/jobs/2",
+      priority: "medium",
     },
     {
-      id: '3',
-      type: 'interview',
-      title: 'Interview Scheduled',
-      message: 'Interview scheduled for Physics Lecturer position at NIT Trichy on January 18, 2024, at 2:00 PM. Please confirm your availability.',
-      timestamp: '2024-01-14T16:45:00Z',
+      id: "3",
+      type: "interview",
+      title: "Interview Scheduled",
+      message:
+        "Interview scheduled for Physics Lecturer position at NIT Trichy on January 18, 2024, at 2:00 PM. Please confirm your availability.",
+      timestamp: "2024-01-14T16:45:00Z",
       isRead: true,
-      actionUrl: '/applications/3',
-      priority: 'high'
+      actionUrl: "/applications/3",
+      priority: "high",
     },
     {
-      id: '4',
-      type: 'message',
-      title: 'Message from HR',
-      message: 'HR from Madras Institute of Technology sent you a message regarding your application for Electronics Engineering position.',
-      timestamp: '2024-01-14T14:20:00Z',
+      id: "4",
+      type: "message",
+      title: "Message from HR",
+      message:
+        "HR from Madras Institute of Technology sent you a message regarding your application for Electronics Engineering position.",
+      timestamp: "2024-01-14T14:20:00Z",
       isRead: true,
-      actionUrl: '/messages/4',
-      priority: 'medium'
+      actionUrl: "/messages/4",
+      priority: "medium",
     },
     {
-      id: '5',
-      type: 'system',
-      title: 'Profile Completion Reminder',
-      message: 'Complete your profile to get 5x more job opportunities. Add your research publications and certifications.',
-      timestamp: '2024-01-13T09:00:00Z',
+      id: "5",
+      type: "system",
+      title: "Profile Completion Reminder",
+      message:
+        "Complete your profile to get 5x more job opportunities. Add your research publications and certifications.",
+      timestamp: "2024-01-13T09:00:00Z",
       isRead: false,
-      actionUrl: '/profile',
-      priority: 'low'
+      actionUrl: "/profile",
+      priority: "low",
     },
     {
-      id: '6',
-      type: 'application',
-      title: 'Application Received',
-      message: 'Your application for Chemistry Professor at Stella Maris College has been received and is under review.',
-      timestamp: '2024-01-12T11:30:00Z',
+      id: "6",
+      type: "application",
+      title: "Application Received",
+      message:
+        "Your application for Chemistry Professor at Stella Maris College has been received and is under review.",
+      timestamp: "2024-01-12T11:30:00Z",
       isRead: true,
-      actionUrl: '/applications/6',
-      priority: 'low'
+      actionUrl: "/applications/6",
+      priority: "low",
     },
     {
-      id: '7',
-      type: 'job-match',
-      title: 'New Job Match - 87% Match',
-      message: 'Assistant Professor in Data Science at VIT Chennai is looking for candidates with your expertise in machine learning.',
-      timestamp: '2024-01-11T15:10:00Z',
+      id: "7",
+      type: "job-match",
+      title: "New Job Match - 87% Match",
+      message:
+        "Assistant Professor in Data Science at VIT Chennai is looking for candidates with your expertise in machine learning.",
+      timestamp: "2024-01-11T15:10:00Z",
       isRead: true,
-      actionUrl: '/jobs/7',
-      priority: 'medium'
+      actionUrl: "/jobs/7",
+      priority: "medium",
     },
     {
-      id: '8',
-      type: 'system',
-      title: 'Weekly Job Digest',
-      message: '15 new job opportunities were posted this week that match your profile. Browse the latest openings.',
-      timestamp: '2024-01-10T08:00:00Z',
+      id: "8",
+      type: "system",
+      title: "Weekly Job Digest",
+      message:
+        "15 new job opportunities were posted this week that match your profile. Browse the latest openings.",
+      timestamp: "2024-01-10T08:00:00Z",
       isRead: true,
-      actionUrl: '/jobs',
-      priority: 'low'
-    }
+      actionUrl: "/jobs",
+      priority: "low",
+    },
   ]);
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filterType, setFilterType] = useState('all');
-  const [filterStatus, setFilterStatus] = useState('all');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterType, setFilterType] = useState("all");
+  const [filterStatus, setFilterStatus] = useState("all");
 
   const getNotificationIcon = (type: string) => {
     switch (type) {
-      case 'application':
+      case "application":
         return <Briefcase className="w-5 h-5 text-blue-600" />;
-      case 'interview':
+      case "interview":
         return <Calendar className="w-5 h-5 text-purple-600" />;
-      case 'job-match':
+      case "job-match":
         return <Award className="w-5 h-5 text-green-600" />;
-      case 'message':
+      case "message":
         return <MessageCircle className="w-5 h-5 text-orange-600" />;
-      case 'system':
+      case "system":
         return <Settings className="w-5 h-5 text-gray-600" />;
       default:
         return <Bell className="w-5 h-5 text-gray-600" />;
@@ -146,14 +154,14 @@ const Notifications: React.FC = () => {
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'high':
-        return 'border-l-red-500 bg-red-50';
-      case 'medium':
-        return 'border-l-yellow-500 bg-yellow-50';
-      case 'low':
-        return 'border-l-gray-500 bg-[#DDDAD0]';
+      case "high":
+        return "border-l-red-500 bg-red-50";
+      case "medium":
+        return "border-l-yellow-500 bg-yellow-50";
+      case "low":
+        return "border-l-gray-500 bg-[#DDDAD0]";
       default:
-        return 'border-l-gray-500 bg-white';
+        return "border-l-gray-500 bg-white";
     }
   };
 
@@ -165,7 +173,7 @@ const Notifications: React.FC = () => {
     const diffInDays = diffInHours / 24;
 
     if (diffInHours < 1) {
-      return 'Just now';
+      return "Just now";
     } else if (diffInHours < 24) {
       return `${Math.floor(diffInHours)} hours ago`;
     } else if (diffInDays < 7) {
@@ -176,24 +184,24 @@ const Notifications: React.FC = () => {
   };
 
   const markAsRead = (notificationId: string) => {
-    setNotifications(prev =>
-      prev.map(notification =>
+    setNotifications((prev) =>
+      prev.map((notification) =>
         notification.id === notificationId
           ? { ...notification, isRead: true }
-          : notification
-      )
+          : notification,
+      ),
     );
   };
 
   const markAllAsRead = () => {
-    setNotifications(prev =>
-      prev.map(notification => ({ ...notification, isRead: true }))
+    setNotifications((prev) =>
+      prev.map((notification) => ({ ...notification, isRead: true })),
     );
   };
 
   const deleteNotification = (notificationId: string) => {
-    setNotifications(prev =>
-      prev.filter(notification => notification.id !== notificationId)
+    setNotifications((prev) =>
+      prev.filter((notification) => notification.id !== notificationId),
     );
   };
 
@@ -204,18 +212,21 @@ const Notifications: React.FC = () => {
     }
   };
 
-  const filteredNotifications = notifications.filter(notification => {
-    const matchesSearch = notification.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         notification.message.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesType = filterType === 'all' || notification.type === filterType;
-    const matchesStatus = filterStatus === 'all' ||
-                         (filterStatus === 'unread' && !notification.isRead) ||
-                         (filterStatus === 'read' && notification.isRead);
-    
+  const filteredNotifications = notifications.filter((notification) => {
+    const matchesSearch =
+      notification.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      notification.message.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesType =
+      filterType === "all" || notification.type === filterType;
+    const matchesStatus =
+      filterStatus === "all" ||
+      (filterStatus === "unread" && !notification.isRead) ||
+      (filterStatus === "read" && notification.isRead);
+
     return matchesSearch && matchesType && matchesStatus;
   });
 
-  const unreadCount = notifications.filter(n => !n.isRead).length;
+  const unreadCount = notifications.filter((n) => !n.isRead).length;
 
   return (
     <div className="min-h-screen bg-[#DDDAD0]">
@@ -233,13 +244,15 @@ const Notifications: React.FC = () => {
                 Back
               </Button>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Notifications</h1>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  Notifications
+                </h1>
                 <p className="text-gray-600">
                   Stay updated with your job applications and opportunities
                 </p>
               </div>
             </div>
-            
+
             <div className="flex items-center space-x-3">
               {unreadCount > 0 && (
                 <Badge className="bg-red-100 text-red-800">
@@ -273,7 +286,7 @@ const Notifications: React.FC = () => {
                   className="pl-10"
                 />
               </div>
-              
+
               <Select value={filterType} onValueChange={setFilterType}>
                 <SelectTrigger>
                   <SelectValue placeholder="Filter by type" />
@@ -287,7 +300,7 @@ const Notifications: React.FC = () => {
                   <SelectItem value="system">System</SelectItem>
                 </SelectContent>
               </Select>
-              
+
               <Select value={filterStatus} onValueChange={setFilterStatus}>
                 <SelectTrigger>
                   <SelectValue placeholder="Filter by status" />
@@ -309,7 +322,7 @@ const Notifications: React.FC = () => {
               <Card
                 key={notification.id}
                 className={`cursor-pointer hover:shadow-md transition-shadow border-l-4 ${
-                  !notification.isRead ? 'bg-blue-50' : 'bg-white'
+                  !notification.isRead ? "bg-blue-50" : "bg-white"
                 } ${getPriorityColor(notification.priority)}`}
                 onClick={() => handleNotificationClick(notification)}
               >
@@ -321,9 +334,13 @@ const Notifications: React.FC = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between mb-2">
-                          <h3 className={`text-lg font-semibold ${
-                            !notification.isRead ? 'text-gray-900' : 'text-gray-700'
-                          }`}>
+                          <h3
+                            className={`text-lg font-semibold ${
+                              !notification.isRead
+                                ? "text-gray-900"
+                                : "text-gray-700"
+                            }`}
+                          >
                             {notification.title}
                           </h3>
                           <div className="flex items-center space-x-2">
@@ -365,12 +382,13 @@ const Notifications: React.FC = () => {
             <Card>
               <CardContent className="p-12 text-center">
                 <Bell className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No notifications found</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  No notifications found
+                </h3>
                 <p className="text-gray-600">
-                  {searchQuery || filterType !== 'all' || filterStatus !== 'all'
-                    ? 'Try adjusting your filters to see more notifications'
-                    : 'You\'re all caught up! Check back later for new updates.'
-                  }
+                  {searchQuery || filterType !== "all" || filterStatus !== "all"
+                    ? "Try adjusting your filters to see more notifications"
+                    : "You're all caught up! Check back later for new updates."}
                 </p>
               </CardContent>
             </Card>

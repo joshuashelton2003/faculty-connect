@@ -1,57 +1,81 @@
-import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from "react-router-dom";
+import {
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+  Mail,
+  Phone,
+  MapPin,
+} from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerSections = [
     {
-      title: 'For Job Seekers',
+      title: "For Job Seekers",
       links: [
-        { name: 'Browse Jobs', href: '/jobs' },
-        { name: 'Search by Location', href: '/jobs?location=tamil-nadu' },
-        { name: 'Search by Subject', href: '/jobs?subject=mathematics' },
-        { name: 'Career Tips', href: '/resources/career-tips' },
-        { name: 'Resume Builder', href: '/tools/resume-builder' },
+        { name: "Browse Jobs", href: "/jobs" },
+        { name: "Search by Location", href: "/jobs?location=tamil-nadu" },
+        { name: "Search by Subject", href: "/jobs?subject=mathematics" },
+        { name: "Career Tips", href: "/resources/career-tips" },
+        { name: "Resume Builder", href: "/tools/resume-builder" },
       ],
     },
     {
-      title: 'For Employers',
+      title: "For Employers",
       links: [
-        { name: 'Post a Job', href: '/employer/post-job' },
-        { name: 'Employer Dashboard', href: '/employer/dashboard' },
-        { name: 'Search Candidates', href: '/employer/candidates' },
-        { name: 'Pricing Plans', href: '/employer/pricing' },
-        { name: 'Success Stories', href: '/resources/success-stories' },
+        { name: "Post a Job", href: "/employer/post-job" },
+        { name: "Employer Dashboard", href: "/employer/dashboard" },
+        { name: "Search Candidates", href: "/employer/candidates" },
+        { name: "Pricing Plans", href: "/employer/pricing" },
+        { name: "Success Stories", href: "/resources/success-stories" },
       ],
     },
     {
-      title: 'Resources',
+      title: "Resources",
       links: [
-        { name: 'About Us', href: '/about' },
-        { name: 'How it Works', href: '/how-it-works' },
-        { name: 'FAQ', href: '/faq' },
-        { name: 'Blog', href: '/blog' },
-        { name: 'Help Center', href: '/help' },
+        { name: "About Us", href: "/about" },
+        { name: "How it Works", href: "/how-it-works" },
+        { name: "FAQ", href: "/faq" },
+        { name: "Blog", href: "/blog" },
+        { name: "Help Center", href: "/help" },
       ],
     },
     {
-      title: 'Company',
+      title: "Company",
       links: [
-        { name: 'Privacy Policy', href: '/privacy-policy' },
-        { name: 'Terms of Service', href: '/terms-of-service' },
-        { name: 'Contact Us', href: '/contact' },
-        { name: 'Feedback', href: '/feedback' },
-        { name: 'Partner with Us', href: '/partnerships' },
+        { name: "Privacy Policy", href: "/privacy-policy" },
+        { name: "Terms of Service", href: "/terms-of-service" },
+        { name: "Contact Us", href: "/contact" },
+        { name: "Feedback", href: "/feedback" },
+        { name: "Partner with Us", href: "/partnerships" },
       ],
     },
   ];
 
   const socialLinks = [
-    { name: 'Facebook', icon: Facebook, href: 'https://facebook.com/facultyconnect' },
-    { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/facultyconnect' },
-    { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/facultyconnect' },
-    { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/facultyconnect' },
+    {
+      name: "Facebook",
+      icon: Facebook,
+      href: "https://facebook.com/facultyconnect",
+    },
+    {
+      name: "Twitter",
+      icon: Twitter,
+      href: "https://twitter.com/facultyconnect",
+    },
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      href: "https://linkedin.com/company/facultyconnect",
+    },
+    {
+      name: "Instagram",
+      icon: Instagram,
+      href: "https://instagram.com/facultyconnect",
+    },
   ];
 
   return (
@@ -75,9 +99,10 @@ export default function Footer() {
                 </span>
               </div>
               <p className="text-white text-sm mb-6 max-w-xs">
-                Connecting passionate educators with leading institutions across Tamil Nadu, South India, and beyond.
+                Connecting passionate educators with leading institutions across
+                Tamil Nadu, South India, and beyond.
               </p>
-              
+
               {/* Contact Info */}
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm text-white">

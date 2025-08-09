@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
-import { Textarea } from '@/components/ui/textarea';
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Dialog,
   DialogContent,
@@ -11,17 +11,18 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
+} from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { useAuthStore } from '@/store/authStore';
-import { toast } from 'sonner';
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useAuthStore } from "@/store/authStore";
+import { toast } from "sonner";
 import {
   Settings,
   User,
@@ -35,8 +36,8 @@ import {
   Smartphone,
   Mail,
   Eye,
-  Lock
-} from 'lucide-react';
+  Lock,
+} from "lucide-react";
 
 interface SettingsModalProps {
   trigger?: React.ReactNode;
@@ -45,15 +46,15 @@ interface SettingsModalProps {
 const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
   const { user } = useAuthStore();
   const [open, setOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('profile');
-  
+  const [activeTab, setActiveTab] = useState("profile");
+
   // Profile settings state
   const [profileData, setProfileData] = useState({
-    name: user?.name || '',
-    email: user?.email || '',
-    phone: user?.phone || '',
-    bio: user?.bio || '',
-    profileImage: user?.profileImage || ''
+    name: user?.name || "",
+    email: user?.email || "",
+    phone: user?.phone || "",
+    bio: user?.bio || "",
+    profileImage: user?.profileImage || "",
   });
 
   // Notification preferences state
@@ -63,20 +64,20 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
     jobAlerts: true,
     applicationUpdates: true,
     messageNotifications: true,
-    weeklyDigest: false
+    weeklyDigest: false,
   });
 
   // Security settings state
   const [securitySettings, setSecuritySettings] = useState({
     twoFactorAuth: false,
-    profileVisibility: 'public' as 'public' | 'private',
-    showContactInfo: true
+    profileVisibility: "public" as "public" | "private",
+    showContactInfo: true,
   });
 
   // Theme settings state
   const [themeSettings, setThemeSettings] = useState({
     darkMode: false,
-    language: 'en'
+    language: "en",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -85,10 +86,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
     setIsLoading(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      toast.success('Profile updated successfully!');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success("Profile updated successfully!");
     } catch (error) {
-      toast.error('Failed to update profile. Please try again.');
+      toast.error("Failed to update profile. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -98,10 +99,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
     setIsLoading(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      toast.success('Notification preferences updated!');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success("Notification preferences updated!");
     } catch (error) {
-      toast.error('Failed to update preferences. Please try again.');
+      toast.error("Failed to update preferences. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -111,24 +112,26 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
     setIsLoading(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      toast.success('Security settings updated!');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success("Security settings updated!");
     } catch (error) {
-      toast.error('Failed to update security settings. Please try again.');
+      toast.error("Failed to update security settings. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleProfileImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleProfileImageUpload = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const file = event.target.files?.[0];
     if (file) {
       // In a real app, upload to server and get URL
       const reader = new FileReader();
       reader.onload = (e) => {
-        setProfileData(prev => ({
+        setProfileData((prev) => ({
           ...prev,
-          profileImage: e.target?.result as string
+          profileImage: e.target?.result as string,
         }));
       };
       reader.readAsDataURL(file);
@@ -152,14 +155,17 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
             Manage your account settings and preferences
           </DialogDescription>
         </DialogHeader>
-        
+
         <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full">
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="profile" className="flex items-center gap-2">
               <User className="w-4 h-4" />
               Profile
             </TabsTrigger>
-            <TabsTrigger value="notifications" className="flex items-center gap-2">
+            <TabsTrigger
+              value="notifications"
+              className="flex items-center gap-2"
+            >
               <Bell className="w-4 h-4" />
               Notifications
             </TabsTrigger>
@@ -167,7 +173,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
               <Shield className="w-4 h-4" />
               Security
             </TabsTrigger>
-            <TabsTrigger value="preferences" className="flex items-center gap-2">
+            <TabsTrigger
+              value="preferences"
+              className="flex items-center gap-2"
+            >
               <Settings className="w-4 h-4" />
               Preferences
             </TabsTrigger>
@@ -189,12 +198,19 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
                     <Avatar className="h-20 w-20">
                       <AvatarImage src={profileData.profileImage} />
                       <AvatarFallback className="bg-blue-100 text-blue-600 text-xl">
-                        {profileData.name?.split(' ').map(n => n[0]).join('') || 'FC'}
+                        {profileData.name
+                          ?.split(" ")
+                          .map((n) => n[0])
+                          .join("") || "FC"}
                       </AvatarFallback>
                     </Avatar>
                     <div>
                       <Label htmlFor="profile-image" className="cursor-pointer">
-                        <Button variant="outline" size="sm" className="relative">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="relative"
+                        >
                           <Upload className="w-4 h-4 mr-2" />
                           Upload Photo
                         </Button>
@@ -218,7 +234,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
                       <Input
                         id="name"
                         value={profileData.name}
-                        onChange={(e) => setProfileData(prev => ({ ...prev, name: e.target.value }))}
+                        onChange={(e) =>
+                          setProfileData((prev) => ({
+                            ...prev,
+                            name: e.target.value,
+                          }))
+                        }
                         placeholder="Enter your full name"
                       />
                     </div>
@@ -228,7 +249,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
                         id="email"
                         type="email"
                         value={profileData.email}
-                        onChange={(e) => setProfileData(prev => ({ ...prev, email: e.target.value }))}
+                        onChange={(e) =>
+                          setProfileData((prev) => ({
+                            ...prev,
+                            email: e.target.value,
+                          }))
+                        }
                         placeholder="Enter your email"
                       />
                     </div>
@@ -239,7 +265,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
                     <Input
                       id="phone"
                       value={profileData.phone}
-                      onChange={(e) => setProfileData(prev => ({ ...prev, phone: e.target.value }))}
+                      onChange={(e) =>
+                        setProfileData((prev) => ({
+                          ...prev,
+                          phone: e.target.value,
+                        }))
+                      }
                       placeholder="Enter your phone number"
                     />
                   </div>
@@ -249,7 +280,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
                     <Textarea
                       id="bio"
                       value={profileData.bio}
-                      onChange={(e) => setProfileData(prev => ({ ...prev, bio: e.target.value }))}
+                      onChange={(e) =>
+                        setProfileData((prev) => ({
+                          ...prev,
+                          bio: e.target.value,
+                        }))
+                      }
                       placeholder="Tell us about yourself..."
                       rows={3}
                     />
@@ -290,78 +326,120 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
-                        <Label className="text-sm font-medium">Email Notifications</Label>
-                        <p className="text-xs text-gray-500">Receive notifications via email</p>
+                        <Label className="text-sm font-medium">
+                          Email Notifications
+                        </Label>
+                        <p className="text-xs text-gray-500">
+                          Receive notifications via email
+                        </p>
                       </div>
                       <Switch
                         checked={notificationSettings.emailNotifications}
                         onCheckedChange={(checked) =>
-                          setNotificationSettings(prev => ({ ...prev, emailNotifications: checked }))
+                          setNotificationSettings((prev) => ({
+                            ...prev,
+                            emailNotifications: checked,
+                          }))
                         }
                       />
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
-                        <Label className="text-sm font-medium">Push Notifications</Label>
-                        <p className="text-xs text-gray-500">Receive push notifications on your device</p>
+                        <Label className="text-sm font-medium">
+                          Push Notifications
+                        </Label>
+                        <p className="text-xs text-gray-500">
+                          Receive push notifications on your device
+                        </p>
                       </div>
                       <Switch
                         checked={notificationSettings.pushNotifications}
                         onCheckedChange={(checked) =>
-                          setNotificationSettings(prev => ({ ...prev, pushNotifications: checked }))
+                          setNotificationSettings((prev) => ({
+                            ...prev,
+                            pushNotifications: checked,
+                          }))
                         }
                       />
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
-                        <Label className="text-sm font-medium">Job Alerts</Label>
-                        <p className="text-xs text-gray-500">Get notified about new job matches</p>
+                        <Label className="text-sm font-medium">
+                          Job Alerts
+                        </Label>
+                        <p className="text-xs text-gray-500">
+                          Get notified about new job matches
+                        </p>
                       </div>
                       <Switch
                         checked={notificationSettings.jobAlerts}
                         onCheckedChange={(checked) =>
-                          setNotificationSettings(prev => ({ ...prev, jobAlerts: checked }))
+                          setNotificationSettings((prev) => ({
+                            ...prev,
+                            jobAlerts: checked,
+                          }))
                         }
                       />
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
-                        <Label className="text-sm font-medium">Application Updates</Label>
-                        <p className="text-xs text-gray-500">Status changes on your applications</p>
+                        <Label className="text-sm font-medium">
+                          Application Updates
+                        </Label>
+                        <p className="text-xs text-gray-500">
+                          Status changes on your applications
+                        </p>
                       </div>
                       <Switch
                         checked={notificationSettings.applicationUpdates}
                         onCheckedChange={(checked) =>
-                          setNotificationSettings(prev => ({ ...prev, applicationUpdates: checked }))
+                          setNotificationSettings((prev) => ({
+                            ...prev,
+                            applicationUpdates: checked,
+                          }))
                         }
                       />
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
-                        <Label className="text-sm font-medium">Message Notifications</Label>
-                        <p className="text-xs text-gray-500">New messages from institutions</p>
+                        <Label className="text-sm font-medium">
+                          Message Notifications
+                        </Label>
+                        <p className="text-xs text-gray-500">
+                          New messages from institutions
+                        </p>
                       </div>
                       <Switch
                         checked={notificationSettings.messageNotifications}
                         onCheckedChange={(checked) =>
-                          setNotificationSettings(prev => ({ ...prev, messageNotifications: checked }))
+                          setNotificationSettings((prev) => ({
+                            ...prev,
+                            messageNotifications: checked,
+                          }))
                         }
                       />
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
-                        <Label className="text-sm font-medium">Weekly Digest</Label>
-                        <p className="text-xs text-gray-500">Weekly summary of activity</p>
+                        <Label className="text-sm font-medium">
+                          Weekly Digest
+                        </Label>
+                        <p className="text-xs text-gray-500">
+                          Weekly summary of activity
+                        </p>
                       </div>
                       <Switch
                         checked={notificationSettings.weeklyDigest}
                         onCheckedChange={(checked) =>
-                          setNotificationSettings(prev => ({ ...prev, weeklyDigest: checked }))
+                          setNotificationSettings((prev) => ({
+                            ...prev,
+                            weeklyDigest: checked,
+                          }))
                         }
                       />
                     </div>
@@ -371,7 +449,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
                     <Button variant="outline" onClick={() => setOpen(false)}>
                       Cancel
                     </Button>
-                    <Button onClick={handleSaveNotifications} disabled={isLoading}>
+                    <Button
+                      onClick={handleSaveNotifications}
+                      disabled={isLoading}
+                    >
                       {isLoading ? (
                         <>
                           <Save className="w-4 h-4 mr-2 animate-spin" />
@@ -402,26 +483,40 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
-                        <Label className="text-sm font-medium">Two-Factor Authentication</Label>
-                        <p className="text-xs text-gray-500">Add an extra layer of security to your account</p>
+                        <Label className="text-sm font-medium">
+                          Two-Factor Authentication
+                        </Label>
+                        <p className="text-xs text-gray-500">
+                          Add an extra layer of security to your account
+                        </p>
                       </div>
                       <Switch
                         checked={securitySettings.twoFactorAuth}
                         onCheckedChange={(checked) =>
-                          setSecuritySettings(prev => ({ ...prev, twoFactorAuth: checked }))
+                          setSecuritySettings((prev) => ({
+                            ...prev,
+                            twoFactorAuth: checked,
+                          }))
                         }
                       />
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
-                        <Label className="text-sm font-medium">Show Contact Information</Label>
-                        <p className="text-xs text-gray-500">Allow institutions to see your contact details</p>
+                        <Label className="text-sm font-medium">
+                          Show Contact Information
+                        </Label>
+                        <p className="text-xs text-gray-500">
+                          Allow institutions to see your contact details
+                        </p>
                       </div>
                       <Switch
                         checked={securitySettings.showContactInfo}
                         onCheckedChange={(checked) =>
-                          setSecuritySettings(prev => ({ ...prev, showContactInfo: checked }))
+                          setSecuritySettings((prev) => ({
+                            ...prev,
+                            showContactInfo: checked,
+                          }))
                         }
                       />
                     </div>
@@ -468,21 +563,24 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ trigger }) => {
               <Card>
                 <CardHeader>
                   <CardTitle>General Preferences</CardTitle>
-                  <CardDescription>
-                    Customize your experience
-                  </CardDescription>
+                  <CardDescription>Customize your experience</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
                         <Label className="text-sm font-medium">Dark Mode</Label>
-                        <p className="text-xs text-gray-500">Use dark theme across the application</p>
+                        <p className="text-xs text-gray-500">
+                          Use dark theme across the application
+                        </p>
                       </div>
                       <Switch
                         checked={themeSettings.darkMode}
                         onCheckedChange={(checked) =>
-                          setThemeSettings(prev => ({ ...prev, darkMode: checked }))
+                          setThemeSettings((prev) => ({
+                            ...prev,
+                            darkMode: checked,
+                          }))
                         }
                       />
                     </div>

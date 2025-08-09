@@ -1,36 +1,46 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useQuery, useMutation } from '@tanstack/react-query';
-import { api } from '@/lib/api';
-import { useAuthStore } from '@/store/authStore';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import NotificationsDropdown from '@/components/NotificationsDropdown';
-import SettingsModal from '@/components/SettingsModal';
-import UserProfileDetails from '@/components/UserProfileDetails';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { api } from "@/lib/api";
+import { useAuthStore } from "@/store/authStore";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import NotificationsDropdown from "@/components/NotificationsDropdown";
+import SettingsModal from "@/components/SettingsModal";
+import UserProfileDetails from "@/components/UserProfileDetails";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+} from "@/components/ui/dropdown-menu";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import QuickActionsPanel from '@/components/EmployerDashboard/QuickActionsPanel';
-import { allJobs, allCandidates, employerAnalyticsData } from '@/data/comprehensiveSampleData';
+} from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import QuickActionsPanel from "@/components/EmployerDashboard/QuickActionsPanel";
+import {
+  allJobs,
+  allCandidates,
+  employerAnalyticsData,
+} from "@/data/comprehensiveSampleData";
 import {
   Building,
   MapPin,
@@ -57,60 +67,61 @@ import {
   ExternalLink,
   BarChart3,
   LogOut,
-  Settings
-} from 'lucide-react';
+  Settings,
+} from "lucide-react";
 
 export default function EmployerDashboard() {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
 
   const handleSignOut = () => {
-    if (window.confirm('Are you sure you want to sign out?')) {
+    if (window.confirm("Are you sure you want to sign out?")) {
       logout();
-      navigate('/login');
+      navigate("/login");
     }
   };
   const [showPostJobDialog, setShowPostJobDialog] = useState(false);
-  
+
   // Mock employer data - In real app: GET /api/employer/profile
   const mockEmployer = {
-    _id: user?._id || '1',
-    email: user?.email || 'employer@demo.com',
-    role: 'employer' as const,
+    _id: user?._id || "1",
+    email: user?.email || "employer@demo.com",
+    role: "employer" as const,
     isVerified: true,
-    createdAt: '2024-01-10',
+    createdAt: "2024-01-10",
     profile: {
       institute: {
-        _id: '1',
-        name: 'Anna University',
-        type: 'university' as const,
+        _id: "1",
+        name: "Anna University",
+        type: "university" as const,
         location: {
-          city: 'Chennai',
-          state: 'Tamil Nadu',
-          district: 'Chennai',
-          address: 'Sardar Patel Road, Guindy, Chennai - 600025'
+          city: "Chennai",
+          state: "Tamil Nadu",
+          district: "Chennai",
+          address: "Sardar Patel Road, Guindy, Chennai - 600025",
         },
-        email: 'hr@annauniv.edu',
-        phone: '+91 44 2235 0449',
-        website: 'https://www.annauniv.edu',
-        description: 'Premier technical university in Tamil Nadu offering undergraduate, postgraduate and doctoral programs.',
+        email: "hr@annauniv.edu",
+        phone: "+91 44 2235 0449",
+        website: "https://www.annauniv.edu",
+        description:
+          "Premier technical university in Tamil Nadu offering undergraduate, postgraduate and doctoral programs.",
         established: 1978,
         isFeatured: true,
-        jobsCount: 12
+        jobsCount: 12,
       },
       contactPerson: {
-        name: 'Dr. Punitha',
-        designation: 'HR Manager',
-        phone: '+91 9876543210'
+        name: "Dr. Punitha",
+        designation: "HR Manager",
+        phone: "+91 9876543210",
       },
-      verificationStatus: 'verified' as const
-    }
+      verificationStatus: "verified" as const,
+    },
   };
 
   // Real posted jobs using comprehensive data
   const mockPostedJobs = allJobs
     .slice(0, 25) // Show 25 jobs for this employer
-    .map(job => ({
+    .map((job) => ({
       _id: job.id,
       title: job.title,
       type: job.institute.type,
@@ -118,57 +129,66 @@ export default function EmployerDashboard() {
       salary: `₹${job.salary.min.toLocaleString()} - ₹${job.salary.max.toLocaleString()}`,
       postedDate: new Date(job.createdAt).toLocaleDateString(),
       deadline: new Date(job.deadline).toLocaleDateString(),
-      status: job.isActive ? 'active' : 'draft',
+      status: job.isActive ? "active" : "draft",
       applicationsCount: job.applicationCount,
-      viewsCount: job.viewCount
+      viewsCount: job.viewCount,
     }));
 
   // Real applications using comprehensive candidate data
-  const jobIds = mockPostedJobs.map(job => job._id);
+  const jobIds = mockPostedJobs.map((job) => job._id);
   const mockApplications = allCandidates
     .slice(0, 200) // Show 200 applications for this employer
     .map((candidate, index) => {
       const jobId = jobIds[Math.floor(Math.random() * jobIds.length)];
-      const job = mockPostedJobs.find(j => j._id === jobId);
-      const statuses = ['submitted', 'under-review', 'shortlisted', 'interviewed', 'selected', 'rejected'];
+      const job = mockPostedJobs.find((j) => j._id === jobId);
+      const statuses = [
+        "submitted",
+        "under-review",
+        "shortlisted",
+        "interviewed",
+        "selected",
+        "rejected",
+      ];
 
       return {
         _id: `app_${index + 1}`,
         jobId: jobId,
-        jobTitle: job?.title || 'Assistant Professor',
+        jobTitle: job?.title || "Assistant Professor",
         candidate: {
           _id: candidate.id,
           name: candidate.name,
           email: candidate.email,
           phone: candidate.phone,
           location: `${candidate.profile.location.city}, ${candidate.profile.location.state}`,
-          education: candidate.profile.qualifications[0] || 'PhD',
+          education: candidate.profile.qualifications[0] || "PhD",
           experience: `${Math.floor(Math.random() * 15) + 1} years`,
-          appliedDate: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString(),
-          profileImage: candidate.profileImage
+          appliedDate: new Date(
+            Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000,
+          ).toLocaleDateString(),
+          profileImage: candidate.profileImage,
         },
         status: statuses[Math.floor(Math.random() * statuses.length)],
-        rating: Math.floor(Math.random() * 5) + 1
+        rating: Math.floor(Math.random() * 5) + 1,
       };
     });
 
-  const [selectedJob, setSelectedJob] = useState('all');
-  const [selectedStatus, setSelectedStatus] = useState('all');
+  const [selectedJob, setSelectedJob] = useState("all");
+  const [selectedStatus, setSelectedStatus] = useState("all");
   const [newJob, setNewJob] = useState({
-    title: '',
-    description: '',
-    department: '',
-    type: '',
-    location: '',
-    salaryMin: '',
-    salaryMax: '',
-    experience: '',
-    deadline: ''
+    title: "",
+    description: "",
+    department: "",
+    type: "",
+    location: "",
+    salaryMin: "",
+    salaryMax: "",
+    experience: "",
+    deadline: "",
   });
 
-  const filteredApplications = mockApplications.filter(app => {
-    if (selectedJob !== 'all' && app.jobId !== selectedJob) return false;
-    if (selectedStatus !== 'all' && app.status !== selectedStatus) return false;
+  const filteredApplications = mockApplications.filter((app) => {
+    if (selectedJob !== "all" && app.jobId !== selectedJob) return false;
+    if (selectedStatus !== "all" && app.status !== selectedStatus) return false;
     return true;
   });
 
@@ -176,55 +196,66 @@ export default function EmployerDashboard() {
   const postJobMutation = useMutation({
     mutationFn: async (jobData: any) => {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      return { success: true, jobId: 'new-job-id' };
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      return { success: true, jobId: "new-job-id" };
     },
     onSuccess: () => {
       setShowPostJobDialog(false);
       setNewJob({
-        title: '',
-        description: '',
-        department: '',
-        type: '',
-        location: '',
-        salaryMin: '',
-        salaryMax: '',
-        experience: '',
-        deadline: ''
+        title: "",
+        description: "",
+        department: "",
+        type: "",
+        location: "",
+        salaryMin: "",
+        salaryMax: "",
+        experience: "",
+        deadline: "",
       });
     },
   });
 
   const getStatusColor = (status: string) => {
     const colors = {
-      applied: 'bg-blue-100 text-blue-800',
-      shortlisted: 'bg-yellow-100 text-yellow-800',
-      interviewed: 'bg-purple-100 text-purple-800',
-      selected: 'bg-green-100 text-green-800',
-      rejected: 'bg-red-100 text-red-800',
-      active: 'bg-green-100 text-green-800',
-      draft: 'bg-gray-100 text-gray-800',
-      expired: 'bg-red-100 text-red-800'
+      applied: "bg-blue-100 text-blue-800",
+      shortlisted: "bg-yellow-100 text-yellow-800",
+      interviewed: "bg-purple-100 text-purple-800",
+      selected: "bg-green-100 text-green-800",
+      rejected: "bg-red-100 text-red-800",
+      active: "bg-green-100 text-green-800",
+      draft: "bg-gray-100 text-gray-800",
+      expired: "bg-red-100 text-red-800",
     };
-    return colors[status as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+    return colors[status as keyof typeof colors] || "bg-gray-100 text-gray-800";
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'applied': return <Clock className="w-4 h-4" />;
-      case 'shortlisted': return <Eye className="w-4 h-4" />;
-      case 'interviewed': return <User className="w-4 h-4" />;
-      case 'selected': return <CheckCircle className="w-4 h-4" />;
-      case 'rejected': return <AlertCircle className="w-4 h-4" />;
-      case 'active': return <CheckCircle className="w-4 h-4" />;
-      case 'draft': return <FileText className="w-4 h-4" />;
-      default: return <Clock className="w-4 h-4" />;
+      case "applied":
+        return <Clock className="w-4 h-4" />;
+      case "shortlisted":
+        return <Eye className="w-4 h-4" />;
+      case "interviewed":
+        return <User className="w-4 h-4" />;
+      case "selected":
+        return <CheckCircle className="w-4 h-4" />;
+      case "rejected":
+        return <AlertCircle className="w-4 h-4" />;
+      case "active":
+        return <CheckCircle className="w-4 h-4" />;
+      case "draft":
+        return <FileText className="w-4 h-4" />;
+      default:
+        return <Clock className="w-4 h-4" />;
     }
   };
 
   const getRatingStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
-      <span key={i} className={`text-lg ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}>
+      <span
+        key={i}
+        className={`text-lg ${i < rating ? "text-yellow-400" : "text-gray-300"}`}
+      >
         ★
       </span>
     ));
@@ -257,11 +288,15 @@ export default function EmployerDashboard() {
                 Institution Dashboard
               </h1>
               <p className="text-gray-600">
-                Manage your job postings and candidate applications for {mockEmployer.profile.institute.name}
+                Manage your job postings and candidate applications for{" "}
+                {mockEmployer.profile.institute.name}
               </p>
             </div>
-            
-            <Dialog open={showPostJobDialog} onOpenChange={setShowPostJobDialog}>
+
+            <Dialog
+              open={showPostJobDialog}
+              onOpenChange={setShowPostJobDialog}
+            >
               <DialogTrigger asChild>
                 <Button className="bg-blue-600 hover:bg-blue-700">
                   <Plus className="w-4 h-4 mr-2" />
@@ -279,7 +314,12 @@ export default function EmployerDashboard() {
                       <Input
                         id="title"
                         value={newJob.title}
-                        onChange={(e) => setNewJob(prev => ({ ...prev, title: e.target.value }))}
+                        onChange={(e) =>
+                          setNewJob((prev) => ({
+                            ...prev,
+                            title: e.target.value,
+                          }))
+                        }
                         placeholder="e.g., Assistant Professor - Computer Science"
                       />
                     </div>
@@ -288,18 +328,28 @@ export default function EmployerDashboard() {
                       <Input
                         id="department"
                         value={newJob.department}
-                        onChange={(e) => setNewJob(prev => ({ ...prev, department: e.target.value }))}
+                        onChange={(e) =>
+                          setNewJob((prev) => ({
+                            ...prev,
+                            department: e.target.value,
+                          }))
+                        }
                         placeholder="e.g., Computer Science"
                       />
                     </div>
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="description">Job Description</Label>
                     <Textarea
                       id="description"
                       value={newJob.description}
-                      onChange={(e) => setNewJob(prev => ({ ...prev, description: e.target.value }))}
+                      onChange={(e) =>
+                        setNewJob((prev) => ({
+                          ...prev,
+                          description: e.target.value,
+                        }))
+                      }
                       placeholder="Describe the role, responsibilities, and requirements..."
                       rows={4}
                     />
@@ -308,7 +358,12 @@ export default function EmployerDashboard() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                       <Label htmlFor="type">Institution Type</Label>
-                      <Select value={newJob.type} onValueChange={(value) => setNewJob(prev => ({ ...prev, type: value }))}>
+                      <Select
+                        value={newJob.type}
+                        onValueChange={(value) =>
+                          setNewJob((prev) => ({ ...prev, type: value }))
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select type" />
                         </SelectTrigger>
@@ -316,7 +371,9 @@ export default function EmployerDashboard() {
                           <SelectItem value="school">School</SelectItem>
                           <SelectItem value="college">College</SelectItem>
                           <SelectItem value="university">University</SelectItem>
-                          <SelectItem value="polytechnic">Polytechnic</SelectItem>
+                          <SelectItem value="polytechnic">
+                            Polytechnic
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -325,7 +382,12 @@ export default function EmployerDashboard() {
                       <Input
                         id="experience"
                         value={newJob.experience}
-                        onChange={(e) => setNewJob(prev => ({ ...prev, experience: e.target.value }))}
+                        onChange={(e) =>
+                          setNewJob((prev) => ({
+                            ...prev,
+                            experience: e.target.value,
+                          }))
+                        }
                         placeholder="e.g., 2-5 years"
                       />
                     </div>
@@ -335,7 +397,12 @@ export default function EmployerDashboard() {
                         id="deadline"
                         type="date"
                         value={newJob.deadline}
-                        onChange={(e) => setNewJob(prev => ({ ...prev, deadline: e.target.value }))}
+                        onChange={(e) =>
+                          setNewJob((prev) => ({
+                            ...prev,
+                            deadline: e.target.value,
+                          }))
+                        }
                       />
                     </div>
                   </div>
@@ -347,7 +414,12 @@ export default function EmployerDashboard() {
                         id="salaryMin"
                         type="number"
                         value={newJob.salaryMin}
-                        onChange={(e) => setNewJob(prev => ({ ...prev, salaryMin: e.target.value }))}
+                        onChange={(e) =>
+                          setNewJob((prev) => ({
+                            ...prev,
+                            salaryMin: e.target.value,
+                          }))
+                        }
                         placeholder="35000"
                       />
                     </div>
@@ -357,17 +429,28 @@ export default function EmployerDashboard() {
                         id="salaryMax"
                         type="number"
                         value={newJob.salaryMax}
-                        onChange={(e) => setNewJob(prev => ({ ...prev, salaryMax: e.target.value }))}
+                        onChange={(e) =>
+                          setNewJob((prev) => ({
+                            ...prev,
+                            salaryMax: e.target.value,
+                          }))
+                        }
                         placeholder="55000"
                       />
                     </div>
                   </div>
 
                   <div className="flex justify-end space-x-3 pt-4">
-                    <Button variant="outline" onClick={() => setShowPostJobDialog(false)}>
+                    <Button
+                      variant="outline"
+                      onClick={() => setShowPostJobDialog(false)}
+                    >
                       Cancel
                     </Button>
-                    <Button onClick={handlePostJob} disabled={postJobMutation.isPending}>
+                    <Button
+                      onClick={handlePostJob}
+                      disabled={postJobMutation.isPending}
+                    >
                       {postJobMutation.isPending ? (
                         <>
                           <Send className="w-4 h-4 mr-2 animate-spin" />
@@ -396,9 +479,14 @@ export default function EmployerDashboard() {
                   <Briefcase className="w-6 h-6 text-blue-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Active Jobs</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Active Jobs
+                  </p>
                   <p className="text-2xl font-bold text-gray-900">
-                    {mockPostedJobs.filter(job => job.status === 'active').length}
+                    {
+                      mockPostedJobs.filter((job) => job.status === "active")
+                        .length
+                    }
                   </p>
                 </div>
               </div>
@@ -412,8 +500,12 @@ export default function EmployerDashboard() {
                   <Users className="w-6 h-6 text-green-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Total Applications</p>
-                  <p className="text-2xl font-bold text-gray-900">{mockApplications.length}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Total Applications
+                  </p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {mockApplications.length}
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -428,7 +520,10 @@ export default function EmployerDashboard() {
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Job Views</p>
                   <p className="text-2xl font-bold text-gray-900">
-                    {mockPostedJobs.reduce((sum, job) => sum + job.viewsCount, 0)}
+                    {mockPostedJobs.reduce(
+                      (sum, job) => sum + job.viewsCount,
+                      0,
+                    )}
                   </p>
                 </div>
               </div>
@@ -442,7 +537,9 @@ export default function EmployerDashboard() {
                   <TrendingUp className="w-6 h-6 text-purple-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Response Rate</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Response Rate
+                  </p>
                   <p className="text-2xl font-bold text-gray-900">78%</p>
                 </div>
               </div>
@@ -454,7 +551,7 @@ export default function EmployerDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card
             className="bg-white border border-gray-200 shadow-md rounded-xl hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => navigate('/employer/my-jobs')}
+            onClick={() => navigate("/employer/my-jobs")}
           >
             <CardContent className="p-6">
               <div className="flex items-center">
@@ -464,7 +561,10 @@ export default function EmployerDashboard() {
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">My Jobs</p>
                   <p className="text-2xl font-bold text-gray-900">
-                    {mockPostedJobs.filter(job => job.status === 'active').length}
+                    {
+                      mockPostedJobs.filter((job) => job.status === "active")
+                        .length
+                    }
                   </p>
                   <div className="flex items-center mt-1">
                     <ExternalLink className="w-3 h-3 text-gray-400 mr-1" />
@@ -477,7 +577,7 @@ export default function EmployerDashboard() {
 
           <Card
             className="bg-white border border-gray-200 shadow-md rounded-xl hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => navigate('/employer/applications')}
+            onClick={() => navigate("/employer/applications")}
           >
             <CardContent className="p-6">
               <div className="flex items-center">
@@ -485,11 +585,17 @@ export default function EmployerDashboard() {
                   <Users className="w-6 h-6 text-green-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Applications</p>
-                  <p className="text-2xl font-bold text-gray-900">{mockApplications.length}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Applications
+                  </p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {mockApplications.length}
+                  </p>
                   <div className="flex items-center mt-1">
                     <ExternalLink className="w-3 h-3 text-gray-400 mr-1" />
-                    <span className="text-xs text-gray-500">Review candidates</span>
+                    <span className="text-xs text-gray-500">
+                      Review candidates
+                    </span>
                   </div>
                 </div>
               </div>
@@ -498,7 +604,7 @@ export default function EmployerDashboard() {
 
           <Card
             className="bg-white border border-gray-200 shadow-md rounded-xl hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => navigate('/employer/analytics')}
+            onClick={() => navigate("/employer/analytics")}
           >
             <CardContent className="p-6">
               <div className="flex items-center">
@@ -508,7 +614,10 @@ export default function EmployerDashboard() {
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Analytics</p>
                   <p className="text-2xl font-bold text-gray-900">
-                    {mockPostedJobs.reduce((sum, job) => sum + job.viewsCount, 0)}
+                    {mockPostedJobs.reduce(
+                      (sum, job) => sum + job.viewsCount,
+                      0,
+                    )}
                   </p>
                   <div className="flex items-center mt-1">
                     <ExternalLink className="w-3 h-3 text-gray-400 mr-1" />
@@ -521,7 +630,7 @@ export default function EmployerDashboard() {
 
           <Card
             className="bg-white border border-gray-200 shadow-md rounded-xl hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => navigate('/employer/post-job')}
+            onClick={() => navigate("/employer/post-job")}
           >
             <CardContent className="p-6">
               <div className="flex items-center">
@@ -533,7 +642,9 @@ export default function EmployerDashboard() {
                   <p className="text-2xl font-bold text-gray-900">New</p>
                   <div className="flex items-center mt-1">
                     <ExternalLink className="w-3 h-3 text-gray-400 mr-1" />
-                    <span className="text-xs text-gray-500">Create posting</span>
+                    <span className="text-xs text-gray-500">
+                      Create posting
+                    </span>
                   </div>
                 </div>
               </div>
@@ -547,8 +658,12 @@ export default function EmployerDashboard() {
             <Tabs defaultValue="overview" className="space-y-6">
               <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="recent-applications">Recent Applications</TabsTrigger>
-                <TabsTrigger value="job-performance">Job Performance</TabsTrigger>
+                <TabsTrigger value="recent-applications">
+                  Recent Applications
+                </TabsTrigger>
+                <TabsTrigger value="job-performance">
+                  Job Performance
+                </TabsTrigger>
               </TabsList>
 
               {/* Overview Tab */}
@@ -563,24 +678,36 @@ export default function EmployerDashboard() {
                         <div className="flex items-start space-x-3">
                           <div className="w-2 h-2 bg-green-500 rounded-full mt-2" />
                           <div>
-                            <p className="text-sm text-gray-900">New application received</p>
-                            <p className="text-xs text-gray-500">Aravind Kumar applied for CS Professor</p>
+                            <p className="text-sm text-gray-900">
+                              New application received
+                            </p>
+                            <p className="text-xs text-gray-500">
+                              Aravind Kumar applied for CS Professor
+                            </p>
                             <p className="text-xs text-gray-400">2 hours ago</p>
                           </div>
                         </div>
                         <div className="flex items-start space-x-3">
                           <div className="w-2 h-2 bg-blue-500 rounded-full mt-2" />
                           <div>
-                            <p className="text-sm text-gray-900">Job posting published</p>
-                            <p className="text-xs text-gray-500">Mathematics Lecturer position went live</p>
+                            <p className="text-sm text-gray-900">
+                              Job posting published
+                            </p>
+                            <p className="text-xs text-gray-500">
+                              Mathematics Lecturer position went live
+                            </p>
                             <p className="text-xs text-gray-400">1 day ago</p>
                           </div>
                         </div>
                         <div className="flex items-start space-x-3">
                           <div className="w-2 h-2 bg-purple-500 rounded-full mt-2" />
                           <div>
-                            <p className="text-sm text-gray-900">Candidate shortlisted</p>
-                            <p className="text-xs text-gray-500">Meena Priya moved to interview stage</p>
+                            <p className="text-sm text-gray-900">
+                              Candidate shortlisted
+                            </p>
+                            <p className="text-xs text-gray-500">
+                              Meena Priya moved to interview stage
+                            </p>
                             <p className="text-xs text-gray-400">2 days ago</p>
                           </div>
                         </div>
@@ -595,7 +722,9 @@ export default function EmployerDashboard() {
                     <CardContent>
                       <div className="space-y-4">
                         <div className="flex justify-between">
-                          <span className="text-gray-600">New Applications</span>
+                          <span className="text-gray-600">
+                            New Applications
+                          </span>
                           <span className="font-semibold">28</span>
                         </div>
                         <div className="flex justify-between">
@@ -607,7 +736,9 @@ export default function EmployerDashboard() {
                           <span className="font-semibold">12</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Interviews Scheduled</span>
+                          <span className="text-gray-600">
+                            Interviews Scheduled
+                          </span>
                           <span className="font-semibold">5</span>
                         </div>
                       </div>
@@ -624,7 +755,7 @@ export default function EmployerDashboard() {
                       <CardTitle>Recent Applications</CardTitle>
                       <Button
                         variant="outline"
-                        onClick={() => navigate('/employer/applications')}
+                        onClick={() => navigate("/employer/applications")}
                       >
                         <ExternalLink className="w-4 h-4 mr-2" />
                         View All
@@ -634,13 +765,21 @@ export default function EmployerDashboard() {
                   <CardContent>
                     <div className="space-y-4">
                       {mockApplications.slice(0, 3).map((application) => (
-                        <div key={application._id} className="border border-gray-200 rounded-lg p-4">
+                        <div
+                          key={application._id}
+                          className="border border-gray-200 rounded-lg p-4"
+                        >
                           <div className="flex items-start justify-between mb-3">
                             <div className="flex items-start space-x-3">
                               <Avatar className="h-10 w-10">
-                                <AvatarImage src={application.candidate.profileImage} />
+                                <AvatarImage
+                                  src={application.candidate.profileImage}
+                                />
                                 <AvatarFallback className="bg-blue-100 text-blue-600">
-                                  {application.candidate.name.split(' ').map(n => n[0]).join('')}
+                                  {application.candidate.name
+                                    .split(" ")
+                                    .map((n) => n[0])
+                                    .join("")}
                                 </AvatarFallback>
                               </Avatar>
                               <div>
@@ -651,14 +790,19 @@ export default function EmployerDashboard() {
                                   Applied for: {application.jobTitle}
                                 </p>
                                 <p className="text-gray-500 text-xs mt-1">
-                                  {application.candidate.education} • {application.candidate.experience} experience
+                                  {application.candidate.education} •{" "}
+                                  {application.candidate.experience} experience
                                 </p>
                               </div>
                             </div>
                             <div className="text-right">
-                              <Badge className={getStatusColor(application.status)}>
+                              <Badge
+                                className={getStatusColor(application.status)}
+                              >
                                 {getStatusIcon(application.status)}
-                                <span className="ml-1 capitalize">{application.status}</span>
+                                <span className="ml-1 capitalize">
+                                  {application.status}
+                                </span>
                               </Badge>
                             </div>
                           </div>
@@ -666,13 +810,20 @@ export default function EmployerDashboard() {
                           <div className="flex items-center justify-between">
                             <div className="flex items-center text-sm text-gray-500">
                               <Calendar className="w-4 h-4 mr-1" />
-                              Applied {new Date(application.candidate.appliedDate).toLocaleDateString()}
+                              Applied{" "}
+                              {new Date(
+                                application.candidate.appliedDate,
+                              ).toLocaleDateString()}
                             </div>
                             <div className="flex items-center space-x-2">
                               <Button
                                 size="sm"
                                 variant="outline"
-                                onClick={() => navigate(`/employer/applications/${application._id}`)}
+                                onClick={() =>
+                                  navigate(
+                                    `/employer/applications/${application._id}`,
+                                  )
+                                }
                               >
                                 View Application
                               </Button>
@@ -693,7 +844,7 @@ export default function EmployerDashboard() {
                       <CardTitle>Top Performing Jobs</CardTitle>
                       <Button
                         variant="outline"
-                        onClick={() => navigate('/employer/my-jobs')}
+                        onClick={() => navigate("/employer/my-jobs")}
                       >
                         <ExternalLink className="w-4 h-4 mr-2" />
                         Manage All Jobs
@@ -703,16 +854,27 @@ export default function EmployerDashboard() {
                   <CardContent>
                     <div className="space-y-4">
                       {mockPostedJobs.slice(0, 3).map((job) => (
-                        <div key={job._id} className="border border-gray-200 rounded-lg p-4">
+                        <div
+                          key={job._id}
+                          className="border border-gray-200 rounded-lg p-4"
+                        >
                           <div className="flex items-start justify-between mb-3">
                             <div>
-                              <h3 className="font-semibold text-gray-900">{job.title}</h3>
-                              <p className="text-gray-600 text-sm">{job.location}</p>
-                              <p className="text-green-600 text-sm font-medium">{job.salary}</p>
+                              <h3 className="font-semibold text-gray-900">
+                                {job.title}
+                              </h3>
+                              <p className="text-gray-600 text-sm">
+                                {job.location}
+                              </p>
+                              <p className="text-green-600 text-sm font-medium">
+                                {job.salary}
+                              </p>
                             </div>
                             <Badge className={getStatusColor(job.status)}>
                               {getStatusIcon(job.status)}
-                              <span className="ml-1 capitalize">{job.status}</span>
+                              <span className="ml-1 capitalize">
+                                {job.status}
+                              </span>
                             </Badge>
                           </div>
 
@@ -727,19 +889,25 @@ export default function EmployerDashboard() {
                             </div>
                             <div className="flex items-center">
                               <TrendingUp className="w-4 h-4 mr-1" />
-                              {Math.round((job.applicationsCount / job.viewsCount) * 100)}% conversion
+                              {Math.round(
+                                (job.applicationsCount / job.viewsCount) * 100,
+                              )}
+                              % conversion
                             </div>
                           </div>
 
                           <div className="flex items-center justify-between">
                             <div className="text-sm text-gray-500">
-                              Deadline: {new Date(job.deadline).toLocaleDateString()}
+                              Deadline:{" "}
+                              {new Date(job.deadline).toLocaleDateString()}
                             </div>
                             <div className="flex items-center space-x-2">
                               <Button
                                 size="sm"
                                 variant="outline"
-                                onClick={() => navigate(`/employer/applications/${job._id}`)}
+                                onClick={() =>
+                                  navigate(`/employer/applications/${job._id}`)
+                                }
                               >
                                 <Users className="w-4 h-4 mr-2" />
                                 View Applications ({job.applicationsCount})
@@ -762,33 +930,67 @@ export default function EmployerDashboard() {
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-4">
-                        <h3 className="font-semibold text-gray-900">Application Metrics</h3>
+                        <h3 className="font-semibold text-gray-900">
+                          Application Metrics
+                        </h3>
                         <div className="space-y-3">
                           <div className="flex justify-between">
-                            <span className="text-gray-600">Total Applications</span>
-                            <span className="font-medium">{mockApplications.length}</span>
+                            <span className="text-gray-600">
+                              Total Applications
+                            </span>
+                            <span className="font-medium">
+                              {mockApplications.length}
+                            </span>
                           </div>
                           <div className="flex justify-between">
                             <span className="text-gray-600">Shortlisted</span>
-                            <span className="font-medium">{mockApplications.filter(app => app.status === 'shortlisted').length}</span>
+                            <span className="font-medium">
+                              {
+                                mockApplications.filter(
+                                  (app) => app.status === "shortlisted",
+                                ).length
+                              }
+                            </span>
                           </div>
                           <div className="flex justify-between">
                             <span className="text-gray-600">Interviewed</span>
-                            <span className="font-medium">{mockApplications.filter(app => app.status === 'interviewed').length}</span>
+                            <span className="font-medium">
+                              {
+                                mockApplications.filter(
+                                  (app) => app.status === "interviewed",
+                                ).length
+                              }
+                            </span>
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="space-y-4">
-                        <h3 className="font-semibold text-gray-900">Job Performance</h3>
+                        <h3 className="font-semibold text-gray-900">
+                          Job Performance
+                        </h3>
                         <div className="space-y-3">
                           <div className="flex justify-between">
                             <span className="text-gray-600">Total Views</span>
-                            <span className="font-medium">{mockPostedJobs.reduce((sum, job) => sum + job.viewsCount, 0)}</span>
+                            <span className="font-medium">
+                              {mockPostedJobs.reduce(
+                                (sum, job) => sum + job.viewsCount,
+                                0,
+                              )}
+                            </span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-gray-600">Avg. Applications per Job</span>
-                            <span className="font-medium">{Math.round(mockApplications.length / mockPostedJobs.filter(j => j.status === 'active').length)}</span>
+                            <span className="text-gray-600">
+                              Avg. Applications per Job
+                            </span>
+                            <span className="font-medium">
+                              {Math.round(
+                                mockApplications.length /
+                                  mockPostedJobs.filter(
+                                    (j) => j.status === "active",
+                                  ).length,
+                              )}
+                            </span>
                           </div>
                           <div className="flex justify-between">
                             <span className="text-gray-600">Response Rate</span>
@@ -826,11 +1028,15 @@ export default function EmployerDashboard() {
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center text-gray-600">
                     <Building className="w-4 h-4 mr-2" />
-                    {mockEmployer.profile.institute.type.charAt(0).toUpperCase() + mockEmployer.profile.institute.type.slice(1)}
+                    {mockEmployer.profile.institute.type
+                      .charAt(0)
+                      .toUpperCase() +
+                      mockEmployer.profile.institute.type.slice(1)}
                   </div>
                   <div className="flex items-center text-gray-600">
                     <MapPin className="w-4 h-4 mr-2" />
-                    {mockEmployer.profile.institute.location.city}, {mockEmployer.profile.institute.location.state}
+                    {mockEmployer.profile.institute.location.city},{" "}
+                    {mockEmployer.profile.institute.location.state}
                   </div>
                   <div className="flex items-center text-gray-600">
                     <Calendar className="w-4 h-4 mr-2" />
@@ -852,7 +1058,9 @@ export default function EmployerDashboard() {
                 </div>
 
                 <div className="pt-4 border-t border-gray-200">
-                  <p className="text-sm font-medium text-gray-900 mb-2">Contact Person</p>
+                  <p className="text-sm font-medium text-gray-900 mb-2">
+                    Contact Person
+                  </p>
                   <div className="space-y-1 text-sm text-gray-600">
                     <p>{mockEmployer.profile.contactPerson.name}</p>
                     <p>{mockEmployer.profile.contactPerson.designation}</p>
@@ -879,7 +1087,9 @@ export default function EmployerDashboard() {
                   </div>
                   <div>
                     <p className="font-medium text-green-600">Verified</p>
-                    <p className="text-sm text-gray-600">Your institution is verified</p>
+                    <p className="text-sm text-gray-600">
+                      Your institution is verified
+                    </p>
                   </div>
                 </div>
               </CardContent>

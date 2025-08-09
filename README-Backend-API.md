@@ -5,6 +5,7 @@ This document outlines the backend API endpoints needed to support the updated d
 ## Authentication Endpoints
 
 ### Sign Out
+
 - **Route**: `POST /api/auth/logout`
 - **Purpose**: Clear user session/tokens and sign out
 - **Implementation**: Clear JWT tokens, session data, and redirect to login
@@ -12,6 +13,7 @@ This document outlines the backend API endpoints needed to support the updated d
 ## User Profile Endpoints
 
 ### Faculty Profile
+
 - **Route**: `GET /api/faculty/profile`
 - **Purpose**: Fetch detailed faculty profile information
 - **Response Structure**:
@@ -34,6 +36,7 @@ This document outlines the backend API endpoints needed to support the updated d
   ```
 
 ### Institution Profile
+
 - **Route**: `GET /api/institution/profile`
 - **Purpose**: Fetch detailed institution profile information
 - **Response Structure**:
@@ -58,6 +61,7 @@ This document outlines the backend API endpoints needed to support the updated d
   ```
 
 ### Update Profile
+
 - **Route**: `PUT /api/profile`
 - **Purpose**: Update user profile information
 - **Request Body**: Profile data fields
@@ -66,6 +70,7 @@ This document outlines the backend API endpoints needed to support the updated d
 ## Notifications Endpoints
 
 ### Get Notifications
+
 - **Route**: `GET /api/notifications`
 - **Purpose**: Fetch user notifications with pagination
 - **Query Parameters**:
@@ -94,20 +99,24 @@ This document outlines the backend API endpoints needed to support the updated d
   ```
 
 ### Mark Notification as Read
+
 - **Route**: `PUT /api/notifications/:id/read`
 - **Purpose**: Mark a specific notification as read
 
 ### Mark All Notifications as Read
+
 - **Route**: `PUT /api/notifications/mark-all-read`
 - **Purpose**: Mark all user notifications as read
 
 ### Delete Notification
+
 - **Route**: `DELETE /api/notifications/:id`
 - **Purpose**: Delete a specific notification
 
 ## Settings Endpoints
 
 ### Get User Settings
+
 - **Route**: `GET /api/settings`
 - **Purpose**: Fetch user preferences and settings
 - **Response Structure**:
@@ -134,12 +143,14 @@ This document outlines the backend API endpoints needed to support the updated d
   ```
 
 ### Update User Settings
+
 - **Route**: `PUT /api/settings`
 - **Purpose**: Update user preferences and settings
 - **Request Body**: Settings object
 - **Response**: Updated settings object
 
 ### Change Password
+
 - **Route**: `PUT /api/settings/password`
 - **Purpose**: Change user password
 - **Request Body**:
@@ -153,10 +164,11 @@ This document outlines the backend API endpoints needed to support the updated d
 ## File Upload Endpoints
 
 ### Upload Profile Image
+
 - **Route**: `POST /api/upload/profile-image`
 - **Purpose**: Upload and update user profile image
 - **Request**: Multipart form data with image file
-- **Response**: 
+- **Response**:
   ```json
   {
     "imageUrl": "string",
@@ -167,6 +179,7 @@ This document outlines the backend API endpoints needed to support the updated d
 ## Real-time Features (Optional)
 
 ### WebSocket Connections
+
 - **Route**: `WS /api/ws/notifications`
 - **Purpose**: Real-time notification delivery
 - **Implementation**: Send new notifications to connected users instantly
@@ -174,6 +187,7 @@ This document outlines the backend API endpoints needed to support the updated d
 ## Error Handling
 
 All endpoints should return consistent error responses:
+
 ```json
 {
   "error": "string",
@@ -185,12 +199,14 @@ All endpoints should return consistent error responses:
 ## Authentication
 
 All protected endpoints require:
+
 - **Header**: `Authorization: Bearer <JWT_TOKEN>`
 - **Validation**: Verify token and extract user information
 
 ## Rate Limiting
 
 Implement rate limiting for:
+
 - **Authentication endpoints**: 5 requests per minute
 - **Upload endpoints**: 10 requests per hour
 - **General API endpoints**: 100 requests per minute
@@ -198,6 +214,7 @@ Implement rate limiting for:
 ## Data Validation
 
 Use input validation for:
+
 - **Email formats**: Valid email regex
 - **Password strength**: Minimum 6 characters
 - **File uploads**: Image formats only (jpg, png, gif)
@@ -214,14 +231,18 @@ Use input validation for:
 ## Database Schema Updates
 
 ### Users Table
+
 Add columns:
+
 - `last_login` (timestamp)
 - `profile_completion` (integer)
 - `bio` (text)
 - `skills` (JSON array)
 
 ### Notifications Table
+
 Create new table:
+
 ```sql
 CREATE TABLE notifications (
   id UUID PRIMARY KEY,
@@ -238,7 +259,9 @@ CREATE TABLE notifications (
 ```
 
 ### Settings Table
+
 Create new table:
+
 ```sql
 CREATE TABLE user_settings (
   id UUID PRIMARY KEY,
@@ -254,11 +277,13 @@ CREATE TABLE user_settings (
 ## Implementation Priority
 
 1. **High Priority**:
+
    - Authentication (sign out)
    - Basic profile endpoints
    - Notifications CRUD
 
 2. **Medium Priority**:
+
    - Settings management
    - File upload
    - Profile image updates
