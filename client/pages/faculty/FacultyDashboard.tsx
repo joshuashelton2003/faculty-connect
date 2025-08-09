@@ -33,6 +33,16 @@ import {
 import { useAuthStore } from '@/store/authStore';
 import { allJobs, allCandidates } from '@/data/comprehensiveSampleData';
 import { useNavigate } from 'react-router-dom';
+import NotificationsDropdown from '@/components/NotificationsDropdown';
+import SettingsModal from '@/components/SettingsModal';
+import UserProfileDetails from '@/components/UserProfileDetails';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 interface JobMatch {
   id: string;
