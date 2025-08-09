@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
+/* Import custom navigation styles */
+@import './styles/nav-links.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import custom navigation styles */
-@import './styles/nav-links.css';
 
 @layer base {
   /**
