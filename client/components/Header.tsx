@@ -36,7 +36,7 @@ export default function Header() {
   };
 
   return (
-    <header className="backdrop-blur-md border border-white/20 shadow-lg sticky top-0 z-50">
+    <header className="bg-transparent backdrop-blur-md border border-white/20 shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -54,7 +54,7 @@ export default function Header() {
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-base md:text-lg lg:text-2xl font-semibold text-gray-900"
+                className="text-base md:text-lg lg:text-2xl font-semibold text-white"
               >
                 Faculty<span className="text-blue-600">Connect</span>
               </motion.span>
@@ -72,7 +72,7 @@ export default function Header() {
               >
                 <Link
                   to={item.href}
-                  className={`nav-link text-sm font-medium text-slate-700 hover:text-gray-900 ${
+                  className={`nav-link text-sm font-medium text-white hover:text-white/90 ${
                     isActivePath(item.href) ? 'active' : ''
                   }`}
                   aria-current={isActivePath(item.href) ? 'page' : undefined}
@@ -91,7 +91,7 @@ export default function Header() {
                 <NotificationSystem />
 
                 {/* Settings */}
-                <Button variant="ghost" size="sm" asChild>
+                <Button variant="ghost" size="sm" asChild className="text-white hover:text-white/90 hover:bg-white/10">
                   <Link to="/settings">
                     <Settings className="w-4 h-4" />
                   </Link>
@@ -100,7 +100,7 @@ export default function Header() {
                 {/* User Menu */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="flex items-center space-x-2">
+                    <Button variant="ghost" className="flex items-center space-x-2 text-white hover:text-white/90 hover:bg-white/10">
                     <User className="w-4 h-4" />
                     <span className="text-sm">
                       {user?.name?.split(' ')[0] || (user?.role === 'faculty' || user?.role === 'candidate' ? 'Faculty' : 'Employer')}
@@ -144,21 +144,21 @@ export default function Header() {
               <div className="flex items-center space-x-2">
                 {/* Faculty Sign In */}
                 <Link to="/login?role=faculty">
-                  <Button variant="ghost" size="sm" className="text-gray-600 hover:text-blue-600">
+                  <Button variant="ghost" size="sm" className="text-white hover:text-blue-300">
                     Faculty Sign In
                   </Button>
                 </Link>
 
                 {/* Institution Sign In */}
                 <Link to="/login?role=employer">
-                  <Button variant="ghost" size="sm" className="text-gray-600 hover:text-green-600">
+                  <Button variant="ghost" size="sm" className="text-white hover:text-green-300">
                     Institution Sign In
                   </Button>
                 </Link>
 
                 {/* General Sign Up */}
                 <Link to="/register">
-                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
                     Sign Up
                   </Button>
                 </Link>
@@ -172,11 +172,12 @@ export default function Header() {
               variant="ghost"
               size="sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white hover:text-white/90 hover:bg-white/10"
             >
               {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
+                <X className="h-6 w-6 text-white" />
               ) : (
-                <Menu className="h-6 w-6" />
+                <Menu className="h-6 w-6 text-white" />
               )}
             </Button>
           </div>
@@ -185,7 +186,7 @@ export default function Header() {
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-white/20">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -193,7 +194,7 @@ export default function Header() {
                   className={`nav-link-mobile block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                     isActivePath(item.href)
                       ? 'active'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      : 'text-white hover:text-white/90 hover:bg-white/10'
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                   aria-current={isActivePath(item.href) ? 'page' : undefined}
@@ -203,7 +204,7 @@ export default function Header() {
               ))}
               
               {/* Mobile Auth Section */}
-              <div className="pt-4 border-t border-gray-200">
+              <div className="pt-4 border-t border-white/20">
                 {isAuthenticated ? (
                   <div className="space-y-1">
                     <Link
