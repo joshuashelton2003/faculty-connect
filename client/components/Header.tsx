@@ -149,10 +149,10 @@ export default function Header() {
                   </Button>
                 </Link>
 
-                {/* Employer Sign In */}
+                {/* Institution Sign In */}
                 <Link to="/login?role=employer">
                   <Button variant="ghost" size="sm" className="text-gray-600 hover:text-green-600">
-                    Employer Sign In
+                    Institution Sign In
                   </Button>
                 </Link>
 
@@ -241,7 +241,7 @@ export default function Header() {
                       className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-green-50"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      Employer Sign In
+                      Institution Sign In
                     </Link>
                     <Link
                       to="/register"
