@@ -162,7 +162,7 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       {/* Hero Section */}
       <section
         className="relative min-h-screen flex items-center justify-center bg-center bg-cover bg-no-repeat"
@@ -381,7 +381,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-[#DDDAD0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -509,7 +509,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Recent Jobs */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-[#DDDAD0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
             <div>
