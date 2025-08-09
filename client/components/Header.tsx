@@ -264,13 +264,32 @@ export default function Header() {
                     >
                       Institution Sign In
                     </Link>
-                    <Link
-                      to="/register"
-                      className="block px-3 py-2 rounded-md text-base font-medium bg-blue-600 text-white hover:bg-blue-700"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Sign Up
-                    </Link>
+                    {/* Sign Up - Only on landing page */}
+                    {isLandingPage && (
+                      <Link
+                        to="/register"
+                        className="block px-3 py-2 rounded-md text-base font-medium bg-blue-600 text-white hover:bg-blue-700"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Sign Up
+                      </Link>
+                    )}
+                    {/* Profile Section - Only on non-landing pages */}
+                    {!isLandingPage && (
+                      <Link
+                        to="/profile"
+                        className="flex items-center px-3 py-2 rounded-md text-base font-medium text-white hover:text-white/90 hover:bg-white/10"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <Avatar className="w-6 h-6 mr-3 border border-white/30">
+                          <AvatarImage src={user?.profileImage} alt="Profile" />
+                          <AvatarFallback className="bg-blue-600 text-white text-xs">
+                            {user?.name?.charAt(0)?.toUpperCase() || 'U'}
+                          </AvatarFallback>
+                        </Avatar>
+                        Profile
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>
