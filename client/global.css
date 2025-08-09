@@ -5,6 +5,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import custom navigation styles */
+@import './styles/nav-links.css';
+
 @layer base {
   /**
    * Tailwind CSS theme
