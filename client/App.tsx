@@ -436,15 +436,13 @@ const App = () => (
   </QueryClientProvider>
 );
 
-// Only create root if it doesn't exist
+// Ensure root is only created once
 const container = document.getElementById("root")!;
+let root = (window as any).__reactRoot;
 
-// Type-safe check for existing root
-const existingRoot = (container as any)._reactRoot;
-if (!existingRoot) {
-  const root = createRoot(container);
-  (container as any)._reactRoot = root;
-  root.render(<App />);
-} else {
-  existingRoot.render(<App />);
+if (!root) {
+  root = createRoot(container);
+  (window as any).__reactRoot = root;
 }
+
+root.render(<App />);
