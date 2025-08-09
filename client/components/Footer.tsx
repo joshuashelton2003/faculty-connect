@@ -70,13 +70,13 @@ export default function Footer() {
                   Faculty<span className="text-blue-400">Connect</span>
                 </span>
               </div>
-              <p className="text-gray-400 text-sm mb-6 max-w-xs">
+              <p className="text-white text-sm mb-6 max-w-xs">
                 Connecting passionate educators with leading institutions across Tamil Nadu, South India, and beyond.
               </p>
               
               {/* Contact Info */}
               <div className="space-y-3">
-                <div className="flex items-center space-x-3 text-sm text-gray-400">
+                <div className="flex items-center space-x-3 text-sm text-white">
                   <Mail className="w-4 h-4 flex-shrink-0" />
                   <a
                     href="mailto:support@facultyconnect.in"
@@ -85,11 +85,11 @@ export default function Footer() {
                     searchfirst@facultyconnect.in
                   </a>
                 </div>
-                <div className="flex items-center space-x-3 text-sm text-gray-400">
+                <div className="flex items-center space-x-3 text-sm text-white">
                   <Phone className="w-4 h-4 flex-shrink-0" />
                   <span>+91 9876543210</span>
                 </div>
-                <div className="flex items-center space-x-3 text-sm text-gray-400">
+                <div className="flex items-center space-x-3 text-sm text-white">
                   <MapPin className="w-4 h-4 flex-shrink-0" />
                   <span> Erode, Tamil Nadu, India</span>
                 </div>
@@ -107,7 +107,7 @@ export default function Footer() {
                     <li key={linkIndex}>
                       <Link
                         to={link.href}
-                        className="text-gray-400 hover:text-white text-sm transition-colors duration-200"
+                        className="text-white hover:text-white text-sm transition-colors duration-200"
                       >
                         {link.name}
                       </Link>
@@ -123,7 +123,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
-            <div className="text-gray-400 text-sm">
+            <div className="text-white text-sm">
               © {currentYear} FacultyConnect. All rights reserved.
             </div>
 
@@ -137,7 +137,7 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
+                    className="text-white hover:text-white transition-colors duration-200"
                     aria-label={social.name}
                   >
                     <IconComponent className="w-5 h-5" />
@@ -147,7 +147,7 @@ export default function Footer() {
             </div>
 
             {/* Additional Info */}
-            <div className="text-gray-400 text-sm">
+            <div className="text-white text-sm">
               Made with Search First for Educators
             </div>
           </div>
