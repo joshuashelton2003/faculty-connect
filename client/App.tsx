@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 // Pages
 import HomePage from "./pages/HomePage";
