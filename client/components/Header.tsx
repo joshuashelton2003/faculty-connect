@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import NotificationSystem from '@/components/NotificationSystem';
 import { Menu, X, User, LogOut, Briefcase, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -18,6 +19,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuthStore();
   const location = useLocation();
+  const isLandingPage = location.pathname === '/';
 
   const navigation = [
     { name: 'Jobs', href: '/jobs' },
@@ -46,9 +48,13 @@ export default function Header() {
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg"
+                className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 rounded-xl shadow-lg overflow-hidden"
               >
-                <span className="text-white font-bold text-sm md:text-base lg:text-xl">FC</span>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2Ff92995b2d56b4f0a8225b3c3ca0a3e61%2Fedeb625211be4bf3b33f96c0d13d421a?format=webp&width=200"
+                  alt="FacultyConnect Logo"
+                  className="w-full h-full object-contain"
+                />
               </motion.div>
               <motion.span
                 initial={{ opacity: 0, y: -8 }}
