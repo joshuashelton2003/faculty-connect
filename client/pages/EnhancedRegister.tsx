@@ -263,7 +263,7 @@ export default function EnhancedRegister() {
           <div className="flex justify-center mb-8">
             <div className="flex items-center space-x-3">
               <img
-                src="/FC.png"
+                src="https://cdn.builder.io/api/v1/image/assets%2Ff92995b2d56b4f0a8225b3c3ca0a3e61%2Fedeb625211be4bf3b33f96c0d13d421a?format=webp&width=200"
                 alt="FacultyConnect Logo"
                 className="w-12 h-12 object-contain"
                 onError={(e) => {
@@ -273,8 +273,12 @@ export default function EnhancedRegister() {
                   if (fallback) fallback.style.display = 'flex';
                 }}
               />
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg" style={{display: 'none'}}>
-                <span className="text-white font-bold text-lg">FC</span>
+              <div className="w-12 h-12 rounded-xl shadow-lg overflow-hidden" style={{display: 'none'}}>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2Ff92995b2d56b4f0a8225b3c3ca0a3e61%2Fedeb625211be4bf3b33f96c0d13d421a?format=webp&width=200"
+                  alt="FacultyConnect Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="text-3xl font-bold text-slate-800">
                 Faculty<span className="text-blue-600">Connect</span>
