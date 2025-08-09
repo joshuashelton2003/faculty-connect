@@ -162,12 +162,26 @@ export default function Header() {
                   </Button>
                 </Link>
 
-                {/* General Sign Up */}
-                <Link to="/register">
-                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
-                    Sign Up
-                  </Button>
-                </Link>
+                {/* General Sign Up - Only on landing page */}
+                {isLandingPage && (
+                  <Link to="/register">
+                    <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
+                      Sign Up
+                    </Button>
+                  </Link>
+                )}
+
+                {/* Profile Section - Only on non-landing pages */}
+                {!isLandingPage && (
+                  <Link to="/profile">
+                    <Avatar className="w-8 h-8 border-2 border-white/30 hover:border-white/50 transition-colors cursor-pointer">
+                      <AvatarImage src={user?.profileImage} alt="Profile" />
+                      <AvatarFallback className="bg-blue-600 text-white text-sm">
+                        {user?.name?.charAt(0)?.toUpperCase() || 'U'}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Link>
+                )}
               </div>
             )}
           </div>
