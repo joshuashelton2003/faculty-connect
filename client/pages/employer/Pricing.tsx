@@ -77,7 +77,7 @@ const EmployerPricing: React.FC = () => {
       popular: false,
       icon: Building,
       color: 'text-gray-600',
-      bgColor: 'bg-gray-50',
+      bgColor: 'bg-[#DDDAD0]',
       buttonText: 'Get Started Free',
       jobPostings: '3 jobs/month',
       candidateAccess: 'Basic search',
@@ -211,7 +211,7 @@ const EmployerPricing: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -301,7 +301,7 @@ const EmployerPricing: React.FC = () => {
 
                 <CardContent className="pt-6">
                   {/* Key Metrics */}
-                  <div className="grid grid-cols-1 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
+                  <div className="grid grid-cols-1 gap-4 mb-6 p-4 bg-[#DDDAD0] rounded-lg">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">Job Postings</span>
                       <span className="font-medium">{plan.jobPostings}</span>
@@ -329,7 +329,7 @@ const EmployerPricing: React.FC = () => {
 
                   {/* Limitations */}
                   {plan.limitations.length > 0 && (
-                    <div className="space-y-3 mb-6 p-3 bg-gray-50 rounded-lg">
+                    <div className="space-y-3 mb-6 p-3 bg-[#DDDAD0] rounded-lg">
                       <h4 className="font-medium text-gray-700 text-sm">Plan limitations:</h4>
                       {plan.limitations.map((limitation, index) => (
                         <div key={index} className="flex items-start space-x-3">
@@ -398,7 +398,7 @@ const EmployerPricing: React.FC = () => {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50">
+              <thead className="bg-[#DDDAD0]">
                 <tr>
                   <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Features</th>
                   <th className="px-6 py-4 text-center text-sm font-medium text-gray-900">Starter</th>
@@ -413,7 +413,7 @@ const EmployerPricing: React.FC = () => {
                   <td className="px-6 py-4 text-center text-sm">15</td>
                   <td className="px-6 py-4 text-center text-sm">Unlimited</td>
                 </tr>
-                <tr className="bg-gray-50">
+                <tr className="bg-[#DDDAD0]">
                   <td className="px-6 py-4 text-sm text-gray-900">Featured Job Postings</td>
                   <td className="px-6 py-4 text-center"><X className="w-5 h-5 text-red-500 mx-auto" /></td>
                   <td className="px-6 py-4 text-center text-sm">2/month</td>
@@ -425,7 +425,7 @@ const EmployerPricing: React.FC = () => {
                   <td className="px-6 py-4 text-center text-sm">Advanced</td>
                   <td className="px-6 py-4 text-center text-sm">Full Access</td>
                 </tr>
-                <tr className="bg-gray-50">
+                <tr className="bg-[#DDDAD0]">
                   <td className="px-6 py-4 text-sm text-gray-900">Analytics & Reports</td>
                   <td className="px-6 py-4 text-center text-sm">Basic</td>
                   <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-green-600 mx-auto" /></td>
@@ -437,7 +437,7 @@ const EmployerPricing: React.FC = () => {
                   <td className="px-6 py-4 text-center"><X className="w-5 h-5 text-red-500 mx-auto" /></td>
                   <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-green-600 mx-auto" /></td>
                 </tr>
-                <tr className="bg-gray-50">
+                <tr className="bg-[#DDDAD0]">
                   <td className="px-6 py-4 text-sm text-gray-900">Custom Integrations</td>
                   <td className="px-6 py-4 text-center"><X className="w-5 h-5 text-red-500 mx-auto" /></td>
                   <td className="px-6 py-4 text-center"><X className="w-5 h-5 text-red-500 mx-auto" /></td>

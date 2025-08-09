@@ -199,7 +199,7 @@ const InstituteJobs: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#DDDAD0] flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading jobs...</p>
@@ -210,7 +210,7 @@ const InstituteJobs: React.FC = () => {
 
   if (!institute) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#DDDAD0] flex items-center justify-center">
         <div className="text-center">
           <Building className="w-16 h-16 text-gray-400 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Institute not found</h2>
@@ -227,7 +227,7 @@ const InstituteJobs: React.FC = () => {
   const uniqueDepartments = [...new Set(jobs.map(job => job.department))];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       {/* Back Button */}
       <div className="sticky top-0 z-10 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

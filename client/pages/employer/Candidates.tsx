@@ -341,11 +341,11 @@ const Candidates: React.FC = () => {
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
-                  <div className="text-center p-2 bg-gray-50 rounded">
+                  <div className="text-center p-2 bg-[#DDDAD0] rounded">
                     <p className="font-medium text-gray-900">{candidate.applications}</p>
                     <p className="text-gray-600">Applications</p>
                   </div>
-                  <div className="text-center p-2 bg-gray-50 rounded">
+                  <div className="text-center p-2 bg-[#DDDAD0] rounded">
                     <p className="font-medium text-gray-900">{candidate.profileViews}</p>
                     <p className="text-gray-600">Profile Views</p>
                   </div>

@@ -166,7 +166,7 @@ export default function ApplicationDetail() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <div className="mb-6">
@@ -251,7 +251,7 @@ export default function ApplicationDetail() {
           </div>
 
           {/* Job Stats */}
-          <div className="flex items-center space-x-6 text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+          <div className="flex items-center space-x-6 text-sm text-gray-600 bg-[#DDDAD0] p-3 rounded-lg">
             <div className="flex items-center">
               <Users className="w-4 h-4 mr-1" />
               {application.jobDetails.applicationCount} applications
@@ -352,7 +352,7 @@ export default function ApplicationDetail() {
               <CardContent>
                 <div className="space-y-3">
                   {application.applicationDetails.documentsUploaded.map((doc, index) => (
-                    <div key={index} className="flex items-center space-x-3 p-2 bg-gray-50 rounded-lg">
+                    <div key={index} className="flex items-center space-x-3 p-2 bg-[#DDDAD0] rounded-lg">
                       <FileText className="w-4 h-4 text-blue-600" />
                       <span className="text-sm font-medium">{doc}</span>
                     </div>
@@ -480,7 +480,7 @@ export default function ApplicationDetail() {
               <CardContent>
                 <div className="space-y-4">
                   {relatedJobs.map((job) => (
-                    <div key={job.id} className="p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <div key={job.id} className="p-3 border border-gray-200 rounded-lg hover:bg-[#DDDAD0] transition-colors">
                       <h4 className="font-medium text-gray-900 mb-1">{job.title}</h4>
                       <p className="text-sm text-gray-600 mb-2">{job.department}</p>
                       <div className="flex items-center justify-between">

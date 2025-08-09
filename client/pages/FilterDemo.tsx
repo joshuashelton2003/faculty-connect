@@ -10,7 +10,7 @@ export default function FilterDemo() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-[#DDDAD0] p-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Filter Sidebar Demo</h1>
@@ -39,7 +39,7 @@ export default function FilterDemo() {
                     Current filter state (updates live as you interact with the sidebar):
                   </p>
                   
-                  <div className="bg-gray-50 rounded-lg p-4">
+                  <div className="bg-[#DDDAD0] rounded-lg p-4">
                     <pre className="text-sm text-gray-700 whitespace-pre-wrap overflow-x-auto">
                       {JSON.stringify(currentFilters, null, 2)}
                     </pre>

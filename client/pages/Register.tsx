@@ -189,7 +189,7 @@ export default function Register() {
               </div>
 
               {selectedRole === 'employer' && (
-                <div className="space-y-4 p-4 bg-gray-50 rounded-lg">
+                <div className="space-y-4 p-4 bg-[#DDDAD0] rounded-lg">
                   <h4 className="font-medium text-gray-900">Institution Details</h4>
                   
                   <div>

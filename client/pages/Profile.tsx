@@ -169,7 +169,7 @@ export default function Profile() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#DDDAD0] flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Access Denied</h2>
           <p className="text-gray-600 mb-6">Please log in to view your profile.</p>
@@ -182,7 +182,7 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <div className="mb-6">
@@ -268,7 +268,7 @@ export default function Profile() {
                         <Input
                           {...candidateForm.register('firstName')}
                           disabled={!isEditing}
-                          className={!isEditing ? 'bg-gray-50' : ''}
+                          className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                         />
                         {candidateForm.formState.errors.firstName && (
                           <p className="text-sm text-red-600 mt-1">
@@ -282,7 +282,7 @@ export default function Profile() {
                         <Input
                           {...candidateForm.register('lastName')}
                           disabled={!isEditing}
-                          className={!isEditing ? 'bg-gray-50' : ''}
+                          className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                         />
                         {candidateForm.formState.errors.lastName && (
                           <p className="text-sm text-red-600 mt-1">
@@ -297,7 +297,7 @@ export default function Profile() {
                           {...candidateForm.register('email')}
                           type="email"
                           disabled={!isEditing}
-                          className={!isEditing ? 'bg-gray-50' : ''}
+                          className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                         />
                         {candidateForm.formState.errors.email && (
                           <p className="text-sm text-red-600 mt-1">
@@ -311,7 +311,7 @@ export default function Profile() {
                         <Input
                           {...candidateForm.register('phone')}
                           disabled={!isEditing}
-                          className={!isEditing ? 'bg-gray-50' : ''}
+                          className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                         />
                         {candidateForm.formState.errors.phone && (
                           <p className="text-sm text-red-600 mt-1">
@@ -325,7 +325,7 @@ export default function Profile() {
                         <Input
                           {...candidateForm.register('location.city')}
                           disabled={!isEditing}
-                          className={!isEditing ? 'bg-gray-50' : ''}
+                          className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                         />
                       </div>
 
@@ -334,7 +334,7 @@ export default function Profile() {
                         <Input
                           {...candidateForm.register('location.state')}
                           disabled={!isEditing}
-                          className={!isEditing ? 'bg-gray-50' : ''}
+                          className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                         />
                       </div>
                     </div>
@@ -345,7 +345,7 @@ export default function Profile() {
                         {...candidateForm.register('bio')}
                         rows={4}
                         disabled={!isEditing}
-                        className={!isEditing ? 'bg-gray-50' : ''}
+                        className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                       />
                       {candidateForm.formState.errors.bio && (
                         <p className="text-sm text-red-600 mt-1">
@@ -360,7 +360,7 @@ export default function Profile() {
                         {...candidateForm.register('skills')}
                         rows={3}
                         disabled={!isEditing}
-                        className={!isEditing ? 'bg-gray-50' : ''}
+                        className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                       />
                     </div>
 
@@ -439,7 +439,7 @@ export default function Profile() {
                     <Input
                       {...employerForm.register('instituteName')}
                       disabled={!isEditing}
-                      className={!isEditing ? 'bg-gray-50' : ''}
+                      className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                     />
                   </div>
 
@@ -448,7 +448,7 @@ export default function Profile() {
                     <Input
                       {...employerForm.register('contactPersonName')}
                       disabled={!isEditing}
-                      className={!isEditing ? 'bg-gray-50' : ''}
+                      className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                     />
                   </div>
 
@@ -458,7 +458,7 @@ export default function Profile() {
                       {...employerForm.register('email')}
                       type="email"
                       disabled={!isEditing}
-                      className={!isEditing ? 'bg-gray-50' : ''}
+                      className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                     />
                   </div>
 
@@ -467,7 +467,7 @@ export default function Profile() {
                     <Input
                       {...employerForm.register('phone')}
                       disabled={!isEditing}
-                      className={!isEditing ? 'bg-gray-50' : ''}
+                      className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                     />
                   </div>
 
@@ -476,7 +476,7 @@ export default function Profile() {
                     <Input
                       {...employerForm.register('website')}
                       disabled={!isEditing}
-                      className={!isEditing ? 'bg-gray-50' : ''}
+                      className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                     />
                   </div>
 
@@ -485,7 +485,7 @@ export default function Profile() {
                     <Input
                       {...employerForm.register('location.city')}
                       disabled={!isEditing}
-                      className={!isEditing ? 'bg-gray-50' : ''}
+                      className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                     />
                   </div>
                 </div>
@@ -495,7 +495,7 @@ export default function Profile() {
                   <Input
                     {...employerForm.register('location.address')}
                     disabled={!isEditing}
-                    className={!isEditing ? 'bg-gray-50' : ''}
+                    className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                   />
                 </div>
 
@@ -505,7 +505,7 @@ export default function Profile() {
                     {...employerForm.register('description')}
                     rows={4}
                     disabled={!isEditing}
-                    className={!isEditing ? 'bg-gray-50' : ''}
+                    className={!isEditing ? 'bg-[#DDDAD0]' : ''}
                   />
                 </div>
 

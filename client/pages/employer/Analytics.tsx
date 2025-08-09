@@ -308,7 +308,7 @@ const Analytics: React.FC = () => {
       <CardContent>
         <div className="space-y-4">
           {employerAnalyticsData.topPerformingJobs.map((job, index) => (
-            <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div key={index} className="flex items-center justify-between p-4 bg-[#DDDAD0] rounded-lg">
               <div className="flex-1">
                 <h4 className="font-medium text-gray-900">{job.title}</h4>
                 <div className="flex items-center gap-4 mt-1 text-sm text-gray-500">
@@ -355,7 +355,7 @@ const Analytics: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <div className="mb-6">

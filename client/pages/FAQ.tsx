@@ -229,7 +229,7 @@ const FAQ: React.FC = () => {
   }, [searchQuery, selectedCategory]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

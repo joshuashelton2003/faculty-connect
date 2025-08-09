@@ -151,7 +151,7 @@ const Notifications: React.FC = () => {
       case 'medium':
         return 'border-l-yellow-500 bg-yellow-50';
       case 'low':
-        return 'border-l-gray-500 bg-gray-50';
+        return 'border-l-gray-500 bg-[#DDDAD0]';
       default:
         return 'border-l-gray-500 bg-white';
     }
@@ -218,7 +218,7 @@ const Notifications: React.FC = () => {
   const unreadCount = notifications.filter(n => !n.isRead).length;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">

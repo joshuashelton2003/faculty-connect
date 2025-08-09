@@ -953,7 +953,7 @@ const PostNewJob: React.FC = () => {
           </div>
 
           {/* Terms */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-[#DDDAD0] p-4 rounded-lg">
             <div className="flex items-start space-x-2">
               <AlertCircle className="w-5 h-5 text-amber-500 mt-0.5" />
               <div>
@@ -984,7 +984,7 @@ const PostNewJob: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <div className="mb-6">

@@ -496,7 +496,7 @@ const InstitutesMain: React.FC = () => {
                     e.stopPropagation();
                     navigate(`/institutes/${institute.id}`);
                   }}
-                  className="flex-1 hover:bg-gray-50"
+                  className="flex-1 hover:bg-[#DDDAD0]"
                 >
                   <Eye className="w-4 h-4 mr-2" />
                   View Details
@@ -672,7 +672,7 @@ const InstitutesMain: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       {/* Back Button */}
       <div className="sticky top-0 z-10 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

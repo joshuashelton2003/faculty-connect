@@ -161,7 +161,7 @@ const SuccessStories: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -269,7 +269,7 @@ const SuccessStories: React.FC = () => {
                 </div>
 
                 {/* College Info */}
-                <div className="flex items-center text-sm text-gray-600 mb-6 p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center text-sm text-gray-600 mb-6 p-3 bg-[#DDDAD0] rounded-lg">
                   <GraduationCap className="w-4 h-4 mr-2" />
                   <span className="font-medium">{story.college}</span>
                 </div>

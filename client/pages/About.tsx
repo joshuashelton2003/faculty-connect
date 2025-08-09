@@ -159,7 +159,7 @@ export default function About() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-[#DDDAD0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Impact in Numbers</h2>
@@ -235,7 +235,7 @@ export default function About() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-[#DDDAD0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Journey</h2>
@@ -303,7 +303,7 @@ export default function About() {
       </section>
 
       {/* Achievements Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-[#DDDAD0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Recognition & Achievements</h2>

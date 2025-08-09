@@ -166,7 +166,7 @@ const Applications: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <div className="mb-6">
@@ -402,7 +402,7 @@ const Applications: React.FC = () => {
                   </div>
 
                   {application.salaryExpectation && (
-                    <div className="mb-4 p-3 bg-gray-50 rounded-lg">
+                    <div className="mb-4 p-3 bg-[#DDDAD0] rounded-lg">
                       <p className="text-sm text-gray-600">
                         <strong>Salary Expectation:</strong> ₹{application.salaryExpectation.amount.toLocaleString()} per month
                       </p>
@@ -581,7 +581,7 @@ const Applications: React.FC = () => {
                 {selectedApplication.coverLetter && (
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-2">Cover Letter</h3>
-                    <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="bg-[#DDDAD0] p-4 rounded-lg">
                       <p className="text-gray-700">{selectedApplication.coverLetter}</p>
                     </div>
                   </div>
@@ -593,7 +593,7 @@ const Applications: React.FC = () => {
                     <h3 className="font-semibold text-gray-900 mb-3">Application Responses</h3>
                     <div className="space-y-3">
                       {selectedApplication.answers.map((answer: any, idx: number) => (
-                        <div key={idx} className="bg-gray-50 p-4 rounded-lg">
+                        <div key={idx} className="bg-[#DDDAD0] p-4 rounded-lg">
                           <p className="font-medium text-gray-900 mb-2">Q: {answer.question}</p>
                           <p className="text-gray-700">A: {answer.answer}</p>
                         </div>

@@ -199,7 +199,7 @@ export default function JobDetail() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Success Message */}
         {showSuccessMessage && (
@@ -412,7 +412,7 @@ export default function JobDetail() {
 
               {/* Sidebar */}
               <div className="lg:col-span-1">
-                <div className="bg-gray-50 rounded-lg p-6 sticky top-24">
+                <div className="bg-[#DDDAD0] rounded-lg p-6 sticky top-24">
                   {/* Institute Info */}
                   <div className="mb-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">About the Institution</h3>

@@ -4,7 +4,7 @@ import { ArrowLeft, FileText, Scale, UserCheck, AlertTriangle, Shield } from 'lu
 
 const TermsOfService: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DDDAD0]">
       {/* Back Button */}
       <div className="sticky top-0 z-10 bg-white border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
