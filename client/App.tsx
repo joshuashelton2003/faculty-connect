@@ -88,8 +88,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
-  return (
+const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -435,16 +434,15 @@ export default function App() {
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
-  );
+);
+
+// Check if root already exists to prevent multiple createRoot calls
+const rootElement = document.getElementById("root")!;
+if (!(rootElement as any)._reactRootContainer) {
+  const root = createRoot(rootElement);
+  (rootElement as any)._reactRootContainer = root;
+  root.render(<App />);
+} else {
+  // Re-render on existing root
+  (rootElement as any)._reactRootContainer.render(<App />);
 }
-
-// Ensure root is only created once
-const container = document.getElementById("root")!;
-let root = (window as any).__reactRoot;
-
-if (!root) {
-  root = createRoot(container);
-  (window as any).__reactRoot = root;
-}
-
-root.render(<App />);
