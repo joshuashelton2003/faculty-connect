@@ -88,7 +88,8 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-const App = () => (
+export default function App() {
+  return (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -434,7 +435,8 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
-);
+  );
+}
 
 // Ensure root is only created once
 const container = document.getElementById("root")!;
