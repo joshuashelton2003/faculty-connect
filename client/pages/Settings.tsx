@@ -330,7 +330,7 @@ const Settings: React.FC = () => {
                   <Avatar className="h-24 w-24">
                     <AvatarImage src={user?.profileImage} alt={user?.name} />
                     <AvatarFallback className="bg-blue-100 text-blue-600 text-2xl font-semibold">
-                      {user?.name?.split(' ').map(n => n[0]).join('') || 'FC'}
+                      {user?.name?.split(' ').map(n => n[0]).join('') || user?.email?.charAt(0)?.toUpperCase() || 'U'}
                     </AvatarFallback>
                   </Avatar>
                   <div className="space-y-2">
