@@ -550,9 +550,27 @@ const FacultyDashboard: React.FC = () => {
 
         {selectedTab === 'profile' && (
           <div className="space-y-6">
+            <UserProfileDetails
+              profileData={{
+                type: 'faculty',
+                name: user?.name || 'Faculty Member',
+                email: user?.email || 'faculty@example.com',
+                phone: user?.phone || '+91 9876543210',
+                profileImage: user?.profileImage,
+                department: 'Computer Science',
+                qualification: 'Ph.D. in Computer Science',
+                skills: ['Machine Learning', 'Data Science', 'Python', 'Research', 'Teaching'],
+                bio: 'Experienced computer science professor with expertise in machine learning and data science. Passionate about teaching and research in emerging technologies.',
+                joinedDate: 'January 2024',
+                lastLogin: '2 hours ago',
+                experience: '8 years',
+                currentInstitution: 'Anna University'
+              }}
+            />
+
             <Card>
               <CardHeader>
-                <CardTitle>Profile Management</CardTitle>
+                <CardTitle>Quick Actions</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -563,7 +581,7 @@ const FacultyDashboard: React.FC = () => {
                       <div className="text-sm opacity-75">Add a professional photo</div>
                     </div>
                   </Button>
-                  
+
                   <Button variant="outline" className="h-auto p-6 flex flex-col items-center space-y-3">
                     <FileText className="w-8 h-8" />
                     <div className="text-center">
@@ -571,7 +589,7 @@ const FacultyDashboard: React.FC = () => {
                       <div className="text-sm opacity-75">Keep your CV current</div>
                     </div>
                   </Button>
-                  
+
                   <Button variant="outline" className="h-auto p-6 flex flex-col items-center space-y-3">
                     <BookOpen className="w-8 h-8" />
                     <div className="text-center">
@@ -579,7 +597,7 @@ const FacultyDashboard: React.FC = () => {
                       <div className="text-sm opacity-75">Add qualifications & experience</div>
                     </div>
                   </Button>
-                  
+
                   <Button variant="outline" className="h-auto p-6 flex flex-col items-center space-y-3">
                     <Award className="w-8 h-8" />
                     <div className="text-center">
