@@ -11,6 +11,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import NotificationSystem from '@/components/NotificationSystem';
 import { Menu, X, User, LogOut, Briefcase, Settings } from 'lucide-react';
+import { motion } from 'framer-motion';
+import '../styles/nav-links.css';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
