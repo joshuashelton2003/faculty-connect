@@ -88,7 +88,8 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-const App = () => (
+export default function App() {
+  return (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -434,15 +435,5 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
-);
-
-// Check if root already exists to prevent multiple createRoot calls
-const rootElement = document.getElementById("root")!;
-if (!(rootElement as any)._reactRootContainer) {
-  const root = createRoot(rootElement);
-  (rootElement as any)._reactRootContainer = root;
-  root.render(<App />);
-} else {
-  // Re-render on existing root
-  (rootElement as any)._reactRootContainer.render(<App />);
+  );
 }
