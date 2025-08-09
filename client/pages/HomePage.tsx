@@ -328,7 +328,7 @@ const HomePage: React.FC = () => {
                     onClick={() => navigate("/login?role=employer")}
                     className="w-full bg-green-600/90 hover:bg-green-700 text-white h-10"
                   >
-                    Employer Sign In
+                    Institution Sign In
                   </Button>
                   <Button
                     variant="outline"
