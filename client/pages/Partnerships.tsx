@@ -505,7 +505,7 @@ const Partnerships: React.FC = () => {
               <CardContent className="p-6">
                 <MapPin className="w-12 h-12 text-blue-600 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Visit Us</h3>
-                <p className="text-gray-600 mb-4">Chennai, Tamil Nadu</p>
+                <p className="text-gray-600 mb-4">Erode, Tamil Nadu</p>
                 <Button variant="outline" size="sm">
                   <MapPin className="w-4 h-4 mr-2" />
                   Get Directions
