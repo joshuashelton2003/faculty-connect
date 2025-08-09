@@ -17,6 +17,7 @@ import {
   GraduationCap,
   TrendingUp,
   Users,
+  User,
   FileText,
   Settings,
   Bell,
